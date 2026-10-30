@@ -5,11 +5,11 @@ Windows 11 x64 · Release candidate · October 30, 2026
 ## Assistant and Second Brain
 
 - OpenRouter is the default assistant provider, with dynamic `openrouter/free` routing and a live picker for fixed free models.
-- Model discovery filters to zero-cost text models with currently eligible ZDR endpoints.
-- Each inference requests ZDR, denies provider data collection, and disallows noncompliant fallbacks. ASTRA never selects a paid model.
+- Model discovery filters to zero-cost text models; it does not filter for ZDR endpoints.
+- ASTRA does not request ZDR or filter providers for it. Each inference caps prompt and completion prices at $0, including provider failovers. ASTRA never selects a paid model.
 - The API key is stored encrypted for the current Windows account with DPAPI. First remote inference in each ASTRA session requires explicit content-sharing consent.
 - Local OCR, audio transcription, and Second Brain retrieval remain available. The included LLamaSharp model is an optional offline provider; Ollama and a localhost model server are not required.
-- The README and `OPENROUTER-AI-GUIDE.md` now describe setup, consent, ZDR scope, free-tier quotas, offline mode, and recovery.
+- The README and `OPENROUTER-AI-GUIDE.md` describe setup, consent, the absence of ZDR routing, provider data policies, free-tier quotas, offline mode, and recovery.
 
 ## Gaming profile
 
@@ -27,6 +27,6 @@ Windows 11 x64 · Release candidate · October 30, 2026
 
 ## Practical limits
 
-OpenRouter's free service is subject to changing account/provider quotas and model availability; it is not unlimited. Current free-tier limits and endpoint policies are linked in the English README and AI guide. ZDR is provider routing, not on-device inference, and OpenRouter documents limited safety-screening and legal exceptions. Use the offline AI for content that must remain on the PC.
+OpenRouter's free service is subject to changing account/provider quotas and model availability; it is not unlimited. ASTRA does not request ZDR or filter providers by it. Cloud prompts and selected context are sent to OpenRouter and the serving provider, which may retain or use them under its own policies. Use offline AI for content that must remain on the PC.
 
 The ASTRA executable remains unsigned. Full-screen Gaming HUD visibility depends on the game and Windows compositor. Creator checks are advisory metadata checks. All AI output and STEM simulation results need review.
