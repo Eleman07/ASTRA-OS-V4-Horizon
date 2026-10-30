@@ -8,7 +8,7 @@ ASTRA runs on your existing Windows installation. You can keep using your Window
 
 ## Download and start
 
-1. Open this project's **GitHub Releases** page. Download **`ASTRA-OS-V4-HORIZON-Setup-4.0.0.2-win-x64.exe`** for the account-scoped installer, or **`ASTRA-OS-V4-HORIZON-openrouter-gaming-creator-win-x64.zip`** for the portable package. The release also provides a `.sha256` checksum for each file.
+1. Open this project's **GitHub Releases** page. Download **`ASTRA-OS-V4-HORIZON-Setup-4.0.0.5-win-x64.exe`** for the account-scoped installer, or **`ASTRA-OS-V4-HORIZON-openrouter-gaming-creator-win-x64.zip`** for the portable package. The release also provides a `.sha256` checksum for each file.
 2. For the installer, run Setup and follow its steps; it installs for your current Windows account and does not require administrator access. For the portable package, right-click the ZIP, choose **Extract All**, and extract it to a permanent local folder you can write to, such as `C:\Users\YourName\Apps`.
 3. Start ASTRA from the Start menu, or open the extracted folder and double-click **`Astra.Desktop.exe`**.
 4. Run ASTRA with your normal Windows account and keep the entire extracted folder together when using the portable package. The installer adds Start menu shortcuts and an uninstaller. Either installation method keeps your account data outside the app folder.
@@ -229,7 +229,7 @@ The download contains the app, .NET/WinUI runtime files, UI assets, language cat
 To verify either download, run the matching command in PowerShell and compare the output with the same-named checksum asset attached to the GitHub release:
 
 ```powershell
-Get-FileHash .\ASTRA-OS-V4-HORIZON-Setup-4.0.0.2-win-x64.exe -Algorithm SHA256
+Get-FileHash .\ASTRA-OS-V4-HORIZON-Setup-4.0.0.5-win-x64.exe -Algorithm SHA256
 Get-FileHash .\ASTRA-OS-V4-HORIZON-openrouter-gaming-creator-win-x64.zip -Algorithm SHA256
 ```
 
