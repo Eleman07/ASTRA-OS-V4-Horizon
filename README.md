@@ -2,7 +2,7 @@
 
 A customizable desktop workspace for Windows 11, with OpenRouter AI, an optional offline model, STEM tools, a 3D desktop, widgets, and Gaming and Creator workspaces.
 
-**Windows 11 x64 · Portable application · Release candidate**
+**Windows 11 x64 · Portable application · Release 4.0.0.5**
 
 ASTRA runs on your existing Windows installation. You can keep using your Windows applications and files. A valid Windows installation is required.
 
@@ -224,7 +224,7 @@ The download contains the app, .NET/WinUI runtime files, UI assets, language cat
 - `LICENSE` covers ASTRA's own MIT-licensed code. Third-party components retain their own licenses.
 - `THIRD-PARTY-NOTICES.md` points to bundled licenses and upstream credits, including NASA/Khronos models, the Ariane reconstruction, Three.js, Qwen, llama.cpp, Whisper, and .NET dependencies.
 - `FILES.sha256` lists every payload file's SHA-256. The separately downloadable `.zip.sha256` file verifies the whole ZIP.
-- `RELEASE-NOTES.md` records this release candidate's scope and validation. This package contains application files, not personal preferences, note stores, browser caches, or QA profiles.
+- `RELEASE-NOTES.md` records release 4.0.0.5's scope and validation. This package contains application files, not personal preferences, note stores, browser caches, or QA profiles.
 
 To verify either download, run the matching command in PowerShell and compare the output with the same-named checksum asset attached to the GitHub release:
 

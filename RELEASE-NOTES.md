@@ -1,6 +1,6 @@
 # ASTRA OS V4 Horizon — OpenRouter, Gaming and Creator update
 
-Windows 11 x64 · Release candidate · October 30, 2026
+Windows 11 x64 · Release 4.0.0.5 · October 30, 2026
 
 ## Assistant and Second Brain
 
