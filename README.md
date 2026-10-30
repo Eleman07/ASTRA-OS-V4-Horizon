@@ -24,7 +24,7 @@ ASTRA runs on your existing Windows installation. You can keep using your Window
 | .NET and WinUI | The .NET and Windows App SDK runtimes are included. Visual Studio and the .NET SDK are not required to run this package. |
 | 3D views | Microsoft Edge WebView2 Runtime. Its official x64 offline installer is included in `prerequisites`. |
 | Native AI/audio libraries | Microsoft Visual C++ v14 x64 Runtime. Its official installer is included in `prerequisites`. |
-| OpenRouter AI | A free OpenRouter account and API key are required for the default cloud model route. Free-tier quotas and model availability apply. ASTRA routes only to models/endpoints that meet its zero-cost and ZDR filters. |
+| OpenRouter AI | A free OpenRouter account and API key are required for the default cloud model route. Free-tier quotas and model availability apply. ASTRA caps model/provider prices at $0. It does not request Zero Data Retention (ZDR) or filter providers by it; providers may retain or use prompts under their own policies. |
 | Optional offline AI | The bundled text model, Whisper speech model, and native runtime allow local inference without Ollama or a local server. 8 GB RAM or more is recommended for comfortable use; performance depends on the PC. |
 | Browser button | Install Google Chrome separately to use ASTRA's Chrome integration. |
 | Optional tools | Python, a WSL Linux distribution, and Windows ADK/OSCDIMG are needed only for their respective optional workflows. |
@@ -123,11 +123,11 @@ Model credits and source links are in `Graphics3D/web/models/CREDITS.md` and are
 
 1. Create a free account at [OpenRouter](https://openrouter.ai/) and create an API key in your account's **Keys** page. ASTRA never asks for OpenRouter account passwords.
 2. In ASTRA, open **Second Brain / AI settings**. Paste the key into **OpenRouter API key** and select **Save key and use OpenRouter**. ASTRA encrypts the key with Windows DPAPI for your Windows account; it is not written to preferences or logs.
-3. Keep **Automatic free model · ZDR required** selected for the recommended route. It chooses from the current free model pool. To inspect fixed model choices, select **Refresh free ZDR-compatible models**; only zero-priced text models with currently eligible ZDR endpoints are listed.
+3. Keep **Automatic free model · zero cost only** selected for the recommended route. To inspect fixed choices, select **Refresh free models**; ASTRA filters the catalog to text models with zero prompt/completion price.
 4. Start the provider or send your first request. Before the first remote inference in each ASTRA session, review the consent dialog. It names the kinds of content that may be sent. Choose **Allow for this session** only if you agree.
 5. Ask a question, or use Assistant features such as PDF passages, a selected project, or a web-research task. The content used for the action is sent only after consent. To stop remote use, choose **Use included offline AI** or delete the saved key.
 
-Every OpenRouter inference request requires `provider.zdr: true`, denies provider data collection, and disables noncompliant fallbacks. If the selected model has no eligible endpoint, ASTRA stops with an error instead of relaxing these filters. ZDR is provider-routing policy, **not local processing**: prompts and selected context leave the PC. OpenRouter documents limited legal and safety-screening exceptions, and ZDR does not govern separate tools you might enable on your OpenRouter account. See the [OpenRouter ZDR documentation](https://openrouter.ai/docs/guides/features/zdr).
+**ASTRA does not use Zero Data Retention (ZDR) routing.** It does not send `provider.zdr` or filter models/providers by ZDR eligibility. The only routing limits are the $0 prompt and completion price caps, including provider failovers. Prompts, attached text and selected context leave this PC. OpenRouter and the serving provider may retain or use them under their current policies; check the model/provider terms before sending sensitive information. Session consent is required before the first remote inference. Use **Use included offline AI** for local processing.
 
 Free model access has usage limits and availability can change. OpenRouter currently documents 20 requests/minute and 50 requests/day for `:free` variants on an account without purchased credits; provider-specific limits can also apply. `openrouter/free` is a dynamic router, not a promise that one fixed model will always be selected. ASTRA never selects a paid model; check current [free models and limits](https://openrouter.ai/collections/free-models). The local option works without an OpenRouter account or internet, with finite local speed and memory use.
 
@@ -194,7 +194,7 @@ On a new profile, ASTRA selects lighter settings for devices with up to 8 GB RAM
 | The EXE does not start or resources are missing | Extract the complete ZIP again into a new folder. Check that `Astra.Desktop.pri`, `App.xbf`, `MainWindow.xbf`, DLLs, and subfolders remain beside the EXE. |
 | A native runtime DLL is reported missing | Run the included `prerequisites/vc_redist.x64.exe`, then restart ASTRA. |
 | A 3D panel cannot initialize | Run the included WebView2 installer if the runtime is missing, restart ASTRA, then activate the scene again. Installing Chrome alone does not provide WebView2. |
-| OpenRouter returns an error | Check that the API key is saved, then verify the free-tier quota and current model availability. ASTRA will not retry on a paid or non-ZDR endpoint. |
+| OpenRouter returns an error | Check that the API key is saved, then verify the free-tier quota and current model availability. ASTRA does not retry through paid endpoints. |
 | Offline AI fails to start | Keep all `Ai/components` files together, check available memory, and try again after closing heavy applications. |
 | WSL says no distribution is installed | Complete Ubuntu installation and its first-run setup; WSL itself and a Linux distribution are separate requirements. |
 | The taskbar remains visible | Check the Windows auto-hide option described above, then use F11 in ASTRA. Move your pointer away from the taskbar edge. |
