@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.study.feynman",
+  "name": "Feynman Canvas",
+  "description": "Prepara una traccia di spiegazione da completare sul tema indicato.",
+  "operation": "study.feynman",
+  "category": "Studio",
+  "example": "Entropia",
+  "prefix": null
+}

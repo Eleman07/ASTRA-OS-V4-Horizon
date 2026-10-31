@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.study.recall",
+  "name": "Active Recall Cards",
+  "description": "Trasforma righe domanda | risposta in schede ripassabili.",
+  "operation": "study.recall",
+  "category": "Studio",
+  "example": "Che cosa è una derivata? | Il tasso di variazione locale.\nUnità della forza? | Newton.",
+  "prefix": null
+}

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <UseAppHost>false</UseAppHost>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/Astra.Desktop/DockWindowRules.cs" Link="DockWindowRules.cs" />
+    <Compile Include="../../src/Astra.Desktop/NativeShellIcon.cs" Link="NativeShellIcon.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/BrainPdfReader.cs" Link="BrainPdfReader.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/BundledAi.cs" Link="BundledAi.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/PublicWebResearch.cs" Link="PublicWebResearch.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/ProjectWorkspaceTools.cs" Link="ProjectWorkspaceTools.cs" />
+    <Compile Include="../../src/Astra.Desktop/WindowWorkspace.cs" Link="WindowWorkspace.cs" />
+    <Compile Include="../../src/Astra.Desktop/SystemMonitor.cs" Link="SystemMonitor.cs" />
+    <Compile Include="../../src/Astra.Desktop/GpuMonitor.cs" Link="GpuMonitor.cs" />
+    <Compile Include="../../src/Astra.Desktop/SystemSnapshot.cs" Link="SystemSnapshot.cs" />
+    <Compile Include="../../src/Astra.Desktop/InstalledAppCatalog.cs" Link="InstalledAppCatalog.cs" />
+    <Compile Include="../../src/Astra.Desktop/SecurityInspector.cs" Link="SecurityInspector.cs" />
+    <Compile Include="../../src/Astra.Desktop/WslInspector.cs" Link="WslInspector.cs" />
+    <Compile Include="../../src/Astra.Desktop/DeploymentInspector.cs" Link="DeploymentInspector.cs" />
+    <Compile Include="../../src/Astra.Desktop/FileExplorerService.cs" Link="FileExplorerService.cs" />
+    <Compile Include="../../src/Astra.Desktop/ChromeLauncher.cs" Link="ChromeLauncher.cs" />
+    <Compile Include="../../src/Astra.Desktop/LoginStartup.cs" Link="LoginStartup.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/LocalLlmSession.cs" Link="LocalLlmSession.cs" />
+    <Compile Include="../../src/Astra.Desktop/Ai/EmbeddedLlm.cs" Link="EmbeddedLlm.cs" />
+    <ProjectReference Include="../../src/Astra.Core/Astra.Core.csproj" />
+    <PackageReference Include="PdfPig" Version="0.1.16" />
+    <PackageReference Include="LLamaSharp" Version="0.30.0" />
+    <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.30.0" />
+  </ItemGroup>
+</Project>

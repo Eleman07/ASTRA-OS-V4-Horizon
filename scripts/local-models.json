@@ -1,0 +1,34 @@
+{
+  "ministral": {
+    "label": "Mistral Ministral 3 8B",
+    "file": "Ministral-3-8B-Instruct-2512-Q4_K_M.gguf",
+    "bytes": 5198911904,
+    "sha256": "33e7a72cf5e6e2cfc2f2847075acc013d68bba023e35310cef86b5cf8fdca761",
+    "url": "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512-GGUF/resolve/0102285ad796bd99af90f58de616092e5630e970/Ministral-3-8B-Instruct-2512-Q4_K_M.gguf",
+    "license": "Apache-2.0"
+  },
+  "phi4": {
+    "label": "Microsoft Phi-4 14B",
+    "file": "phi-4-Q4_K.gguf",
+    "bytes": 9053114560,
+    "sha256": "5652b9be0ea4ae2842130d04fe31bc869fcb99a2b7106c53b4e754a343fd688f",
+    "url": "https://huggingface.co/microsoft/phi-4-gguf/resolve/6edc2ef6664b739a8e11e62f2672ff6afe0c15ac/phi-4-Q4_K.gguf",
+    "license": "MIT"
+  },
+  "gpt-oss": {
+    "label": "OpenAI gpt-oss-20b",
+    "file": "gpt-oss-20b-MXFP4.gguf",
+    "bytes": 12109566624,
+    "sha256": "27cd6c432c7672cb812a92f611cf3ba7bbc35928262bb1e1253ff4ee6ae35901",
+    "url": "https://huggingface.co/ggml-org/gpt-oss-20b-GGUF/resolve/15dcfc7e7c608c6161507211ed43c5b590801b4b/gpt-oss-20b-MXFP4.gguf",
+    "license": "Apache-2.0"
+  },
+  "nomic": {
+    "label": "Nomic Embed Text v1.5",
+    "file": "nomic-embed-text-v1.5.Q8_0.gguf",
+    "bytes": 146146432,
+    "sha256": "3e24342164b3d94991ba9692fdc0dd08e3fd7362e0aacc396a9a5c54a544c3b7",
+    "url": "https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/resolve/0188c9bf409793f810680a5a431e7b899c46104c/nomic-embed-text-v1.5.Q8_0.gguf",
+    "license": "Apache-2.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.quote",
+  "name": "Quote Builder",
+  "description": "Prepara citazioni Markdown multilinea.",
+  "operation": "text.quote",
+  "category": "Testi",
+  "example": "Un'osservazione\nUna conclusione",
+  "prefix": null
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "org.astra.knowledge.deliver",
+  "name": "From knowledge to deliverable",
+  "description": "Reusable local Second Brain workflow with source traceability.",
+  "category": "Second Brain",
+  "instructions": "Convert a concrete goal and supplied evidence into the requested artifact. Decompose only when needed. Produce usable content or code, reference actual tool results, preserve units, state missing inputs and end with a verification checklist. Separate proposed actions from completed tool runs.",
+  "capabilities": [
+    "chat",
+    "memory"
+  ],
+  "preferredTask": 0
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.correlation",
+  "name": "Correlation Compass",
+  "description": "Correlazione di Pearson su coppie JSON [x,y]; non implica causalità.",
+  "operation": "data.correlation",
+  "category": "STEM",
+  "example": "[[1,3],[2,5],[3,7],[4,8]]",
+  "prefix": null
+}

@@ -1,0 +1,15 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.research",
+  "Name": "Web Research",
+  "Description": "Ricerca con fonti, date e distinzione fra fatti e inferenze.",
+  "Category": "Research",
+  "Instructions": "Use only tool-provided sources. Distinguish search results from pages actually read, cite original URLs and retrieval dates, and disclose missing evidence.",
+  "Capabilities": [
+    "chat",
+    "web.search",
+    "web.read",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.histogram",
+  "name": "Distribution Sketch",
+  "description": "Costruisce un istogramma testuale dei campioni numerici.",
+  "operation": "data.histogram",
+  "category": "STEM",
+  "example": "1 1 2 3 3 3 4 5 8 9",
+  "prefix": null
+}

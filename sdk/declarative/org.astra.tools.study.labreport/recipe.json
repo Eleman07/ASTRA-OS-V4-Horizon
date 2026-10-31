@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.study.labreport",
+  "name": "Lab Report Canvas",
+  "description": "Crea la struttura di un rapporto scientifico, senza generare risultati.",
+  "operation": "study.labreport",
+  "category": "Studio",
+  "example": "Misura del periodo di un pendolo",
+  "prefix": null
+}

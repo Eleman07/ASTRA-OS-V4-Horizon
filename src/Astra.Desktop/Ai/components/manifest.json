@@ -1,0 +1,21 @@
+{
+  "runtimeSource": "https://www.nuget.org/packages/LLamaSharp.Backend.Cpu/0.30.0",
+  "files": {
+    "ggml-tiny.bin": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+    "LICENSE-llama.cpp.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+    "LICENSE-NAudio.txt": "303e01786b271eb464b3f43d18a375f2f17d37bc708a37c2fdf45b289fb5bfaa",
+    "LICENSE-PdfPig.txt": "4c510e162f896ea43b4b1cf1b743641d7c756f1004d0e5eaf0615b28b7ded409",
+    "LICENSE-Whisper-model.txt": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d",
+    "LICENSE-whisper.cpp.txt": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+    "LICENSE-whisper.net.txt": "778628a2167e54fcb03f28957004a45f339386d38dc11243b5a8687efcf82937"
+  },
+  "speechModelSource": "https://huggingface.co/ggerganov/whisper.cpp",
+  "licenseSources": {
+    "LICENSE-whisper.cpp.txt": "https://raw.githubusercontent.com/ggml-org/whisper.cpp/master/LICENSE",
+    "LICENSE-whisper.net.txt": "https://raw.githubusercontent.com/sandrohanea/whisper.net/main/LICENSE",
+    "LICENSE-NAudio.txt": "https://raw.githubusercontent.com/naudio/NAudio/master/license.txt",
+    "LICENSE-PdfPig.txt": "https://raw.githubusercontent.com/UglyToad/PdfPig/master/LICENSE",
+    "LICENSE-Whisper-model.txt": "https://raw.githubusercontent.com/openai/whisper/main/LICENSE"
+  },
+  "runtimeProvider": "LLamaSharp.Backend.Cpu/0.30.0"
+}

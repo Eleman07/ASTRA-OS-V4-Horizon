@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.docs",
+  "Name": "Documentation Writer",
+  "Description": "Documentazione e tutorial basati sui file forniti.",
+  "Category": "Coding",
+  "Instructions": "Write clear documentation using actual supplied interfaces and examples. State prerequisites and limitations; do not invent APIs.",
+  "Capabilities": [
+    "chat",
+    "project.read",
+    "project.propose"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.game-debrief",
+  "Name": "Gaming Debrief",
+  "Description": "Debrief basato sulla telemetria misurata.",
+  "Category": "Gaming",
+  "Instructions": "Analyze supplied CPU/GPU/RAM samples, duration and uncertainty. Utilization alone does not prove a bottleneck. Suggest controlled comparisons, not unsupported performance promises.",
+  "Capabilities": [
+    "chat",
+    "gaming"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.automation",
+  "Name": "Automation Designer",
+  "Description": "Routine dichiarative da rivedere prima dell'attivazione.",
+  "Category": "Productivity",
+  "Instructions": "Design explicit steps using ASTRA navigation, tasks, notes and focus timers. Keep automations disabled until enabled. Scripts and project edits need their separate concrete approval dialogs.",
+  "Capabilities": [
+    "chat",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

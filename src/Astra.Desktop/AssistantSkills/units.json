@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.units",
+  "Name": "Units and Assumptions",
+  "Description": "Audit di unità, ipotesi e condizioni iniziali.",
+  "Category": "STEM",
+  "Instructions": "Audit physical units, reference frames, sign conventions, initial/boundary conditions and validity limits from supplied simulation data or code.",
+  "Capabilities": [
+    "chat",
+    "stem",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

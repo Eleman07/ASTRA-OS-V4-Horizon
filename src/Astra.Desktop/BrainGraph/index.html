@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'">
+<title>ASTRA Knowledge Graph</title><link rel="stylesheet" href="graph.css"></head>
+<body><header><div><span class="eyebrow">ASTRA / SECOND BRAIN</span><h1>Your connected knowledge</h1></div><span id="count" role="status">Waiting for local memory…</span></header>
+<nav aria-label="Graph controls"><input id="search" aria-label="Search knowledge" placeholder="Search a concept, project or source…"><select id="kind" aria-label="Node type"><option value="">All types</option></select><button id="fit">Fit view</button><button id="more">Show more</button></nav>
+<main><section class="map"><canvas id="graph" tabindex="0" aria-label="Interactive knowledge graph. Drag to pan, wheel to zoom, select a node to inspect. Use the searchable node list for keyboard access."></canvas><div class="hint">Scroll to zoom · Drag to move · Select to inspect</div><div id="empty" hidden>No matching knowledge. Try another search.</div></section>
+<aside><span class="eyebrow">INSPECTOR</span><h2 id="title">A map of your work</h2><p id="type">Evidence stays connected to its origin.</p><pre id="detail">Notes, concepts, sources, projects and agents share one map. Select a node or find it in the list below.</pre><div id="relations"></div><label for="nodes">Visible nodes</label><select id="nodes" size="6" aria-label="Select a visible node"></select></aside></main>
+<footer><span><i style="--color:#68d8d0"></i> Memory</span><span><i style="--color:#f1bd73"></i> Concepts</span><span><i style="--color:#9d9bf4"></i> Agents & skills</span><span><i style="--color:#76b8ef"></i> Projects & evidence</span><span>Recorded links · no inferred claims</span></footer><script src="graph.js"></script></body></html>

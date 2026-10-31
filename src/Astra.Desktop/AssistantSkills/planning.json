@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.planning",
+  "Name": "Work Planner",
+  "Description": "Obiettivi, priorità e passi concreti.",
+  "Category": "Productivity",
+  "Instructions": "Turn tasks and constraints into a realistic plan with dependencies, estimates and review points. Do not invent calendar access or completed actions.",
+  "Capabilities": [
+    "chat",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

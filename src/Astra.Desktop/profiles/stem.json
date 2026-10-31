@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "stem",
+  "name": "ASTRA STEM",
+  "description": "Ambienti per scienza, tecnologia, ingegneria e matematica.",
+  "packages": [
+    "Git.Git",
+    "Microsoft.VisualStudioCode",
+    "Python.Python.3.13",
+    "Kitware.CMake"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.textkit",
+  "name": "Text Kit",
+  "description": "Esempio pubblico: aggiunge un prefisso al testo senza avviare programmi esterni.",
+  "operation": "text.prefix",
+  "prefix": "ASTRA · "
+}

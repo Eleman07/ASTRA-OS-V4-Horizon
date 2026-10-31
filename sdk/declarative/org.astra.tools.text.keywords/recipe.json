@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.keywords",
+  "name": "Keyword Lens",
+  "description": "Trova le parole ricorrenti, senza inviare il testo a un modello.",
+  "operation": "text.keywords",
+  "category": "Studio",
+  "example": "energia massa energia sistema massa energia",
+  "prefix": null
+}

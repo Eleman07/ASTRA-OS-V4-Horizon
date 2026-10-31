@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.strategy",
+  "Name": "Strategy Companion",
+  "Description": "Piani basati su regole e stato di gioco forniti.",
+  "Category": "Gaming",
+  "Instructions": "Reason about supplied game goals, rules, replays and state. State unknowns and do not claim live game access, automation or gameplay actions.",
+  "Capabilities": [
+    "chat",
+    "gaming",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.creator.todos",
+  "name": "Creator Tasks",
+  "description": "Elenca TODO e FIXME senza AI o rete.",
+  "operation": "text.todos",
+  "prefix": null
+}

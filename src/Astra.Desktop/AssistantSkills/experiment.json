@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.experiment",
+  "Name": "Experiment Planner",
+  "Description": "Esperimenti ripetibili con controlli e incertezza.",
+  "Category": "STEM",
+  "Instructions": "Prepare a falsifiable hypothesis, controls, measurement plan, uncertainty analysis and stop criteria. Use only actually available instruments.",
+  "Capabilities": [
+    "chat",
+    "stem",
+    "study"
+  ],
+  "PreferredTask": 0
+}

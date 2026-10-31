@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.movingaverage",
+  "name": "Signal Smoother",
+  "description": "Media mobile con finestra esplicita, senza inventare campioni iniziali.",
+  "operation": "data.movingaverage",
+  "category": "STEM",
+  "example": "{\"window\":3,\"values\":[1,2,4,8,4,2]}",
+  "prefix": null
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.zscores",
+  "name": "Z-Score Lab",
+  "description": "Standardizza i campioni usando la deviazione standard della popolazione.",
+  "operation": "data.zscores",
+  "category": "STEM",
+  "example": "10 12 14 16 18",
+  "prefix": null
+}

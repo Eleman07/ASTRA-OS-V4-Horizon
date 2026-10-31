@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.color.contrast",
+  "name": "Contrast Inspector",
+  "description": "Calcola il contrasto WCAG di due colori #RRGGBB.",
+  "operation": "color.contrast",
+  "category": "Creator",
+  "example": "#0A1931 #F6FAFD",
+  "prefix": null
+}

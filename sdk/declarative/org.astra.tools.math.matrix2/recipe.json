@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.math.matrix2",
+  "name": "Matrix Microscope",
+  "description": "Determinante, traccia e inversa di una matrice 2×2.",
+  "operation": "math.matrix2",
+  "category": "STEM",
+  "example": "[[1,2],[3,4]]",
+  "prefix": null
+}

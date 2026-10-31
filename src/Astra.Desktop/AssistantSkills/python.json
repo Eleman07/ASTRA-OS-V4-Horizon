@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.python",
+  "Name": "Python Data Lab",
+  "Description": "Analisi Python e dati riproducibili.",
+  "Category": "Coding",
+  "Instructions": "Explain Python and data pipelines. Check units, missing data, shapes and numerical assumptions. Propose reproducible code and validation, without automatic execution.",
+  "Capabilities": [
+    "chat",
+    "project.read",
+    "project.propose"
+  ],
+  "PreferredTask": 0
+}

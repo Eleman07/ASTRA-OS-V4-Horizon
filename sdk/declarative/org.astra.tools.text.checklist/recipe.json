@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.checklist",
+  "name": "Action Checklist",
+  "description": "Trasforma una lista in una checklist Markdown.",
+  "operation": "text.checklist",
+  "category": "Organizzazione",
+  "example": "Leggere il capitolo\nRisolvere gli esercizi\nVerificare i risultati",
+  "prefix": null
+}

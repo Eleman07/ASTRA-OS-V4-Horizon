@@ -1,0 +1,19 @@
+# Modelli 3D inclusi
+
+Mesh originali, senza modifiche ai file. Normalizzazione, animazione e colorazione sono applicate a runtime da ASTRA. Nessun ente o autore sponsorizza ASTRA. I modelli illustrano i risultati dei solutori a parametri ridotti; la mesh non costituisce un modello CFD/FEM validato.
+
+- **CubeSat 1 RU** — NASA / NASA 3D Resources; NASA media usage guidelines. [Fonte](https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/CubeSat%20-%201%20RU%20Generic) · [Condizioni](https://www.nasa.gov/nasa-brand-center/images-and-media/). SHA256 `bae308ea2e33778c93675909f7dc2e0d5d6916cd685668a463566c61224b1e85`.
+- **Global Hawk** — NASA / NASA 3D Resources; NASA media usage guidelines. [Fonte](https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Global%20Hawk) · [Condizioni](https://www.nasa.gov/nasa-brand-center/images-and-media/). SHA256 `75b62cc2fa101fc517b8be4ebe79a7cc5206bcce38efbf104dde7414c810b667`.
+- **Antenna 70 metri** — NASA / NASA 3D Resources; NASA media usage guidelines. [Fonte](https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/70-meter%20Dish) · [Condizioni](https://www.nasa.gov/nasa-brand-center/images-and-media/). SHA256 `36ff56a7a2bfd1c278f6f4774d32128d5931f2c22fe58241d00ee7d1815634bb`.
+- **Habitat Demonstration Unit** — NASA / NASA 3D Resources; NASA media usage guidelines. [Fonte](https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Habitat%20Demonstration%20Unit) · [Condizioni](https://www.nasa.gov/nasa-brand-center/images-and-media/). SHA256 `3106557bea24c9ba012556ddbecf3740c39276dc369cf359b77225de97458cfe`.
+- **Radio portatile** — Microsoft; CC0-1.0. [Fonte](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BoomBox) · [Condizioni](https://creativecommons.org/publicdomain/zero/1.0/). SHA256 `f8b918445ebdd006768232205a62f5182d2208ca57f84c6ccc084943c0bc8f15`.
+- **Contenitore PBR** — Microsoft; CC0-1.0. [Fonte](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/WaterBottle) · [Condizioni](https://creativecommons.org/publicdomain/zero/1.0/). SHA256 `b337e526fd6a162013c2984aeec163f5fbb4f717252724dfc3f3458bd51df94b`.
+- **Barramundi** — Microsoft; CC0-1.0. [Fonte](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BarramundiFish) · [Condizioni](https://creativecommons.org/publicdomain/zero/1.0/). SHA256 `ecc3bafb6b00f2c8b810863c388e3768a7b7ea0d0335e8cb8c574c266e571f4a`.
+- **Avocado** — Microsoft; CC0-1.0. [Fonte](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/Avocado) · [Condizioni](https://creativecommons.org/publicdomain/zero/1.0/). SHA256 `ccc9c3ce56423720b09399c2351537207cd5a65f859f9e6e2f30922762f3abd4`.
+- **Automobile** — Guido Odendahl; Eric Chadwick; CC0-1.0. [Fonte](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/ToyCar) · [Condizioni](https://creativecommons.org/publicdomain/zero/1.0/). SHA256 `01a60862de55cd4b9f3acfab0b0def86451800f9c42467fcd61052c16cb9838c`.
+
+Renderer: Three.js r180, MIT; licenza integrale in vendor/three/LICENSE.
+
+## Ariane 6 / Ariane 64
+
+Mesh originale ASTRA OS: ricostruzione didattica della configurazione a quattro booster P120C, non CAD ufficiale. Dimensioni e configurazione: ESA / ArianeGroup. Dettagli non pubblicati approssimati. Nessun logo ESA riprodotto; nessuna approvazione implicita. [Fonte ESA](https://www.esa.int/Enabling_Support/Space_Transportation/Ariane/Ariane_6_what_s_it_made_of). Specifiche, limiti e licenza in `licenses/ariane64.md`.

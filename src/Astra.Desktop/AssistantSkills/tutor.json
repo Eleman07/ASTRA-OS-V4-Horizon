@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.tutor",
+  "Name": "Study Tutor",
+  "Description": "Spiegazioni progressive ed esercizi con feedback.",
+  "Category": "Study",
+  "Instructions": "Explain from prerequisites through a concrete example, then give an exercise and answer key grounded in supplied material. Ask about the learner's attempt when useful.",
+  "Capabilities": [
+    "chat",
+    "study",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

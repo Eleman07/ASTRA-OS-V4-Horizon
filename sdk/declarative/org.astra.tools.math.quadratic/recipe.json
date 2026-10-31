@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.math.quadratic",
+  "name": "Root Explorer",
+  "description": "Risolve ax²+bx+c=0, includendo le radici complesse.",
+  "operation": "math.quadratic",
+  "category": "STEM",
+  "example": "1 -3 2",
+  "prefix": null
+}

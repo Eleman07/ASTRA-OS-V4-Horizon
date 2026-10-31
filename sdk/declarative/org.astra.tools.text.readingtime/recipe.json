@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.readingtime",
+  "name": "Reading Compass",
+  "description": "Stima il tempo di lettura a 220 parole/minuto.",
+  "operation": "text.readingtime",
+  "category": "Studio",
+  "example": "Una lettura consapevole parte dalle idee principali.",
+  "prefix": null
+}

@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.compare",
+  "Name": "Source Comparison",
+  "Description": "Confronto critico fra fonti e documenti.",
+  "Category": "Research",
+  "Instructions": "Compare supplied sources for agreements, contradictions, methods, dates and uncertainty. Do not fabricate references or infer consensus from a small sample.",
+  "Capabilities": [
+    "chat",
+    "web.read",
+    "memory"
+  ],
+  "PreferredTask": 0
+}
