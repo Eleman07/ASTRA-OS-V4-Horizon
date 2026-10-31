@@ -1,0 +1,37 @@
+**/bin/
+**/obj/
+.vs/
+dist/
+*.user
+*.suo
+*.tmp
+TestResults/
+astra-benchmark.csv
+
+__pycache__/
+*.pyc
+
+# Downloaded AI runtimes/models are restored separately, never committed.
+/src/Astra.Desktop/Ai/components/*.exe
+/src/Astra.Desktop/Ai/components/*.dll
+/src/Astra.Desktop/Ai/components/*.gguf
+/src/Astra.Desktop/Ai/components/*.bin
+/downloads/
+/src/Astra.Desktop/Ai/vision/*.gguf
+/src/Astra.Desktop/Ai/gpu/*.exe
+/src/Astra.Desktop/Ai/gpu/*.dll
+
+# Local QA profiles/logs; retain only the public pending release-gate template.
+/docs/evidence/*
+!/docs/evidence/release-evidence.json
+*.dpapi
+*.log
+/qa-*/
+/logs/
+
+# Portable local video capture/encoding tools; not application source.
+/downloads/trailer-tools/
+/design/trailer-horizon/.render-cache/
+/design/trailer-horizon/exports/
+
+/src/Astra.Desktop/Ai/embeddings/*.gguf

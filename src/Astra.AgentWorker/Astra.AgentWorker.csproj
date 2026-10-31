@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Astra.Core/Astra.Core.csproj" />
+    <PackageReference Include="LLamaSharp" Version="0.30.0" />
+    <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.30.0" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <Compile Include="../Astra.Desktop/Ai/EmbeddedLlm.cs" Link="EmbeddedLlm.cs" />
+    <Compile Include="../Astra.Desktop/Ai/VisionSession.cs" Link="VisionSession.cs" />
+    <Compile Include="../Astra.Desktop/Ai/GpuRuntime.cs" Link="GpuRuntime.cs" />
+    <Compile Include="../Astra.Desktop/Ai/LocalLlmSession.cs" Link="LocalLlmSession.cs" />
+    <Compile Include="../Astra.Desktop/Ai/BackendLifetime.cs" Link="BackendLifetime.cs" />
+    <Compile Include="../Astra.Desktop/Ai/BundledAi.cs" Link="BundledAi.cs" />
+    <Compile Include="../Astra.Desktop/Ai/PublicWebResearch.cs" Link="PublicWebResearch.cs" />
+    <Compile Include="../Astra.Desktop/Ai/ProjectWorkspaceTools.cs" Link="ProjectWorkspaceTools.cs" />
+    <Compile Include="../Astra.Desktop/SystemSnapshot.cs" Link="SystemSnapshot.cs" />
+  </ItemGroup>
+</Project>

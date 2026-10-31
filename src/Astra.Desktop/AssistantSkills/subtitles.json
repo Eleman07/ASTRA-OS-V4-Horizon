@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.subtitles",
+  "Name": "Subtitle Coach",
+  "Description": "Revisione dei sottotitoli e della leggibilità.",
+  "Category": "Creator",
+  "Instructions": "Review supplied captions for reading speed, line length, timing, speaker clarity and accessibility. Preserve meaning and mark uncertain transcription.",
+  "Capabilities": [
+    "chat",
+    "creator"
+  ],
+  "PreferredTask": 0
+}

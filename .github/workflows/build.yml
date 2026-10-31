@@ -1,0 +1,84 @@
+name: Build and validate ASTRA OS V4
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: astra-private-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Static validation
+        run: python scripts/validate_source.py
+      - name: Offline regression tests
+        run: python -S -m unittest discover -s tests/static -v
+      - name: Stable gate fails closed until independent test evidence exists
+        run: python scripts/release_gate.py --expect-blocked
+      - name: Validate V4 browser preview JavaScript
+        run: node --check design-preview/preview.js
+      - name: Validate WebGL source syntax
+        run: node --check src/Astra.Desktop/Graphics3D/web/scene.js
+      - name: V4 ordinary C# string literal scan
+        run: python scripts/lint_cs_strings.py
+      - name: Run Core smoke tests
+        run: dotnet run --project tests/Astra.Core.SmokeTests/Astra.Core.SmokeTests.csproj -c Release
+      - name: Run dock window eligibility tests
+        run: dotnet run --project tests/Astra.Desktop.DiagnosticsTests/Astra.Desktop.DiagnosticsTests.csproj -c Release -- --dock-only
+      - name: Test long PDF indexing and Second Brain commands
+        run: dotnet run --project tests/Astra.Desktop.DiagnosticsTests/Astra.Desktop.DiagnosticsTests.csproj -c Release -- --brain-only
+      - name: Parse ISO builder PowerShell syntax
+        shell: powershell
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path scripts/New-AstraIso.ps1), [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Error $_ }; exit 1 }
+      - name: Compile sample plugin
+        shell: pwsh
+        run: dotnet publish sdk/Astra.SamplePlugin/Astra.SamplePlugin.csproj -c Release -r win-x64 --self-contained true -o dist/SamplePlugin
+      - name: Pin sample plugin hash
+        shell: powershell
+        run: |
+          Copy-Item sdk/Astra.SamplePlugin/plugin.json dist/SamplePlugin/plugin.json
+          ./scripts/Initialize-AstraPlugin.ps1 -PluginDirectory dist/SamplePlugin
+      - name: Publish WinUI app
+        shell: pwsh
+        run: dotnet publish src/Astra.Desktop/Astra.Desktop.csproj -c Release -p:Platform=x64 -p:AstraCloudOnly=true -r win-x64 --self-contained true -o dist/AstraOS
+      - name: Identify source-build artifact
+        shell: pwsh
+        run: dotnet publish src/Astra.AgentWorker/Astra.AgentWorker.csproj -c Release -p:AstraCloudOnly=true -r win-x64 --self-contained true -o dist/AstraOS
+      - name: Mark artifact dependencies
+        shell: pwsh
+        run: dotnet publish src/Astra.AgentSupervisor/Astra.AgentSupervisor.csproj -c Release -p:AstraCloudOnly=true -r win-x64 --self-contained true -o dist/AstraOS
+      - name: Describe artifact dependencies
+        shell: pwsh
+        run: |
+          'Cloud-only candidate: no local model weights. OpenRouter key and internet required. Free provider quotas apply. Complex live validation must pass before stable release.' | Set-Content dist/AstraOS/SOURCE-BUILD-README.txt -Encoding utf8
+      - name: Generate distributable SHA256 inventory
+        shell: pwsh
+        run: |
+          $items = Get-ChildItem dist/AstraOS -File -Recurse | Sort-Object FullName
+          $items | ForEach-Object {
+            $hash = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            $relative = [IO.Path]::GetRelativePath((Resolve-Path dist/AstraOS).Path, $_.FullName)
+            "$hash  $relative"
+          } | Set-Content dist/AstraOS/SHA256SUMS.txt -Encoding utf8
+      - name: Print dependency tree (review separately before signing)
+        shell: pwsh
+        run: dotnet list src/Astra.Desktop/Astra.Desktop.csproj package --include-transitive
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ASTRA-OS-V4-win-x64-source-build
+          path: dist/AstraOS/
+          retention-days: 3
+          if-no-files-found: error

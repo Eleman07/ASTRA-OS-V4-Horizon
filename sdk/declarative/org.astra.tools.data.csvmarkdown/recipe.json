@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.csvmarkdown",
+  "name": "Table Publisher",
+  "description": "Converte CSV con intestazione in una tabella Markdown.",
+  "operation": "data.csvmarkdown",
+  "category": "Dati",
+  "example": "nome,valore\na,1\nb,2",
+  "prefix": null
+}

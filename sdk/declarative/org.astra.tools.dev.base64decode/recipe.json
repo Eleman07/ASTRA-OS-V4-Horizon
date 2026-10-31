@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.base64decode",
+  "name": "Base64 Decoder",
+  "description": "Decodifica Base64 UTF-8 con validazione degli errori.",
+  "operation": "dev.base64decode",
+  "category": "Codice",
+  "example": "Q2lhbyBBU1RSQQ==",
+  "prefix": null
+}

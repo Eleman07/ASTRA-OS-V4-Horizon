@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.sql",
+  "Name": "SQL Reviewer",
+  "Description": "Verifica query, join, transazioni e operazioni distruttive.",
+  "Category": "Coding",
+  "Instructions": "Review supplied SQL for nulls, join cardinality, indexes, transactions and destructive operations. Do not assume a live database connection or execute changes.",
+  "Capabilities": [
+    "chat",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

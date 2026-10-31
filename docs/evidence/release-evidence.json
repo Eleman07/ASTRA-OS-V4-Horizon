@@ -1,0 +1,65 @@
+{
+  "release": "2.0.0-rc1",
+  "gates": {
+    "win11_home_build_ui": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "win11_pro_build_ui": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "core_smoke_tests": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "ai_real_gguf_offline": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "plugin_adversarial_tests": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "webview2_3d_tests": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "iso_uefi_boot": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "installer_uninstall": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "benchmark_targets": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "dependency_security_review": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "signed_binaries": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    },
+    "legal_license_review": {
+      "status": "pending",
+      "artifact": "",
+      "sha256": ""
+    }
+  }
+}

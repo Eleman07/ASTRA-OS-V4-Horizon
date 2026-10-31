@@ -1,14 +1,41 @@
 # ASTRA OS V4 · Horizon
 
-A customizable desktop workspace for Windows 11, with OpenRouter AI, an optional offline model, STEM tools, a 3D desktop, widgets, and Gaming and Creator workspaces.
+A Windows 11 desktop workspace with an online AI agent team, an Obsidian knowledge base, scientific tools, and Gaming and Creator workspaces.
 
-**Windows 11 x64 · Portable application · Release 4.0.0.5**
+**Windows 11 x64 · Portable application · 4.2.0 cloud candidate**
+
+Read the [4.2.0 verification record](docs/CLOUD-4.2.0-VERIFICATION.md): Core/native UI checks and individual Ultra/coding calls passed; the complete live agent and image/audio checks were blocked by free-provider quota. This candidate is not a stable release certification.
 
 ASTRA runs on your existing Windows installation. You can keep using your Windows applications and files. A valid Windows installation is required.
 
+## ASTRA Assistant: a team for your work
+
+Give ASTRA an objective for technical or aerospace projects, STEM research, study, gaming, content creation or everyday work. The **Agent team** coordinates planning, specialist work, evidence review and a final deliverable through OpenRouter. Obsidian supplies the selected knowledge base; ASTRA OS supplies the assistant interface, job controls and tools. Eight agents have explicit skill contracts: Atlas (coordination), Sofia (study), Kepler (research), Ada (engineering), Ariane (aerospace), Nova (gaming), Lyra (content) and Vera (precision).
+
+- **Obsidian as working memory:** choose a vault, retrieve relevant source passages with file/section/line references, and export completed deliverables as new Markdown notes. Existing notes and edited exports are preserved. Encrypted jobs, checkpoints and internal notes remain separate from the vault.
+- **Interactive knowledge graph:** explore recorded relationships between notes, concepts, documents, projects, jobs, sources, agents and skills. Search, filter, zoom, pan and inspect nodes.
+- **Persistent work:** a background worker with encrypted checkpoints, recurring jobs, cancellation and recovery after interruption. Online inference continues after the main window closes while the PC is awake, connected and your Windows session is active.
+- **Concrete tools:** selected-project reading, optional cited public web research, documented numerical simulations, evidence ledgers and Markdown report export. Existing project-edit and script-review tools remain available.
+- **Online models by role:** NVIDIA Nemotron 3 Ultra is the preferred reasoning model. Assign a currently free model to each specialist when useful. ASTRA checks the live catalog for compatible input/output modalities and zero prices; a retired or repriced model can migrate to a compatible free alternative with a visible notice. Equivalent quality is not assumed. The cloud workflow has no paid or local-model fallback.
+- **Long work:** supplied text and complete returned model output are preserved instead of being shortened by an ASTRA character cap. Prompt, history, retrieved evidence, reasoning and response still share the provider's context. Provider context/output limits, quotas and outages remain real limits; an incomplete generation is surfaced rather than presented as a complete deliverable.
+
+Open **ASTRA Assistant → Agent team**. In chat, use **Delegate to agent team** or type `team <objective>`. Public web research is enabled per job in the team panel. The **Knowledge graph** tab visualizes your shared memory. Read the [complete Agent Brain guide](docs/AGENT-BRAIN-GUIDE.md) for skill contracts, exact tool capabilities, model configuration, migration and background operation.
+
+Precision comes from traceable sources, explicit assumptions and actual numerical tools. Vera's model review, a post-synthesis evidence audit with correction, and citation-ID checks help expose gaps; they do not replace scientific validation. Numerical engineering results need a deterministic calculation, an executed test or an explicit `UNVERIFIED` label. The cloud profile does not load local text or embedding models; selected vault retrieval remains lexical.
+
+**Reusable skills:** create or edit skills, import JSON/Markdown, export packages and assign installed methods to individual agents.
+
+**Text, audio, images and OCR:** use Nemotron 3 Ultra for text reasoning, a compatible free Nemotron Super VL endpoint for images, and Nemotron Nano Omni for audio transcription. ASTRA checks the live free catalog and reports substitutions. Windows native OCR extracts text from images; Windows voices read deliverables or export WAV. OCR text and image interpretation remain distinct, and uncertain speech/text must remain marked. Recordings start explicitly; no continuous screen or camera capture is enabled.
+
+**Gaming:** Session Strategist creates practice playbooks and controlled A/B settings experiments, saves checkpoints and exports experiment worksheets. **Creator:** Launch Studio turns a brief into a consistent content pack across formats, reviews delivery/accessibility gaps, saves briefs and exports project handoffs. Both use the same agent team and shared memory.
+
+**Free cloud inference:** the preferred text route is `nvidia/nemotron-3-ultra-550b-a55b:free`; media routes are `nvidia/nemotron-3.5-super-vl:free` and `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, subject to current compatible availability. Every request enforces a zero input/output price ceiling. Free endpoints have provider quotas and changing capacity; this is not unlimited hosted compute. The provider receives selected task context and may retain it. ASTRA reads its Windows DPAPI key store and the two historical ASTRA Learning Suite Credential Manager targets without placing keys in the vault. See the [current Ultra model page](https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b%3Afree) and [free endpoint catalog](https://openrouter.ai/collections/free-models).
+
+**Obsidian workspace:** install the generic [ASTRA Command Center](docs/obsidian-cloud/README.md) for aerospace requirements/trade studies/verification, research evidence and reproduction, flashcards/maps/exercises/mock exams, gaming experiments, creator pipelines, multimodal provenance and system improvement records. The installer adds its own folder without overwriting user notes. Personal vaults and generated private outputs are never part of the public source package. **Autonomous recovery:** a supervisor restarts a crashed worker and resumes completed checkpoints, with bounded retries for recognized transient errors. ASTRA stores inspectable procedural lessons and change proposals; it does not retrain model weights or rewrite its executable autonomously.
+
 ## Download and start
 
-1. Open this project's **GitHub Releases** page. Download **`ASTRA-OS-V4-HORIZON-Setup-4.0.0.5-win-x64.exe`** for the account-scoped installer, or **`ASTRA-OS-V4-HORIZON-openrouter-gaming-creator-win-x64.zip`** for the portable package. The release also provides a `.sha256` checksum for each file.
+1. Open this project's **GitHub Releases** page and select release **4.2.0**. Download the named **Windows x64 binary ZIP** for the portable package, or the named **Setup** asset if an account-scoped installer is supplied. Compare the download with its attached `.sha256` checksum.
 2. For the installer, run Setup and follow its steps; it installs for your current Windows account and does not require administrator access. For the portable package, right-click the ZIP, choose **Extract All**, and extract it to a permanent local folder you can write to, such as `C:\Users\YourName\Apps`.
 3. Start ASTRA from the Start menu, or open the extracted folder and double-click **`Astra.Desktop.exe`**.
 4. Run ASTRA with your normal Windows account and keep the entire extracted folder together when using the portable package. The installer adds Start menu shortcuts and an uninstaller. Either installation method keeps your account data outside the app folder.
@@ -20,12 +47,13 @@ ASTRA runs on your existing Windows installation. You can keep using your Window
 | Component | What you need |
 | --- | --- |
 | Operating system | Windows 11 on an x64 PC. This package is not a native ARM64 build. |
-| Disk space | Allow about 4 GB for the download and extraction, plus room for your own files and caches. |
+| Disk space | Allow room for the application, your vault, attachments, exports and caches. The cloud workflow does not download local model weights. |
 | .NET and WinUI | The .NET and Windows App SDK runtimes are included. Visual Studio and the .NET SDK are not required to run this package. |
 | 3D views | Microsoft Edge WebView2 Runtime. Its official x64 offline installer is included in `prerequisites`. |
-| Native AI/audio libraries | Microsoft Visual C++ v14 x64 Runtime. Its official installer is included in `prerequisites`. |
-| OpenRouter AI | A free OpenRouter account and API key are required for the default cloud model route. Free-tier quotas and model availability apply. ASTRA caps model/provider prices at $0. It does not request Zero Data Retention (ZDR) or filter providers by it; providers may retain or use prompts under their own policies. |
-| Optional offline AI | The bundled text model, Whisper speech model, and native runtime allow local inference without Ollama or a local server. 8 GB RAM or more is recommended for comfortable use; performance depends on the PC. |
+| Native compatibility libraries | Microsoft Visual C++ v14 x64 Runtime when using the included native compatibility components. Its official installer is included in `prerequisites`. |
+| OpenRouter AI | Required for the cloud assistant: internet access and an OpenRouter API key. Free-tier quotas and model availability apply. ASTRA caps model/provider prices at $0. ASTRA does not request Zero Data Retention (ZDR) or filter providers by ZDR; providers may retain or use prompts under their own policies. |
+| OCR and speech output | Installed Windows OCR languages and voices. These native OS features do not require downloading an ASTRA local language model. |
+| Legacy local AI | Optional compatibility setup only; see the separate local GPU tutorial. Local weights/runtimes and a compatible GPU are required only if you deliberately use that legacy workflow. Cloud jobs do not fall back to it. |
 | Browser button | Install Google Chrome separately to use ASTRA's Chrome integration. |
 | Optional tools | Python, a WSL Linux distribution, and Windows ADK/OSCDIMG are needed only for their respective optional workflows. |
 
@@ -112,48 +140,68 @@ Import a generated scene into STEM Studio. You can also map CSV/JSON columns to 
 
 Model credits and source links are in `Graphics3D/web/models/CREDITS.md` and are accessible from the Studio.
 
-### ASTRA Assistant, skills and Second Brain
+### ASTRA Assistant, skills and Obsidian
 
-1. Open the assistant from ASTRA, or press **Ctrl + Alt + Space** while using another application.
-2. Type a request, choose files, paste selected text explicitly, or start an audio recording. The assistant receives the foreground application's title when called; you choose the content to provide.
-3. Choose an action such as explain, summarize, make a checklist, translate, extract JSON, or analyze an error.
-4. Review the result and export text, Markdown, JSON, WAV speech, SRT subtitles, a note, a scene, or a widget proposal as appropriate for the action.
+1. Open **ASTRA Assistant → Agent team**, or use **Ctrl + Alt + Space** for the conversation window.
+2. Choose a task workspace: technical/aerospace project, study, STEM research, gaming, creator, core work or system improvement. Select the research/study area and describe the required output, source material and acceptance criteria.
+3. Select your Obsidian vault. Retrieval brings relevant excerpts into the evidence ledger with source locations; it excludes plugin settings, credentials, virtual environments and generated dependencies. Enabling vault export creates completed results under `ASTRA/Deliverables` as model-reviewed drafts while preserving existing notes and edited exports.
+4. Attach text, documents, audio or images, then choose the specialist skills and model preferences. Review extraction status: an OCR result, a vision interpretation and file metadata are different kinds of evidence.
+5. Start the task and follow the plan, specialist handoffs, review, evidence audit and final deliverable. Review the original sources and actual tool outputs before accepting an engineering or scientific result.
 
-#### OpenRouter AI setup (default)
+#### OpenRouter setup and model choices
 
-1. Create a free account at [OpenRouter](https://openrouter.ai/) and create an API key in your account's **Keys** page. ASTRA never asks for OpenRouter account passwords.
-2. In ASTRA, open **Second Brain / AI settings**. Paste the key into **OpenRouter API key** and select **Save key and use OpenRouter**. ASTRA encrypts the key with Windows DPAPI for your Windows account; it is not written to preferences or logs.
-3. Keep **Automatic free model · zero cost only** selected for the recommended route. To inspect fixed choices, select **Refresh free models**; ASTRA filters the catalog to text models with zero prompt/completion price.
-4. Start the provider or send your first request. Before the first remote inference in each ASTRA session, review the consent dialog. It names the kinds of content that may be sent. Choose **Allow for this session** only if you agree.
-5. Ask a question, or use Assistant features such as PDF passages, a selected project, or a web-research task. The content used for the action is sent only after consent. To stop remote use, choose **Use included offline AI** or delete the saved key.
+1. Create an account at [OpenRouter](https://openrouter.ai/) and an API key on its **Keys** page. In ASTRA's AI settings save the key for OpenRouter. It is encrypted with Windows DPAPI for your account, outside the vault and preferences. Existing historical ASTRA Learning Suite Credential Manager entries are also supported.
+2. Use **NVIDIA Nemotron 3 Ultra** as the preferred reasoning model, and select a currently free model for a specialist role when appropriate. The preferred ID is `nvidia/nemotron-3-ultra-550b-a55b:free`; the live catalog is the source of current availability and capabilities.
+3. The media readers prefer **Nemotron 3.5 Super VL** for images and **Nemotron 3 Nano Omni** for audio. Ultra itself accepts text; ASTRA sends an image or recording through the appropriate compatible route and passes the extracted, source-linked result to the working agents.
+4. Refresh free models to inspect current choices. If a preferred endpoint disappears, becomes priced or lacks the required modality, the router selects a compatible zero-price alternative from the current catalog and records the substitution. It does not assume that a replacement has identical quality.
+5. Keep the cloud workflow selected for this setup. Cloud inference enforces a $0 prompt/completion price ceiling, has no paid fallback and does not start a local model when a provider is unavailable.
 
-**ASTRA does not use Zero Data Retention (ZDR) routing.** It does not send `provider.zdr` or filter models/providers by ZDR eligibility. The only routing limits are the $0 prompt and completion price caps, including provider failovers. Prompts, attached text and selected context leave this PC. OpenRouter and the serving provider may retain or use them under their current policies; check the model/provider terms before sending sensitive information. Session consent is required before the first remote inference. Use **Use included offline AI** for local processing.
+Requests send selected task context and attached material to OpenRouter and its serving provider. ASTRA does not request Zero Data Retention (ZDR) or filter providers by ZDR eligibility; current provider retention/use terms apply. API keys remain in Windows credential storage, outside exported reports and the Obsidian vault. Free endpoints retain request, provider, context and availability limits; ASTRA cannot turn a hosted free tier into unlimited compute. Check the [current free endpoints and limits](https://openrouter.ai/collections/free-models). Quota and authentication failures remain visible.
 
-Free model access has usage limits and availability can change. OpenRouter currently documents 20 requests/minute and 50 requests/day for `:free` variants on an account without purchased credits; provider-specific limits can also apply. `openrouter/free` is a dynamic router, not a promise that one fixed model will always be selected. ASTRA never selects a paid model; check current [free models and limits](https://openrouter.ai/collections/free-models). The local option works without an OpenRouter account or internet, with finite local speed and memory use.
+#### Long inputs and outputs
 
-#### Offline AI option
+ASTRA preserves supplied user text and complete returned model output instead of silently cutting them to an application character budget. The provider's context and completion metadata determine the available capacity. Input, system instructions, retrieved evidence, conversation history, reasoning and final output share the context; a large advertised context is not an independent allowance for each. Output `0` uses the provider-advertised completion allowance instead of an arbitrary ASTRA response cap. A truncated response is treated as incomplete and the task can continue from its checkpoint.
 
-The package includes **Qwen2.5-1.5B-Instruct**, an in-process CPU backend through **LLamaSharp**, and multilingual **Whisper tiny**. It does not require Ollama or `llama-server.exe`. In AI settings, choose **Use included offline AI** to keep requests on the PC. Loading the text model for the first request can take time; stop it to release memory. The optional local model has no hosted-service request quota.
+Vault retrieval selects relevant passages rather than uploading every file. Document adapters also have explicit resource guards and return `partial`, `resource-limit` or `metadata-only` status when appropriate. For a large research corpus, retain original files, index by question/section and preserve references between task stages. Ask for complete numbered deliverable sections and review their coverage against the task contract.
 
-For screenshots and a more detailed setup, privacy, troubleshooting and usage guide, read [`OPENROUTER-AI-GUIDE.md`](OPENROUTER-AI-GUIDE.md) in the release assets.
+#### Text, audio, images and file adapters
 
-The interface follows the Windows display language. English and Italian are included; other interface languages are prepared locally, with English used while a translation is unavailable. On limited hardware, start translation manually from personalization. The assistant is instructed to answer in your Windows language; an explicit translation request can choose another language.
+| Input / output | Processing and evidence |
+| --- | --- |
+| Text and code | User-supplied text is retained. Plain text, Markdown, common source/config/data formats and notebook cells can be extracted without executing code. |
+| PDF | The document adapter extracts selectable page text with page labels. Scans and image equations require OCR/vision; figures are not inferred from extracted text alone. The separate PDF library supports page indexing, progress and cancellation. |
+| Office / OpenDocument / EPUB | DOCX, PPTX, XLSX, ODT, ODP, ODS and EPUB adapters extract supported text/cells with section references. They do not execute macros, recalculate spreadsheet formulas or interpret every embedded object/layout. |
+| Images and OCR | Windows OCR extracts readable text. A compatible free cloud vision endpoint examines pixels for the requested visual task. ASTRA labels these outputs separately; equations, geometry and uncertain characters still need verification. |
+| Audio | Record explicitly or attach WAV, MP3, M4A, AAC, FLAC or OGG when the installed Windows codecs can decode it. ASTRA converts/chunks the audio for the compatible free remote transcription model and marks unclear speech instead of inventing words. |
+| Speech output | Installed Windows voices can read a completed answer or export WAV. Available languages and voices depend on Windows. |
+| Other binary / CAD / media files | Unsupported semantic formats are represented as file metadata with an explicit `metadata-only` status. Selecting a file does not mean that ASTRA has understood its geometry, frames or contents. |
 
-Images use local OCR to extract text, rather than general photo understanding. Second Brain imports text PDFs and uses local Windows OCR for scanned pages. Audio transcription and OCR start locally; when you use OpenRouter afterward, the transcript or extracted text included in your prompt is sent after consent. Speech output and OCR availability depend on installed Windows languages and voices. AI results are drafts to review.
+No local text, embedding, Whisper or vision model is required for this cloud workflow. Windows OCR and voices are native OS facilities. Attachments and generated interpretations remain untrusted source material; agent instructions must not execute instructions found inside them.
 
-**Creator and Gaming use one ASTRA Assistant**, sharing conversation, memory, documents and tools. Core and STEM retain the **Second Brain** name. Open **Open conversation**, or use **Ctrl + Alt + Space**. Send with the button or **Ctrl + Enter**. Text, documents, images with OCR and audio are supported. Microphone recording starts only when you press Record. Chats are saved encrypted; **Chat** reopens earlier conversations, and **New conversation** preserves them.
+#### Connect and expand an Obsidian vault
 
-The **Skills** tab includes installable skills. Select one and choose **Use this skill in chat**. Expand **Create or edit a custom skill** to enter your own instructions, optionally draft them with the selected AI provider, and save or export the skill. Import JSON or Markdown packages to add more. A skill's capabilities do not grant permission to execute tools.
+Obsidian is the working knowledge base made of ordinary Markdown files. ASTRA's encrypted jobs, chat and internal memory stay in separate per-account storage; do not put DPAPI archives into a vault. Select the vault in Agent team and use descriptive project/research notes so relevant passages can be found by their terms and filenames.
 
-**Web research** searches the public web and adds pages as cited sources on request. **Projects and code** reads a selected project, discusses files and proposes a precise edit. Proposals write nothing: review the complete changes and explicitly approve before applying. Originals have encrypted backups and a separate restoration confirmation. Script execution has its own code/interpreter/arguments review and explicit consent each time. Scripts run with your account permissions, without a sandbox.
+The [ASTRA Command Center package](docs/obsidian-cloud/README.md) adds **38 generic notes and templates**: a control desk, aerospace project/requirements/trade/verification records, research evidence and reproduction, study cards/maps/exercises/mock exams, gaming A/B experiments, creator briefs/storyboards, multimodal provenance, verification debt and recovery proposals. From a source checkout:
 
-The OpenRouter free tier has provider and request quotas; ASTRA does not buy credits or select paid models. For a fully offline alternative with no hosted request quota, choose the included local model; its speed, context, output and available memory are finite. See [`OPENROUTER-AI-GUIDE.md`](OPENROUTER-AI-GUIDE.md) for setup, privacy, quotas and troubleshooting, and [`SECOND-BRAIN-GUIDE.md`](SECOND-BRAIN-GUIDE.md) for the notes/PDF workflow.
+```powershell
+.\scripts\obsidian\install_cloud_workspace.ps1 -VaultPath "C:\Users\you\Documents\MyVault" -DryRun
+.\scripts\obsidian\install_cloud_workspace.ps1 -VaultPath "C:\Users\you\Documents\MyVault"
+```
 
-Useful commands include **open Chrome**, **open STEM**, **focus 25 minutes**, **add task review chapter 3**, **remember that my project uses quaternion control**, **briefing**, **summarize PDF** and **cancel PDF**. Italian equivalents work too. App launches use existing installed-app shortcuts; generated text and imported documents are not executed as commands.
+The installer creates only its own `Astra Command Center` subtree and preserves all existing notes, including edited package notes. The source repository contains only this generic package; personal vaults, plugin `data.json`, private conversations, keys and generated personal deliverables are excluded. Obsidian Graph view, Backlinks, Canvas, Templates and Search are enough to use it. Copilot or Local Agent Office are optional plugin interfaces with their own provider/skill settings; ASTRA's provider and credential settings are not copied into them automatically.
 
-For long PDFs, select **Import PDF**, then select a library document. Search notes and PDFs offline or ask a question to retrieve passages with page references. **Complete summary** processes all readable pages in bounded batches and combines their summaries. Imports support up to 512 MB, 10,000 pages and 50 million extracted characters per PDF. Progress and cancellation are available. Source PDFs remain untouched; extracted pages are encrypted individually. Reimporting an unchanged PDF reuses its index.
+#### Legacy optional local-model setup
 
-Notes, tags, requested memories and PDF text are encrypted for your Windows account. Search does not train the model. Export notes and retain your original PDFs before moving to another Windows account or reinstalling Windows: DPAPI files are tied to that account. Note JSON exports are readable plain text; they do not include the separately indexed PDF library. See `SECOND-BRAIN-GUIDE.md` for the complete workflow.
+The earlier local GPU workflow remains documented separately in the [Obsidian local AI tutorial](docs/obsidian-local/README.md). It requires an explicitly selected local runtime/model, compatible GPU and sufficient VRAM/RAM. Legacy distributions may retain llama.cpp, Nomic, Whisper or vision compatibility assets. They are not the default model route for this cloud profile and do not serve as an automatic fallback. Local compute has finite context, memory, speed and electricity requirements.
+
+#### Skills, memory and reviewed changes
+
+The **Skills** tab supports installing, importing JSON/Markdown, editing, exporting and assigning methods to individual agents. A skill supplies instructions and an output contract; it does not grant unrestricted tool execution. System improvement uses a proposal, reproducible checks, review, rollback evidence and an inspectable procedural lesson. Checkpoint recovery and learned procedures do not change model weights or silently deploy a replacement executable.
+
+**Web research** searches the public web and adds cited sources on request. **Projects and code** reads a selected project and proposes precise edits. Review changes before applying them; originals have encrypted backups. Script execution has its own interpreter/arguments review and consent. Scripts run with your account permissions, without an OS sandbox.
+
+Core, STEM, Creator and Gaming use one **ASTRA Assistant** identity, shared conversations and the selected knowledge sources. Chats and internal notes are encrypted for the current Windows account; Markdown vault notes remain ordinary files under the vault's own backup policy. Export important internal notes before changing Windows accounts or reinstalling Windows because DPAPI data is account-bound. The interface includes English and Italian and follows the Windows display language; explicit requests can choose the response language.
 
 ### Widgets and automation
 
@@ -194,8 +242,10 @@ On a new profile, ASTRA selects lighter settings for devices with up to 8 GB RAM
 | The EXE does not start or resources are missing | Extract the complete ZIP again into a new folder. Check that `Astra.Desktop.pri`, `App.xbf`, `MainWindow.xbf`, DLLs, and subfolders remain beside the EXE. |
 | A native runtime DLL is reported missing | Run the included `prerequisites/vc_redist.x64.exe`, then restart ASTRA. |
 | A 3D panel cannot initialize | Run the included WebView2 installer if the runtime is missing, restart ASTRA, then activate the scene again. Installing Chrome alone does not provide WebView2. |
-| OpenRouter returns an error | Check that the API key is saved, then verify the free-tier quota and current model availability. ASTRA does not retry through paid endpoints. |
-| Offline AI fails to start | Keep all `Ai/components` files together, check available memory, and try again after closing heavy applications. |
+| OpenRouter returns HTTP 429 | Check [OpenRouter Activity](https://openrouter.ai/activity) and the current account/provider quotas. Wait for capacity or the quota reset. Model migration is for compatible catalog availability, not a way to bypass provider limits; the cloud workflow does not start paid or local inference. |
+| A preferred free model was removed or repriced | Refresh the live catalog and inspect the replacement notice and effective model. Only compatible zero-price endpoints are eligible; if none exist, the request stays blocked. |
+| A file says partial, resource-limit or metadata-only | Open the extraction status and original source. Split oversized source material or choose an appropriate OCR/vision reader; unsupported binary geometry or embedded objects have not been interpreted. |
+| Legacy optional offline AI fails to start | The cloud workflow does not require it. For an explicitly selected legacy local setup, keep its runtime files together and follow the separate local GPU guide. |
 | WSL says no distribution is installed | Complete Ubuntu installation and its first-run setup; WSL itself and a Linux distribution are separate requirements. |
 | The taskbar remains visible | Check the Windows auto-hide option described above, then use F11 in ASTRA. Move your pointer away from the taskbar edge. |
 | Login startup points to an old folder | Disable and re-enable the login option from the new ASTRA copy, then check Windows Startup settings. |
@@ -219,40 +269,30 @@ To remove the installed version, use **Settings → Apps → Installed apps → 
 
 ## Package contents, credits, and verification
 
-The download contains the app, .NET/WinUI runtime files, UI assets, language catalogs, offline AI and speech models, 3D models and renderer, profiles, 43 plugin recipes, Python scene SDK, ISO builder script, documentation, and the Microsoft prerequisite installers.
+The cloud application package contains the app, .NET/WinUI runtime files, UI assets, language catalogs, 3D models and renderer, profiles, 43 plugin recipes, Python scene SDK, ISO builder script, generic Obsidian KnowledgeKit, documentation and Microsoft prerequisite installers. Cloud inference does not require or download local model weights. Older compatibility distributions may also include optional native AI assets under their original licenses.
 
 - `LICENSE` covers ASTRA's own MIT-licensed code. Third-party components retain their own licenses.
-- `THIRD-PARTY-NOTICES.md` points to bundled licenses and upstream credits, including NASA/Khronos models, the Ariane reconstruction, Three.js, Qwen, llama.cpp, Whisper, and .NET dependencies.
+- `THIRD-PARTY-NOTICES.md` points to bundled licenses and upstream credits, including NASA/Khronos models, the Ariane reconstruction, Three.js, Nomic, SmolVLM, llama.cpp, Whisper, and .NET dependencies.
 - `FILES.sha256` lists every payload file's SHA-256. The separately downloadable `.zip.sha256` file verifies the whole ZIP.
-- `RELEASE-NOTES.md` records release 4.0.0.5's scope and validation. This package contains application files, not personal preferences, note stores, browser caches, or QA profiles.
+- `RELEASE-NOTES.md` records release 4.2.0's scope and validation. This package contains application files, not personal preferences, note stores, browser caches, or QA profiles.
 
-To verify either download, run the matching command in PowerShell and compare the output with the same-named checksum asset attached to the GitHub release:
+To verify a download, replace the example path with the exact downloaded ZIP or Setup filename and compare the SHA-256 with its checksum asset attached to the same GitHub release:
 
 ```powershell
-Get-FileHash .\ASTRA-OS-V4-HORIZON-Setup-4.0.0.5-win-x64.exe -Algorithm SHA256
-Get-FileHash .\ASTRA-OS-V4-HORIZON-openrouter-gaming-creator-win-x64.zip -Algorithm SHA256
+Get-FileHash -LiteralPath 'C:\Path\To\DownloadedPackage.zip' -Algorithm SHA256
 ```
 
 ## For developers and release maintainers
 
 End users can run the binary package without building. A **source checkout** requires Windows, the .NET 10 SDK, Windows SDK, and WinUI build tools. Build and verify from the repository root:
 
-Build commands require a complete source checkout with `src`, `sdk`, `scripts` and the project files. A repository used only to host binary releases may contain only a README; its automatically generated source archive is not the application source. Model weights are larger than GitHub's normal per-file limit and belong in the binary release.
+Build commands require a complete source checkout with `src`, `sdk`, `scripts` and the project files. A repository used only to host binary releases may contain only a README; its automatically generated source archive is not the application source. Optional legacy model weights are larger than GitHub's normal per-file limit and must stay outside the source repository. Personal vaults, credential files, private attachments, conversations and generated personal reports must also stay outside public source or release assets.
 
-NuGet restore supplies the pinned LLamaSharp CPU backend. `prepare-embedded-ai.py` verifies its repository signature and pinned package/content hashes, then records the expected DLL hashes. The resource fetch script supplies models and 3D assets; it no longer downloads a server executable. No script changes antivirus settings or restores quarantined files.
+For the cloud profile, build with `AstraCloudOnly=true` to exclude local model/runtime content items. NuGet still restores compile-time compatibility dependencies; the cloud inference path does not start them. Existing `prepare-embedded-ai.py`, `fetch-gpu-runtime.py`, `fetch-vision-model.py` and `fetch-local-model.py` are legacy optional preparation tools, not prerequisites for cloud reasoning, remote media reading or native Windows OCR/TTS. No script changes antivirus settings or restores quarantined files.
 
 ```powershell
 dotnet restore .\src\Astra.Desktop\Astra.Desktop.csproj -r win-x64 -p:Platform=x64
-python .\scripts\prepare-embedded-ai.py
-python .\scripts\fetch-3d-ai-resources.py
-dotnet publish .\src\Astra.Desktop\Astra.Desktop.csproj -c Release -r win-x64 -p:Platform=x64 --self-contained true -o .\dist\AstraOS-Local
+dotnet publish .\src\Astra.Desktop\Astra.Desktop.csproj -c Release -r win-x64 -p:Platform=x64 -p:AstraCloudOnly=true --self-contained true -o .\dist\AstraOS-Cloud
 ```
 
-To produce the GitHub binary asset from the published `dist/AstraOS-Local` folder:
-
-```powershell
-pwsh -NoProfile -File .\scripts\fetch-release-prerequisites.ps1
-python .\scripts\package-release.py
-```
-
-The download script verifies Microsoft Authenticode signatures without executing installers. Packaging checks all payload bytes and creates the ZIP, per-file manifest, archive checksum, and verification report. This specific assistant update uses `scripts/package-assistant-update.py` after its native QA report is recorded; it refuses unverified binaries. `GITHUB-UPDATE.md` describes publishing a binary release without pushing sources.
+Release packaging must include the matching worker/supervisor builds, KnowledgeKit, required assets and a checksum manifest, and must exclude personal vault data, keys, caches, logs and QA profiles. Record actual build, smoke and online-provider results before publishing; a provider quota block must not be rewritten as a successful model test. The older `package-agent-brain.py` recipe targets the legacy GPU distribution and its QA artifacts. Microsoft prerequisite downloads are signature-checked without executing installers. Keep the release-specific package recipe and evidence aligned with the binaries being uploaded.

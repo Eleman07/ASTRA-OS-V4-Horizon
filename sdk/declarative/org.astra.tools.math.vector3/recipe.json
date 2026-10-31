@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.math.vector3",
+  "name": "Vector Workbench",
+  "description": "Prodotto scalare, vettoriale e norme di due vettori 3D.",
+  "operation": "math.vector3",
+  "category": "STEM",
+  "example": "[ [1,2,3], [4,5,6] ]",
+  "prefix": null
+}

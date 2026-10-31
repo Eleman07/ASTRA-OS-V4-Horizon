@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <Version>4.2.0</Version>
+    <TargetFramework>net10.0-windows10.0.22621.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.22000.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion>10.0.22000.0</SupportedOSPlatformVersion>
+    <RootNamespace>AstraOS.Desktop</RootNamespace>
+    <ApplicationIcon>Assets\astra.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64</Platforms>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <!-- WinUI/XAML uses reflection and native COM types: disable publish optimizations
+         until a verified local Windows Release build passes runtime smoke tests. -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishSingleFile>false</PublishSingleFile>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateAppxPackageOnBuild>false</GenerateAppxPackageOnBuild>
+    <EnableDefaultXamlItems>true</EnableDefaultXamlItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+    <PackageReference Include="System.Speech" Version="10.0.14" />
+    <PackageReference Include="Whisper.net" Version="1.9.1" />
+    <PackageReference Include="Whisper.net.Runtime" Version="1.9.1" />
+    <PackageReference Include="PdfPig" Version="0.1.16" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="LLamaSharp" Version="0.30.0" />
+    <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.30.0" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <ProjectReference Include="..\Astra.Core\Astra.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\*.png;Assets\*.svg;Assets\*.ico" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="profiles\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Graphics3D\web\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Exclude="Ai\components\LICENSE-Qwen.txt" Include="Ai\components\*.bin;Ai\components\LICENSE*.txt;Ai\components\manifest.json;Ai\embedded-runtime.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <Content Include="Ai\vision\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <Content Include="Ai\embeddings\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <Content Include="Ai\gpu\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Condition="'$(AstraCloudOnly)' != 'true'" />
+    <Content Include="AssistantSkills\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="BrainGraph\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Update="$(NuGetPackageRoot)llamasharp.backend.cpu\0.30.0\LLamaSharpRuntimes\win-x64\**\*.dll" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Localization\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\sdk\declarative\**\*" Link="recipes\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\sdk\python\**\*" Exclude="..\..\sdk\python\**\__pycache__\**" Link="python-sdk\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\scripts\New-AstraIso.ps1" Link="builder\New-AstraIso.ps1" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\docs\LOCAL-INSTALL-2026-10-28.md" Link="INSTALLAZIONE.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\docs\HORIZON-EXPANSION-2026-10-28.md" Link="GUIDA-NOVITA.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\README.md" Link="README.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\docs\obsidian-cloud\**\*.md" Link="KnowledgeKit\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\LICENSE" Link="LICENSE" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <!-- The unpackaged MRT Core path in Windows App SDK does not add the app's
+       PRI/XBF files to dotnet publish. They are required by LoadComponent even
+       when the WinUI runtime DLLs and framework PRIs are already present. -->
+  <Target Name="PublishAstraXamlResources" BeforeTargets="ComputeResolvedFilesToPublishList"
+          Condition="'$(WindowsPackageType)' == 'None'">
+    <Error Condition="!Exists('$(TargetDir)$(AssemblyName).pri')" Text="ASTRA publish: application PRI missing from build output." />
+    <Error Condition="!Exists('$(TargetDir)App.xbf') Or !Exists('$(TargetDir)MainWindow.xbf')" Text="ASTRA publish: compiled application XAML missing from build output." />
+    <ItemGroup>
+      <_AstraXbf Include="$(TargetDir)**\*.xbf" Exclude="$(PublishDir)**\*" />
+      <ResolvedFileToPublish Include="@(_AstraXbf)">
+        <RelativePath>%(_AstraXbf.RecursiveDir)%(_AstraXbf.Filename)%(_AstraXbf.Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+      <ResolvedFileToPublish Include="$(TargetDir)$(AssemblyName).pri">
+        <RelativePath>$(AssemblyName).pri</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>

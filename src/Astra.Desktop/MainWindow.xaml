@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="AstraOS.Desktop.MainWindow" xmlns:local="using:AstraOS.Desktop" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="ASTRA OS V4 · Horizon">
+ <Grid x:Name="AppRoot" RequestedTheme="Dark" Background="#0A1931">
+ <Grid.KeyboardAccelerators><KeyboardAccelerator Key="K" Modifiers="Control" Invoked="V4SearchAccelerator_Invoked"/></Grid.KeyboardAccelerators>
+ <Grid.Resources>
+  <local:UiOptionConverter x:Key="UiOptionConverter"/>
+  <DataTemplate x:Key="UiOptionTemplate"><TextBlock Text="{Binding Converter={StaticResource UiOptionConverter}}" TextTrimming="CharacterEllipsis"/></DataTemplate>
+  <SolidColorBrush x:Key="AstraNavy" Color="#0A1931"/>
+  <SolidColorBrush x:Key="AstraIce" Color="#B3CFE5"/>
+  <SolidColorBrush x:Key="AstraBlue" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="AstraDeep" Color="#1A3D63"/>
+  <SolidColorBrush x:Key="AstraSnow" Color="#F6FAFD"/>
+  <SolidColorBrush x:Key="AstraIceText" Color="#0A1931"/>
+  <SolidColorBrush x:Key="AstraInk" Color="#0A1931"/>
+  <SolidColorBrush x:Key="AstraDeepText" Color="#F6FAFD"/>
+  <SolidColorBrush x:Key="AstraTextLight" Color="#F6FAFD"/>
+  <SolidColorBrush x:Key="AstraAccentText" Color="#F6FAFD"/>
+  <SolidColorBrush x:Key="AccentFillColorDefaultBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="AccentFillColorSecondaryBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="AccentFillColorTertiaryBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="ToggleSwitchFillOnBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOverBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="ToggleSwitchFillOnPressedBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillCheckedBrush" Color="#4A7FA7"/>
+  <SolidColorBrush x:Key="ProgressBarForeground" Color="#4A7FA7"/>
+  <ControlTemplate x:Key="V4CardTemplate" TargetType="Button">
+    <ContentPresenter x:Name="CardPresenter" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}"
+       BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+       CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}"
+       Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+      <VisualStateManager.VisualStateGroups><VisualStateGroup x:Name="CommonStates">
+        <VisualState x:Name="Normal"/>
+        <VisualState x:Name="PointerOver"><VisualState.Setters><Setter Target="CardPresenter.Opacity" Value="0.90"/></VisualState.Setters></VisualState>
+        <VisualState x:Name="Pressed"><VisualState.Setters><Setter Target="CardPresenter.Opacity" Value="0.75"/></VisualState.Setters></VisualState>
+        <VisualState x:Name="Disabled"><VisualState.Setters><Setter Target="CardPresenter.Opacity" Value="0.45"/></VisualState.Setters></VisualState>
+      </VisualStateGroup></VisualStateManager.VisualStateGroups>
+    </ContentPresenter>
+  </ControlTemplate>
+  <Style x:Key="NavButton" TargetType="Button">
+    <Setter Property="HorizontalAlignment" Value="Stretch"/><Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="Background" Value="Transparent"/><Setter Property="Foreground" Value="{StaticResource AstraTextLight}"/>
+    <Setter Property="BorderThickness" Value="0"/><Setter Property="CornerRadius" Value="12"/>
+    <Setter Property="Padding" Value="13,12"/><Setter Property="Margin" Value="0,2"/>
+  </Style>
+  <Style x:Key="DockButton" TargetType="Button">
+    <Setter Property="Width" Value="44"/><Setter Property="Height" Value="44"/>
+    <Setter Property="Padding" Value="10"/><Setter Property="CornerRadius" Value="12"/>
+    <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Foreground" Value="{StaticResource AstraTextLight}"/>
+    <Setter Property="UseSystemFocusVisuals" Value="True"/>
+  </Style>
+  <Style x:Key="PrimaryButton" TargetType="Button">
+    <Setter Property="Background" Value="{StaticResource AstraBlue}"/><Setter Property="Foreground" Value="{StaticResource AstraAccentText}"/>
+    <Setter Property="CornerRadius" Value="10"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="15,10"/>
+  </Style>
+  <Style x:Key="Card" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource AstraDeep}"/><Setter Property="BorderBrush" Value="{StaticResource AstraBlue}"/>
+    <Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="20"/><Setter Property="Padding" Value="22"/>
+  </Style>
+  <Style x:Key="V4CardButton" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource V4CardTemplate}"/><Setter Property="UseSystemFocusVisuals" Value="True"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="Background" Value="{StaticResource AstraIce}"/>
+    <Setter Property="Foreground" Value="{StaticResource AstraIceText}"/>
+    <Setter Property="BorderThickness" Value="0"/><Setter Property="CornerRadius" Value="18"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    <Setter Property="Padding" Value="17"/><Setter Property="MinHeight" Value="124"/>
+  </Style>
+  <Style x:Key="V4DarkCardButton" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource V4CardTemplate}"/><Setter Property="UseSystemFocusVisuals" Value="True"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="Background" Value="{StaticResource AstraDeep}"/>
+    <Setter Property="Foreground" Value="{StaticResource AstraDeepText}"/>
+    <Setter Property="BorderThickness" Value="1"/><Setter Property="BorderBrush" Value="{StaticResource AstraBlue}"/>
+    <Setter Property="CornerRadius" Value="18"/><Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Stretch"/><Setter Property="Padding" Value="17"/>
+    <Setter Property="MinHeight" Value="124"/>
+  </Style>
+</Grid.Resources>
+ <Grid.ColumnDefinitions><ColumnDefinition x:Name="SidebarColumn" Width="218"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+ <Image x:Name="V4Wallpaper" Source="Assets/wallpaper_v4.png" Stretch="UniformToFill" Opacity="0.48" Grid.ColumnSpan="2" IsHitTestVisible="False"/>
+ <Border x:Name="SidebarShell" Grid.Column="0" Background="{StaticResource AstraNavy}" BorderBrush="{StaticResource AstraDeep}" BorderThickness="0,0,1,0">
+  <Grid Padding="14,22,12,18"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+   <StackPanel Margin="7,0,0,20" Spacing="7"><StackPanel Orientation="Horizontal" Spacing="8"><Image Source="Assets/astra-logo.png" Width="30" Height="30"/><TextBlock Text="ASTRA OS" FontSize="22" FontWeight="SemiBold" Foreground="{StaticResource AstraIce}" VerticalAlignment="Center" x:Name="L10n0001"/></StackPanel><TextBlock Text="V4   /   H O R I Z O N" FontSize="11" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0002"/></StackPanel>
+   <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"><StackPanel Spacing="3"><Button x:Name="HomeNav" Style="{StaticResource NavButton}" Click="HomeNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Home"/><TextBlock Text="Home" x:Name="L10n0003"/></StackPanel></Button>
+<Button x:Name="ProfilesNav" Style="{StaticResource NavButton}" Click="ProfilesNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Library"/><TextBlock Text="Profili" x:Name="L10n0004"/></StackPanel></Button>
+<TextBlock Text="WORKSPACES" FontSize="10" CharacterSpacing="100" Margin="13,16,0,4" Foreground="{StaticResource AstraIce}" x:Name="L10n0005"/>
+<Button x:Name="CoreWorkspaceNav" Content="◈   Core" Tag="core" Style="{StaticResource NavButton}" Click="WorkspaceNav_Click"/>
+<Button x:Name="StemWorkspaceNav" Content="⌬   STEM" Tag="stem" Style="{StaticResource NavButton}" Click="WorkspaceNav_Click"/>
+<Button x:Name="GamingWorkspaceNav" Content="♧   Gaming" Tag="gaming" Style="{StaticResource NavButton}" Click="WorkspaceNav_Click"/>
+<Button x:Name="CreatorWorkspaceNav" Content="◉   Creator" Tag="creator" Style="{StaticResource NavButton}" Click="WorkspaceNav_Click"/>
+<TextBlock Text="APPLICATIONS" FontSize="10" CharacterSpacing="100" Margin="13,16,0,4" Foreground="{StaticResource AstraIce}" x:Name="L10n0006"/>
+<Button x:Name="CatalogNav" Style="{StaticResource NavButton}" Click="CatalogNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Shop"/><TextBlock Text="App Hub" x:Name="L10n0007"/></StackPanel></Button>
+<Button x:Name="SystemHubNav" Style="{StaticResource NavButton}" Tag="system" Click="QuickRoute_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Setting"/><TextBlock x:Name="SystemHubNavLabel" Text="Centro di controllo"/></StackPanel></Button>
+<Button x:Name="WindowsToolsNav" Style="{StaticResource NavButton}" Click="WindowsToolsNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Repair"/><TextBlock Text="Strumenti Windows" x:Name="L10n0008"/></StackPanel></Button>
+<Button x:Name="FilesNav" Style="{StaticResource NavButton}" Click="FilesNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Folder"/><TextBlock Text="File Explorer" x:Name="L10n0009"/></StackPanel></Button>
+<Button x:Name="DiagnosticNav" Style="{StaticResource NavButton}" Click="DiagnosticNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="View"/><TextBlock Text="Performance" x:Name="L10n0010"/></StackPanel></Button>
+<Button x:Name="SecurityNav" Style="{StaticResource NavButton}" Click="SecurityNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="ProtectedDocument"/><TextBlock Text="Security Center" x:Name="L10n0011"/></StackPanel></Button>
+<Button x:Name="BrainNav" Style="{StaticResource NavButton}" Click="BrainNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Message"/><TextBlock Text="ASTRA Assistant" x:Name="L10n0012"/></StackPanel></Button>
+<Button x:Name="PluginsNav" Style="{StaticResource NavButton}" Click="PluginsNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Add"/><TextBlock Text="Plugin SDK" x:Name="L10n0013"/></StackPanel></Button>
+<Button x:Name="MultitaskNav" Style="{StaticResource NavButton}" Click="MultitaskNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="TwoPage"/><TextBlock Text="Multitasking" x:Name="L10n0218"/></StackPanel></Button>
+<Button x:Name="AssistantNav" Style="{StaticResource NavButton}" Click="AssistantNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Help"/><TextBlock Text="Assistente ASTRA" x:Name="L10n0219"/></StackPanel></Button>
+<Button x:Name="WidgetsNav" Style="{StaticResource NavButton}" Click="WidgetsNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="AllApps"/><TextBlock Text="Widget" x:Name="L10n0014"/></StackPanel></Button>
+<Button x:Name="OrbitNav" Style="{StaticResource NavButton}" Click="OrbitNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Globe"/><TextBlock Text="Orbital 3D" x:Name="L10n0015"/></StackPanel></Button>
+<Button x:Name="UbuntuNav" Style="{StaticResource NavButton}" Click="UbuntuNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Library"/><TextBlock Text="Ubuntu Lab" x:Name="L10n0016"/></StackPanel></Button>
+<Button x:Name="IsoNav" Style="{StaticResource NavButton}" Click="IsoNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Folder"/><TextBlock Text="ISO Builder" x:Name="L10n0017"/></StackPanel></Button>
+<Button x:Name="ThemeNav" Style="{StaticResource NavButton}" Click="ThemeNav_Click"><StackPanel Orientation="Horizontal" Spacing="12"><SymbolIcon Symbol="Edit"/><TextBlock Text="Personalizza" x:Name="L10n0018"/></StackPanel></Button></StackPanel></ScrollViewer>
+   <Border Grid.Row="2" CornerRadius="14" Background="{StaticResource AstraDeep}" Padding="14"><StackPanel Spacing="5"><TextBlock x:Name="UserAccountName" Text="Account Windows" FontWeight="SemiBold" Foreground="{StaticResource AstraTextLight}"/><Button Content="Il mio profilo" Click="ProfilesNav_Click" Padding="0" Background="Transparent" BorderThickness="0" x:Name="L10n0019"/><TextBlock Text="Windows · OpenRouter AI" FontSize="11" TextWrapping="Wrap" Foreground="{StaticResource AstraIce}" x:Name="L10n0020"/></StackPanel></Border>
+  </Grid>
+ </Border>
+ <Grid x:Name="MainSurface" Grid.Column="1" Padding="24,14,22,12" RowSpacing="9">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Grid ColumnSpacing="16"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+   <Grid ColumnSpacing="8" HorizontalAlignment="Stretch"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBox x:Name="HorizonSearchBox" PlaceholderText="Cerca app, workspace, note…" KeyDown="HorizonSearchBox_KeyDown" TextChanged="HorizonSearchBox_TextChanged" AutomationProperties.Name="Ricerca rapida ASTRA"/><Button Grid.Column="1" Content="Ctrl + K" Click="V4FocusSearch_Click" x:Name="L10n0021"/></Grid>
+   <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="9" VerticalAlignment="Center"><TextBlock x:Name="V4Clock" Text="Ora locale" FontSize="12" Foreground="{StaticResource AstraTextLight}"/><Button x:Name="FullScreenButton" Content="Schermo intero" Click="FullScreen_Click" ToolTipService.ToolTip="Schermo intero (F11)"/><Button x:Name="FocusModeButton" Content="Focus" Click="FocusMode_Click"/></StackPanel>
+  </Grid>
+  <ScrollViewer x:Name="ContentScroller" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+   <StackPanel Spacing="12" Margin="0,4,0,0">
+     <StackPanel x:Name="PageHeading" Spacing="2"><TextBlock x:Name="PageTitle" Text="Home" FontSize="22" FontWeight="SemiBold" Foreground="{StaticResource AstraTextLight}"/><TextBlock x:Name="PageSubtitle" Text="Il tuo workspace personale" Foreground="{StaticResource AstraIce}" FontSize="12"/></StackPanel>
+     <TextBlock x:Name="SearchSuggestions" Text="Ricerca locale · nessuna richiesta inviata online" FontSize="10" Foreground="{StaticResource AstraTextLight}"/>
+     <StackPanel x:Name="HomePanel" Spacing="16">
+ <Grid x:Name="DashboardGrid" ColumnSpacing="17" RowSpacing="16">
+  <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition x:Name="WidgetColumn" Width="326"/></Grid.ColumnDefinitions>
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <StackPanel x:Name="DashboardModules" Grid.Column="0" Spacing="16">
+   <Border x:Name="BannerFrame" MinHeight="240" Background="{StaticResource AstraNavy}" BorderBrush="{StaticResource AstraBlue}" BorderThickness="1" CornerRadius="23">
+    <Grid>
+      <Canvas x:Name="BannerCanvas" IsHitTestVisible="False"><Image x:Name="BannerArtworkImage" Source="Assets/banner_art_v4.png" Stretch="UniformToFill" Opacity="0.9"/></Canvas>
+      <Border Background="#450A1931"/>
+      <StackPanel x:Name="BannerCopy" Margin="36" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="14" MaxWidth="520">
+       <TextBlock Text="W E L C O M E  T O" FontSize="10" Foreground="{StaticResource AstraTextLight}"  x:Name="BannerEyebrow"/>
+       <TextBlock Text="ASTRA OS V4" FontSize="41" FontWeight="SemiBold" Foreground="{StaticResource AstraTextLight}" CharacterSpacing="100" x:Name="BannerTitle"/>
+       <TextBlock Text="Focus  •  Create  •  Explore  •  Go Beyond" Foreground="{StaticResource AstraTextLight}" FontSize="13" x:Name="BannerTagline"/>
+       <TextBlock Text="A more intelligent, open and personal computing experience." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" FontStyle="Italic" FontSize="13" Margin="0,5,0,0" MaxWidth="320"  x:Name="BannerDescription"/>
+       <Border Width="38" Height="3" Background="{StaticResource AstraIce}" CornerRadius="2" HorizontalAlignment="Left" Margin="0,3,0,0" />
+      </StackPanel>
+      <TextBlock Text="A UNIVERSE OF POSSIBILITIES" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,24" FontWeight="SemiBold" FontSize="9" CharacterSpacing="130" Foreground="{StaticResource AstraInk}" x:Name="BannerSignature"/>
+    </Grid>
+   </Border>
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Modules" FontSize="21" FontWeight="SemiBold" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0027"/><Button Grid.Column="1" Click="CatalogNav_Click" Content="View all  →" Background="Transparent" Foreground="{StaticResource AstraTextLight}" BorderThickness="0" x:Name="L10n0028"/></Grid>
+   <Grid x:Name="ModuleCards" ColumnSpacing="12" RowSpacing="12">
+<Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+<Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+<Border Grid.Row="0" Grid.Column="0"><Button Style="{StaticResource V4CardButton}" Tag="core" Click="WorkspaceNav_Click" AutomationProperties.Name="Apri Core" x:Name="L10n0029">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Library" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Core" FontWeight="SemiBold" FontSize="17" x:Name="L10n0030"/><TextBlock Text="Il tuo sistema, potenziato." FontSize="12" TextWrapping="Wrap" x:Name="L10n0031"/><TextBlock Text="Sistema, aggiornamenti e strumenti." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0032"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border><Border Grid.Row="0" Grid.Column="1"><Button Style="{StaticResource V4CardButton}" Tag="stem" Click="WorkspaceNav_Click" AutomationProperties.Name="Apri STEM" x:Name="L10n0033">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Library" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="STEM" FontWeight="SemiBold" FontSize="17" x:Name="L10n0034"/><TextBlock Text="Impara. Costruisci. Esplora." FontSize="12" TextWrapping="Wrap" x:Name="L10n0035"/><TextBlock Text="Coding, simulazioni, scienza." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0036"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border><Border Grid.Row="0" Grid.Column="2"><Button Style="{StaticResource V4CardButton}" Tag="creator" Click="WorkspaceNav_Click" AutomationProperties.Name="Apri Creator" x:Name="L10n0037">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Edit" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Creator" FontWeight="SemiBold" FontSize="17" x:Name="L10n0038"/><TextBlock Text="Progetta. Crea. Produci." FontSize="12" TextWrapping="Wrap" x:Name="L10n0039"/><TextBlock Text="Software professionali e creatività." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0040"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border><Border Grid.Row="1" Grid.Column="0"><Button Style="{StaticResource V4CardButton}" Tag="gaming" Click="WorkspaceNav_Click" AutomationProperties.Name="Apri Gaming" x:Name="L10n0041">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Shop" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Gaming" FontWeight="SemiBold" FontSize="17" x:Name="L10n0042"/><TextBlock Text="Gioca e organizza." FontSize="12" TextWrapping="Wrap" x:Name="L10n0043"/><TextBlock Text="Launcher e prestazioni, senza rischi." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0044"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border><Border Grid.Row="1" Grid.Column="1"><Button Style="{StaticResource V4DarkCardButton}" Click="BrainNav_Click" AutomationProperties.Name="Apri Second Brain" x:Name="L10n0045">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Message" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="ASTRA Assistant" FontWeight="SemiBold" FontSize="17" x:Name="L10n0046"/><TextBlock Text="Organizza. Ricorda. Cresci." FontSize="12" TextWrapping="Wrap" x:Name="L10n0047"/><TextBlock Text="Note cifrate e AI locale." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0048"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border><Border Grid.Row="1" Grid.Column="2"><Button Style="{StaticResource V4CardButton}" Click="UbuntuNav_Click" AutomationProperties.Name="Apri Ubuntu Lab" x:Name="L10n0049">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Library" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Ubuntu Lab" FontWeight="SemiBold" FontSize="17" x:Name="L10n0050"/><TextBlock Text="Linux. Sviluppa. Esplora." FontSize="12" TextWrapping="Wrap" x:Name="L10n0051"/><TextBlock Text="WSL opzionale, terminale Ubuntu." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0052"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border></Grid>
+   <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="3*"/><ColumnDefinition Width="2*"/></Grid.ColumnDefinitions>
+     <Border Grid.Column="0"><Button Style="{StaticResource V4DarkCardButton}" Click="SecurityNav_Click" AutomationProperties.Name="Apri Security Center" x:Name="L10n0053">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="ProtectedDocument" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Security Center" FontWeight="SemiBold" FontSize="17" x:Name="L10n0054"/><TextBlock Text="Proteggi il tuo sistema." FontSize="12" TextWrapping="Wrap" x:Name="L10n0055"/><TextBlock Text="Controlli Windows reali, non simulati." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0056"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border>
+     <Border Grid.Column="1"><Button Style="{StaticResource V4DarkCardButton}" Click="OrbitNav_Click" AutomationProperties.Name="Apri Orbital 3D" x:Name="L10n0057">
+       <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="43"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+       <Border Background="{StaticResource AstraBlue}" Width="42" Height="42" CornerRadius="12" VerticalAlignment="Top"><SymbolIcon Symbol="Globe" Foreground="{StaticResource AstraTextLight}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+       <StackPanel Grid.Column="1" Spacing="6"><TextBlock Text="Orbital 3D" FontWeight="SemiBold" FontSize="17" x:Name="L10n0058"/><TextBlock Text="Visualizza. Esplora." FontSize="12" TextWrapping="Wrap" x:Name="L10n0059"/><TextBlock Text="Scena GPU su richiesta." FontSize="11" TextWrapping="Wrap" Opacity="0.75" x:Name="L10n0060"/></StackPanel>
+       <SymbolIcon Grid.Column="2" Symbol="Forward" Opacity="0.7"/></Grid></Button></Border>
+   </Grid>
+  </StackPanel>
+  <StackPanel x:Name="DashboardWidgets" Grid.Column="1" Spacing="12">
+    <Border Background="{StaticResource AstraDeep}" CornerRadius="18" Padding="16" BorderBrush="{StaticResource AstraBlue}" BorderThickness="1">
+     <StackPanel Spacing="12"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="System Performance" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0061"/><Button Grid.Column="1" Content="Aggiorna" FontSize="11" Click="V4RefreshStats_Click" x:Name="L10n0062"/></Grid>
+     <Grid ColumnSpacing="7"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+       <StackPanel Spacing="3"><TextBlock Text="CPU SISTEMA" Foreground="{StaticResource AstraIce}" FontSize="11" x:Name="L10n0063"/><TextBlock x:Name="V4CpuText" Text="Campionamento…" FontSize="23" Foreground="{StaticResource AstraTextLight}"/><ProgressBar x:Name="V4CpuBar" Foreground="{StaticResource AstraIce}" Minimum="0" Maximum="100" Value="0"/></StackPanel>
+       <StackPanel Grid.Column="1" Spacing="3"><TextBlock Text="RAM SISTEMA" Foreground="{StaticResource AstraIce}" FontSize="11" x:Name="L10n0064"/><TextBlock x:Name="V4RamText" Text="—" FontSize="23" Foreground="{StaticResource AstraTextLight}"/><ProgressBar x:Name="V4RamBar" Foreground="{StaticResource AstraIce}" Minimum="0" Maximum="100" Value="0"/></StackPanel>
+     </Grid>
+     <Grid ColumnSpacing="7"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+       <StackPanel Spacing="3"><TextBlock Text="GPU · MOTORE MAX" Foreground="{StaticResource AstraIce}" FontSize="11" x:Name="L10n0065"/><TextBlock x:Name="V4GpuText" Text="Non disponibile" FontSize="13" Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap"/></StackPanel>
+       <StackPanel Grid.Column="1" Spacing="3"><TextBlock Text="DISCO" Foreground="{StaticResource AstraIce}" FontSize="11" x:Name="L10n0066"/><TextBlock x:Name="V4DiskText" Text="—" FontSize="13" Foreground="{StaticResource AstraTextLight}"/></StackPanel>
+     </Grid>
+     <TextBlock x:Name="LiveSystemDetails" Text="Caricamento metriche di sistema…" FontSize="11" Foreground="{StaticResource AstraIce}" TextWrapping="Wrap"/>
+     <TextBlock x:Name="LiveSampleStatus" Text="Aggiornamento ogni 5 s · locale" FontSize="10" Foreground="{StaticResource AstraIce}" TextWrapping="Wrap"/>
+     </StackPanel>
+    </Border>
+    <Border RequestedTheme="Light" Background="{StaticResource AstraSnow}" CornerRadius="18" Padding="14"><StackPanel Spacing="11"><TextBlock Text="Quick Actions" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource AstraInk}" x:Name="L10n0067"/>
+     <Grid ColumnSpacing="6"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+       <Button Grid.Column="0" Click="FocusMode_Click" Content="☾  Focus" FontSize="11" HorizontalAlignment="Stretch" x:Name="L10n0068"/>
+       <Button Grid.Column="1" Click="ThemeNav_Click" Content="◈  Palette" FontSize="11" HorizontalAlignment="Stretch" x:Name="L10n0069"/>
+       <Button Grid.Column="2" Click="FilesNav_Click" Content="File Explorer" FontSize="11" HorizontalAlignment="Stretch" x:Name="L10n0070"/>
+     </Grid></StackPanel></Border>
+    <Border RequestedTheme="Light" Background="{StaticResource AstraSnow}" CornerRadius="18" Padding="14"><StackPanel Spacing="10">
+     <TextBlock Text="Productivity" Foreground="{StaticResource AstraInk}" FontSize="16" FontWeight="SemiBold" x:Name="L10n0071"/>
+     <TextBlock Text="Attività completate negli ultimi 7 giorni" Foreground="{StaticResource AstraInk}" FontSize="11" x:Name="L10n0072"/>
+     <Grid Height="90" ColumnSpacing="5" x:Name="V4WeekChart">
+       <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+     </Grid>
+     <TextBlock x:Name="V4WeekLabels" Text="-6      -5      -4      -3      -2       -1       oggi" FontSize="10" Foreground="{StaticResource AstraInk}"/>
+    </StackPanel></Border>
+    <Border RequestedTheme="Light" Background="{StaticResource AstraSnow}" CornerRadius="18" Padding="14"><StackPanel Spacing="9">
+       <TextBlock Text="Tasks" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource AstraInk}" x:Name="L10n0073"/>
+       <Grid ColumnSpacing="7"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+         <TextBox x:Name="V4NewTask" PlaceholderText="Nuova attività..." MaxLength="120" FontSize="12"/>
+         <Button Grid.Column="1" Content="+" Click="V4AddTask_Click" AutomationProperties.Name="Aggiungi attività" x:Name="L10n0074"/>
+       </Grid>
+       <ScrollViewer MaxHeight="190" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><StackPanel x:Name="V4TaskItems" Spacing="6"/></ScrollViewer>
+       <TextBlock x:Name="V4TaskEmpty" Text="Nessuna attività. Aggiungine una." Foreground="{StaticResource AstraInk}" FontSize="12"/>
+    </StackPanel></Border>
+   </StackPanel>
+ </Grid>
+</StackPanel>
+     <StackPanel x:Name="WorkspacePanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="MultitaskPanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="SystemHubPanel" Spacing="14" Visibility="Collapsed"/>
+     <StackPanel x:Name="AssistantPanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="WindowsToolsPanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="WidgetsPanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="FilesPanel" Spacing="16" Visibility="Collapsed"/>
+     <StackPanel x:Name="ThemePanel" Spacing="16" Visibility="Collapsed">
+ <Border Style="{StaticResource Card}"><StackPanel Spacing="12">
+  <TextBlock Text="ASTRA OS V4 / PERSONALIZZA" FontSize="23" FontWeight="SemiBold" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0075"/>
+  <TextBlock Text="Palette predefinita: 0A1931 · B3CFE5 · 4A7FA7 · 1A3D63 · F6FAFD. Modifica i cinque colori e applica senza riavviare." TextWrapping="Wrap" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0076"/>
+  <Grid ColumnSpacing="12" RowSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <StackPanel Grid.Column="0" Spacing="6"><Border Height="32" Background="{StaticResource AstraNavy}" CornerRadius="6"/><TextBox x:Name="V4NavyInput" Header="Navy" Text="#0A1931"/></StackPanel>
+  <StackPanel Grid.Column="1" Spacing="6"><Border Height="32" Background="{StaticResource AstraIce}" CornerRadius="6"/><TextBox x:Name="V4IceInput" Header="Ice" Text="#B3CFE5"/></StackPanel>
+  <StackPanel Grid.Column="2" Spacing="6"><Border Height="32" Background="{StaticResource AstraBlue}" CornerRadius="6"/><TextBox x:Name="V4BlueInput" Header="Blue" Text="#4A7FA7"/></StackPanel>
+  <StackPanel Grid.Column="3" Spacing="6"><Border Height="32" Background="{StaticResource AstraDeep}" CornerRadius="6"/><TextBox x:Name="V4DeepInput" Header="Deep" Text="#1A3D63"/></StackPanel>
+  <StackPanel Grid.Column="4" Spacing="6"><Border Height="32" Background="{StaticResource AstraSnow}" CornerRadius="6"/><TextBox x:Name="V4SnowInput" Header="Snow" Text="#F6FAFD"/></StackPanel>
+  </Grid>
+  <StackPanel Orientation="Horizontal" Spacing="9"><Button Content="Applica e salva" Click="V4ApplyTheme_Click" Style="{StaticResource PrimaryButton}" x:Name="L10n0077"/><Button Content="Ripristina originale" Click="V4ResetTheme_Click" x:Name="L10n0078"/><Button Content="Torna alla Home" Click="HomeNav_Click" x:Name="L10n0079"/></StackPanel>
+  <StackPanel Orientation="Horizontal" Spacing="18"><ToggleSwitch x:Name="V4EcoToggle" Header="Modalità Eco" Toggled="V4PerformanceToggle_Toggled"/><ToggleSwitch x:Name="V4MotionToggle" Header="Riduci movimento" Toggled="V4PerformanceToggle_Toggled"/><ToggleSwitch x:Name="V4DockToggle" Header="Mostra dock" Toggled="V4PerformanceToggle_Toggled"/></StackPanel>
+  <TextBlock x:Name="V4ThemeStatus" Text="Le modifiche sono locali e persistenti." TextWrapping="Wrap" Foreground="{StaticResource AstraIce}"/>
+ </StackPanel></Border>
+ <Border Style="{StaticResource Card}"><StackPanel Spacing="10"><TextBlock Text="ANIMAZIONI E RISPARMIO RISORSE" FontSize="18" FontWeight="SemiBold" x:Name="L10n0080"/><TextBlock Text="Il banner usa il compositor Windows, senza video in loop o processi esterni. La modalità Eco e il movimento ridotto lo fermano." TextWrapping="Wrap" x:Name="L10n0081"/>
+ </StackPanel></Border>
+</StackPanel>
+     <StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="ProfilesPanel" Spacing="16" Visibility="Collapsed">
+                        <TextBlock Text="Scegli gli ambienti di lavoro. Core è sempre attivo; gli altri possono coesistere." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0082"/>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10"><TextBlock Text="ASTRA / SYSTEM" FontWeight="SemiBold" FontSize="20" x:Name="L10n0083"/>
+                                <TextBlock Text="Interfaccia, sistema di configurazione e catalogo. Componente indispensabile." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0084"/>
+                                <ToggleSwitch x:Name="CoreToggle" Header="Sempre attivo" IsEnabled="False" IsOn="True" OnContent="Attivo" OffContent="Disattivo"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10"><TextBlock Text="ASTRA STEM" FontWeight="SemiBold" FontSize="20" x:Name="L10n0085"/>
+                                <TextBlock Text="Scienza, tecnologia, ingegneria, matematica e sviluppo software." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0086"/>
+                                <ToggleSwitch x:Name="StemToggle" Header="Profilo scientifico" Toggled="ProfileToggled" OnContent="Attivo" OffContent="Disattivo"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10"><TextBlock Text="ASTRA GAMING" FontWeight="SemiBold" FontSize="20" x:Name="L10n0087"/>
+                                <TextBlock Text="Launcher e strumenti gaming. Nessuna disattivazione della sicurezza per guadagnare FPS." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0088"/>
+                                <ToggleSwitch x:Name="GamingToggle" Header="Profilo gaming" Toggled="ProfileToggled" OnContent="Attivo" OffContent="Disattivo"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10"><TextBlock Text="ASTRA CREATOR" FontWeight="SemiBold" FontSize="20" x:Name="L10n0089"/>
+                                <TextBlock Text="Workspace grafica, produzione video e modellazione 3D." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0090"/>
+                                <ToggleSwitch x:Name="CreatorToggle" Header="Profilo creativo" Toggled="ProfileToggled" OnContent="Attivo" OffContent="Disattivo"/>
+                            </StackPanel>
+                        </Border>
+                        <Button Content="Apri catalogo applicazioni" Click="CatalogNav_Click" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left" x:Name="L10n0091"/>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="CatalogPanel" Spacing="16" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel x:Name="InstalledAppsHost" Spacing="12"/></Border>
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="8">
+                            <TextBlock Text="APP HUB / INSTALLAZIONI CONSAPEVOLI" FontWeight="SemiBold" FontSize="16" x:Name="L10n0092"/>
+                            <TextBlock Text="Ogni installazione deve essere confermata. ASTRA utilizza WinGet con ID espliciti e non accetta automaticamente licenze o condizioni." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0093"/>
+                        </StackPanel></Border>
+                        <TextBlock x:Name="PackageCount" FontSize="12" Foreground="{StaticResource AstraDeepText}"/>
+                        <StackPanel x:Name="PackageList" Spacing="12"/>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="DiagnosticPanel" Spacing="16" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="12">
+                            <TextBlock Text="DIAGNOSTICA ON-DEMAND" FontWeight="SemiBold" FontSize="17" x:Name="L10n0094"/>
+                            <TextBlock Text="Le informazioni sono raccolte soltanto quando premi Aggiorna. Nessun polling permanente e nessuna telemetria inviata." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0095"/>
+                            <Button x:Name="RefreshButton" Content="Aggiorna diagnostica" Click="RefreshDiagnostics_Click" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left"/>
+                        </StackPanel></Border>
+                        <Grid ColumnSpacing="14" RowSpacing="14">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource Card}"><StackPanel Spacing="8"><TextBlock Text="RAM ASTRA" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0096"/><TextBlock x:Name="AppRamValue" Text="—" FontSize="27" FontWeight="SemiBold"/></StackPanel></Border>
+                            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource Card}"><StackPanel Spacing="8"><TextBlock Text="RAM FISICA" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0097"/><TextBlock x:Name="RamValue" Text="—" FontSize="27" FontWeight="SemiBold"/></StackPanel></Border>
+                            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource Card}"><StackPanel Spacing="8"><TextBlock Text="ARCHITETTURA" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0098"/><TextBlock x:Name="ArchitectureValue" Text="—" FontSize="27" FontWeight="SemiBold"/></StackPanel></Border>
+                            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Card}"><StackPanel Spacing="8"><TextBlock Text="THREAD LOGICI" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0099"/><TextBlock x:Name="ThreadsValue" Text="—" FontSize="27" FontWeight="SemiBold"/></StackPanel></Border>
+                        </Grid>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="CONSUMO CPU ASTRA · CAMPIONE SU RICHIESTA" FontWeight="SemiBold" x:Name="L10n0100"/>
+                                <TextBlock x:Name="AppCpuValue" Text="— · Premi Aggiorna diagnostica" Foreground="{StaticResource AstraDeepText}" FontSize="20"/>
+                                <TextBlock Text="Misurato su 0,35 s; non usa processi di monitoraggio residenti." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" FontSize="12" x:Name="L10n0101"/>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock x:Name="OsValue" Text="Windows 11" Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap"/>
+                        <TextBlock Text="Per misurare CPU idle, frame time e avvio, usa il benchmark ripetibile descritto in docs/PERFORMANCE-SECURITY.md." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0102"/>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="SecurityPanel" Spacing="16" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="12">
+                            <TextBlock Text="SECURITY BY DESIGN" FontSize="21" FontWeight="SemiBold" x:Name="L10n0103"/>
+                            <TextBlock Text="ASTRA non modifica Defender, firewall, Secure Boot, BitLocker o Windows Update. Nessun sistema è immune alle vulnerabilità, ma il progetto riduce la superficie d'attacco." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0104"/>
+                            <TextBlock Text="✓ Processo normale: asInvoker" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0105"/>
+                            <TextBlock Text="✓ Pacchetti WinGet con allowlist locale" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0106"/>
+                            <TextBlock Text="✓ Configurazioni JSON in LocalAppData" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0107"/>
+                            <TextBlock Text="✓ Plugin dichiarativi v3 predefiniti: nessun codice terzo eseguito" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0108"/>
+                            <TextBlock Text="✓ Diagnostica su richiesta, senza trasmissione dati" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0109"/>
+                            <TextBlock Text="Nota: questi indicatori descrivono il comportamento previsto di ASTRA. Non costituiscono un audit indipendente né certificano lo stato effettivo di Windows." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" FontSize="12" x:Name="L10n0110"/>
+                        </StackPanel></Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="ASTRA / SECURITY AUDIT" FontWeight="SemiBold" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0111"/>
+                                <TextBlock Text="Controllo locale facoltativo di Defender e profili firewall mediante comandi Windows di sola lettura. Non altera le impostazioni." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0112"/>
+                                <Button x:Name="SecurityAuditButton" Content="Controlla protezioni Windows" Click="SecurityAudit_Click" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"/>
+                                <TextBlock x:Name="SecurityAuditText" Text="Nessuna scansione eseguita." TextWrapping="Wrap" IsTextSelectionEnabled="True" Foreground="{StaticResource AstraDeepText}"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Button Content="Apri Sicurezza di Windows" Click="OpenWindowsSecurity_Click" Style="{StaticResource PrimaryButton}" x:Name="L10n0113"/>
+                            <Button Content="Apri Windows Update" Click="OpenWindowsUpdate_Click" x:Name="L10n0114"/>
+                            <Button Content="Crittografia dispositivo" Click="OpenDeviceEncryption_Click" x:Name="L10n0115"/>
+                            <Button Content="Isolamento core" Click="OpenCoreIsolation_Click" x:Name="L10n0116"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="BrainPanel" Spacing="14" Visibility="Collapsed">
+                        <Border x:Name="BrainRuntimeCard" Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="ASTRA ASSISTANT · OPENROUTER" FontSize="19" FontWeight="SemiBold" x:Name="L10n0117"/>
+                            <TextBlock Text="OpenRouter collega ASTRA a modelli gratuiti. Le richieste cloud escono da questo PC; ASTRA non richiede Zero Data Retention (ZDR), quindi i provider potrebbero conservare o usare prompt e file secondo le proprie policy. ASTRA verifica il catalogo e limita i prezzi a zero." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0118"/>
+                            <TextBlock Text="Il servizio gratuito richiede un account OpenRouter e una chiave API. I modelli gratuiti hanno limiti di richieste e possono non essere disponibili. ASTRA seleziona solo modelli con prezzo zero e non filtra i provider in base a Zero Data Retention (ZDR)." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0119"/>
+                            <PasswordBox x:Name="AiOpenRouterKey" Header="Chiave API OpenRouter (cifrata per questo account Windows)" PlaceholderText="sk-or-v1-…" MaxLength="512"/>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Content="Salva la chiave e usa OpenRouter" Click="SaveOpenRouterKey_Click" Style="{StaticResource PrimaryButton}" x:Name="L10n0220"/>
+                                <Button Content="Usa la chiave OpenRouter salvata" Click="UseSavedOpenRouter_Click" x:Name="L10n0225"/>
+                                <Button Content="Elimina la chiave" Click="ForgetOpenRouterKey_Click" x:Name="L10n0221"/>
+                                <Button Content="Usa AI locale inclusa" Click="UseLocalAi_Click" x:Name="AiUseBundledButton"/>
+                            </StackPanel>
+                            <ComboBox x:Name="AiModelChoice" Header="Modello gratuito · prezzo massimo zero" HorizontalAlignment="Stretch"/>
+                            <Button Content="Aggiorna modelli gratuiti" Click="RefreshOpenRouterModels_Click" HorizontalAlignment="Left" x:Name="L10n0222"/>
+                            <TextBlock Text="ASTRA non richiede Zero Data Retention (ZDR) né filtra i provider in base a questo criterio. Prompt e allegati inviati a OpenRouter possono essere conservati o usati dal provider secondo le sue policy. Non inviare dati sensibili. Non vengono collegati automaticamente strumenti cloud o plugin web." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" FontSize="12" x:Name="L10n0223"/>
+                            <Expander Header="Impostazioni AI offline facoltative" IsExpanded="False" x:Name="L10n0226">
+                                <StackPanel Spacing="8" Margin="0,8,0,4">
+                                    <TextBlock Text="Il motore integrato LLamaSharp resta disponibile offline. Non richiede Ollama né un server locale." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0120"/>
+                                    <Button x:Name="AiUseBundledLegacyButton" Content="Ripristina i percorsi dell'AI inclusa" Click="UseBundledAi_Click" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Percorso del motore AI locale (integrato o esterno)" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0121"/>
+                                    <TextBox x:Name="AiRuntimePath" PlaceholderText="Motore incluso o runtime esterno facoltativo"/>
+                                    <Button Content="Scegli runtime esterno…" Tag="runtime" Click="PickAiFile_Click" HorizontalAlignment="Left" x:Name="L10n0122"/>
+                                    <ToggleSwitch x:Name="UseAiGpuToggle" Header="Accelerazione GPU (solo runtime esterni compatibili)" IsOn="False"/>
+                                    <TextBlock Text="Percorso modello locale .gguf" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0123"/>
+                                    <TextBox x:Name="AiModelPath" PlaceholderText="C:\models\model.gguf"/>
+                                    <Button Content="Scegli modello GGUF…" Tag="model" Click="PickAiFile_Click" HorizontalAlignment="Left" x:Name="L10n0124"/>
+                                </StackPanel>
+                            </Expander>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="AiStartButton" Content="Avvia OpenRouter" Click="StartAi_Click" Style="{StaticResource PrimaryButton}"/>
+                                <Button Content="Ferma il provider AI" Click="StopAi_Click" x:Name="L10n0125"/>
+                                <Button Content="Cancella la conversazione" Click="ClearAi_Click" x:Name="L10n0126"/>
+                            </StackPanel>
+                            <TextBlock x:Name="AiStatusValue" Text="OpenRouter è selezionato. Aggiungi la chiave API e invia una richiesta per iniziare." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap"/>
+                        </StackPanel></Border>
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="DOMANDA AL TUO SECONDO CERVELLO" FontWeight="SemiBold" FontSize="16" x:Name="L10n0127"/>
+                            <ComboBox x:Name="BrainMode" Header="Modalità di studio" SelectedIndex="0" HorizontalAlignment="Left" MinWidth="260">
+                                <ComboBoxItem Content="Risposta e ricerca nelle note" x:Name="L10n0128"/>
+                                <ComboBoxItem Content="Riassunto strutturato" x:Name="L10n0129"/>
+                                <ComboBoxItem Content="Flashcard domanda/risposta" x:Name="L10n0130"/>
+                                <ComboBoxItem Content="Spiegazione tecnica passo passo" x:Name="L10n0131"/>
+                                <ComboBoxItem Content="Piano di lavoro" x:Name="L10n0132"/>
+                            </ComboBox>
+                            <TextBox x:Name="AiQuestion" PlaceholderText="Chiedi un riassunto o una spiegazione basata sulle tue note…" AcceptsReturn="True" TextWrapping="Wrap" Height="74"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="AiAskButton" Content="Chiedi ad ASTRA Assistant" Click="AskAi_Click" Style="{StaticResource PrimaryButton}"/>
+                                <Button x:Name="AiCancelButton" Content="Annulla risposta" Click="CancelAi_Click" IsEnabled="False"/>
+                            </StackPanel>
+                            <TextBlock x:Name="AiAnswer" Text="Le risposte appariranno qui." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" IsTextSelectionEnabled="True"/>
+                        </StackPanel></Border>
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="MEMORIA PERSONALE CIFRATA (WINDOWS DPAPI)" FontWeight="SemiBold" FontSize="16" x:Name="L10n0133"/>
+                            <TextBox x:Name="AiImportPath" Header="Importa .txt/.md (16 KB) o archivio ASTRA .json (16 MB)" PlaceholderText="C:\Documenti\appunti.md"/>
+                            <Button Content="Importa file locale" Click="ImportNote_Click" HorizontalAlignment="Left" x:Name="L10n0134"/>
+                            <TextBox x:Name="AiNoteTitle" Header="Titolo nota" PlaceholderText="Titolo" MaxLength="140"/>
+                            <TextBox x:Name="AiNoteTags" Header="Tag separati da virgola" PlaceholderText="ricerca, missione, progetto" MaxLength="500"/>
+                            <TextBox x:Name="AiNoteContent" Header="Contenuto" PlaceholderText="Testo della nota…" AcceptsReturn="True" TextWrapping="Wrap" Height="112"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="SaveNoteButton" Content="Salva nota cifrata" Click="SaveNote_Click" Style="{StaticResource PrimaryButton}"/>
+                                <Button Content="Aggiorna note" Click="RefreshNotes_Click" x:Name="L10n0135"/>
+                                <Button Content="Esporta note…" Click="ExportNotes_Click" x:Name="L10n0136"/>
+                                <Button Content="Elimina tutte le note…" Click="DeleteAllNotes_Click" x:Name="L10n0137"/>
+                            </StackPanel>
+                            <StackPanel Spacing="8" Margin="0,8,0,10">
+                                <TextBlock Text="RICERCA LOCALE · PASSAGGI VERIFICABILI" Foreground="{StaticResource AstraDeepText}" FontWeight="SemiBold" FontSize="12" x:Name="L10n0138"/>
+                                <TextBox x:Name="NoteSearchQuery" PlaceholderText="Cerca concetti nelle note private…" MaxLength="240"/>
+                                <Button Content="Cerca nelle note (offline)" Click="SearchNotes_Click" HorizontalAlignment="Left" x:Name="L10n0139"/>
+                                <TextBlock x:Name="NoteSearchResults" Text="La ricerca si esegue solo su richiesta." TextWrapping="Wrap" IsTextSelectionEnabled="True" Foreground="{StaticResource AstraDeepText}"/>
+                            </StackPanel>
+                            <TextBlock x:Name="NoteCount" Text="Note: non caricate" Foreground="{StaticResource AstraDeepText}"/>
+                            <StackPanel x:Name="NotesList" Spacing="9"/>
+                        </StackPanel></Border>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="PluginsPanel" Spacing="14" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="PLUGIN SDK / PROTOCOLLO v3 (DICHIARATIVO)" FontSize="20" FontWeight="SemiBold" x:Name="L10n0140"/>
+                            <TextBlock Text="I plugin v3 sono manifesti di soli dati: operazioni testuali consentite senza eseguire codice esterno. Il plugin demo è incluso nell'app." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0141"/>
+                            <ToggleSwitch x:Name="NativePluginToggle" IsEnabled="False" Header="Modalità sviluppatore: mostra plugin .exe NON isolati (rischiosa)" IsOn="False" Toggled="NativePluginToggle_Toggled"/>
+                            <TextBlock Text="Plugin nativi legacy: un eseguibile Windows con hash corretto NON è sandboxed. Abilitali soltanto per test fidati; possono accedere ai file dell'utente e alla rete." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0142"/>
+                            <TextBox x:Name="PluginInput" Header="Input esplicito per il plugin" Text="Ciao da ASTRA" MaxLength="4000"/>
+                            <TextBox x:Name="PluginSearchBox" Header="Cerca plugin" PlaceholderText="Statistica, JSON, studio, unità…" TextChanged="PluginFilter_Changed"/>
+                            <ComboBox x:Name="PluginCategory" Header="Categoria" SelectionChanged="PluginFilter_Changed" SelectedIndex="0"><x:String>Tutti</x:String><x:String>STEM</x:String><x:String>Studio</x:String><x:String>Codice</x:String><x:String>Dati</x:String><x:String>Testi</x:String><x:String>Organizzazione</x:String><x:String>Creator</x:String><x:String>Strumenti</x:String></ComboBox>
+                            <TextBox x:Name="PluginResult" Header="Risultato" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" MaxHeight="230"/>
+                            <Button Content="Ricarica plugin installati" Click="ReloadPlugins_Click" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}" x:Name="L10n0143"/>
+                            <TextBlock x:Name="PluginStatus" Text="Cartella: %LOCALAPPDATA%\ASTRA\OS\plugins" Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap"/>
+                            <StackPanel x:Name="PluginsList" Spacing="10"/>
+                        </StackPanel></Border>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="OrbitPanel" Spacing="14" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="ASTRA ORBITAL / IL TUO DESKTOP IN 3D" FontWeight="SemiBold" FontSize="20" x:Name="L10n0144"/>
+                            <TextBlock Text="File e cartelle reali del Desktop personale e condiviso, disposti in orbita. Seleziona una voce per aprirla o esplorarla. Fino a 500 voci, con caricamento su richiesta." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0145"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="OrbitStartButton" Content="Attiva scena 3D" Click="Start3D_Click" Style="{StaticResource PrimaryButton}"/>
+                                <Button Content="Disattiva e libera risorse" Click="Stop3D_Click" x:Name="L10n0146"/>
+                            </StackPanel>
+                            <ComboBox x:Name="OrbitQualityCombo" Header="Qualità alla prossima attivazione" SelectedIndex="1"><ComboBoxItem Content="Bassa" x:Name="L10n0147"/><ComboBoxItem Content="Bilanciata" x:Name="L10n0148"/><ComboBoxItem Content="Alta" x:Name="L10n0149"/></ComboBox>
+                            <TextBlock x:Name="OrbitStatus" Text="3D disattivato · renderer non istanziato." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap"/>
+                        </StackPanel></Border>
+                        <Border Style="{StaticResource Card}" Height="430">
+                            <Grid x:Name="OrbitViewHost"/>
+                        </Border>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="UbuntuPanel" Spacing="16" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="12">
+                                <TextBlock Text="UBUNTU LAB / WSL 2" FontSize="22" FontWeight="SemiBold" x:Name="L10n0150"/>
+                                <TextBlock Text="Ambiente Linux reale e opzionale dentro Windows. Puoi usare Bash, APT e la toolchain Ubuntu; nessun kernel Windows viene sostituito." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0151"/>
+                                <Border Background="{StaticResource AstraDeep}" Padding="12" CornerRadius="10">
+                                    <TextBlock Text="Non trasferisce le protezioni Ubuntu a Windows. Defender, Firewall, Windows Update e sicurezza del kernel rimangono gestiti da Microsoft." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0152"/>
+                                </Border>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button x:Name="WslScanButton" Content="Verifica WSL/Ubuntu" Click="WslScan_Click" Style="{StaticResource PrimaryButton}"/>
+                                    <Button Content="Installa Ubuntu (UAC)…" Click="InstallUbuntu_Click" x:Name="L10n0153"/>
+                                    <Button Content="Apri terminale Ubuntu" Click="LaunchUbuntu_Click" x:Name="L10n0154"/>
+                                </StackPanel>
+                                <TextBlock x:Name="WslStatusText" Text="Non verificato: esegui il controllo su richiesta." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" IsTextSelectionEnabled="True"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="11">
+                                <TextBlock Text="PACCHETTI E TOOLCHAIN UBUNTU" FontSize="18" FontWeight="SemiBold" x:Name="L10n0155"/>
+                                <TextBlock Text="Comandi da eseguire manualmente nel terminale Ubuntu, dopo aver valutato i pacchetti. Non usiamo sudo nascosto o repository non ufficiali." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0156"/>
+                                <Button Content="Copia comando aggiornamenti APT" Click="CopyAptUpdate_Click" HorizontalAlignment="Left" x:Name="L10n0157"/>
+                                <Button Content="Copia toolchain STEM (Python, Git, compilatori)" Click="CopyStemApt_Click" HorizontalAlignment="Left" x:Name="L10n0158"/>
+                                <Button Content="Apri le istruzioni ufficiali WSL" Click="OpenWslGuide_Click" HorizontalAlignment="Left" x:Name="L10n0159"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="SICUREZZA / SEPARAZIONE AMBIENTI" FontSize="18" FontWeight="SemiBold" x:Name="L10n0160"/>
+                                <TextBlock Text="• Non eseguire script scaricati con pipe in Bash. • Proteggi le chiavi SSH e usa sorgenti APT attendibili. • Non montare automaticamente cartelle riservate in ambienti non attendibili. • WSL richiede virtualizzazione ed eventualmente un riavvio. • I processi Linux consumano risorse solo quando avviati, salvo servizi avviati dalla distribuzione." TextWrapping="Wrap" Foreground="{StaticResource AstraDeepText}" x:Name="L10n0161"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    
+<StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="IsoPanel" Spacing="14" Visibility="Collapsed">
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="10">
+                            <TextBlock Text="ASTRA IMAGE BUILDER / LOCALE" FontSize="20" FontWeight="SemiBold" x:Name="L10n0162"/>
+                            <TextBlock Text="Usa esclusivamente i file di installazione ufficiali già ottenuti dall'utente. Non scarica o include Windows, non aggira le licenze, non modifica il sistema corrente. L'ISO contiene ASTRA come cartella da avviare manualmente dopo Windows Setup." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0163"/>
+                            <TextBlock Text="Richiede oscdimg.exe (Windows ADK), sorgente Windows 11 montata in Esplora file, spazio libero e build ASTRA pubblicata." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" x:Name="L10n0164"/>
+                            <TextBox x:Name="IsoSourcePath" Header="Cartella dell'ISO Microsoft montata (es. D:\)" PlaceholderText="D:\"/>
+                            <TextBox x:Name="IsoAppPath" Header="Cartella di ASTRA pubblicata (con Astra.Desktop.exe)" PlaceholderText="C:\ASTRA\dist\AstraOS"/>
+                            <TextBox x:Name="IsoOutputPath" Header="Output ISO (non deve esistere)" PlaceholderText="C:\ASTRA\output\ASTRA-local.iso"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <Button x:Name="IsoPlanButton" Content="Verifica e pianifica" Click="PlanIso_Click" Style="{StaticResource PrimaryButton}"/>
+                                <Button x:Name="IsoBuildButton" Content="Crea ISO locale…" Click="BuildIso_Click"/>
+                            </StackPanel>
+                            <TextBlock x:Name="IsoResult" Text="Nessuna operazione eseguita." Foreground="{StaticResource AstraDeepText}" TextWrapping="Wrap" IsTextSelectionEnabled="True"/>
+                        </StackPanel></Border>
+                    </StackPanel>
+                
+     <StackPanel Visibility="Collapsed"><StackPanel xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="LegacyHomeSettings" Spacing="18">
+                        <Border Background="{StaticResource AstraDeep}" BorderBrush="{StaticResource AstraBlue}" BorderThickness="1" CornerRadius="14" Padding="14">
+                            <Grid ColumnSpacing="14">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <SymbolIcon Symbol="ProtectedDocument" Foreground="{StaticResource AstraTextLight}" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Column="1" Spacing="3">
+                                    <TextBlock Text="PRIVACY FIRST · NESSUN SERVIZIO ASTRA RESIDENTE" FontSize="11" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" x:Name="L10n0165"/>
+                                    <TextBlock Text="AI, WSL, rendering 3D e controlli sistema: attivi solo su tua richiesta." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" FontSize="12" x:Name="L10n0166"/>
+                                </StackPanel>
+                                <Button Grid.Column="2" Content="Verifica sicurezza" Click="SecurityNav_Click" VerticalAlignment="Center" x:Name="L10n0167"/>
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource Card}" Padding="30">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#173F65" Offset="0"/>
+                                    <GradientStop Color="#10223E" Offset="0.55"/>
+                                    <GradientStop Color="#0C1B33" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid ColumnSpacing="20">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel Spacing="12">
+                                    <TextBlock Text="ASTRA V4 / HORIZON WORKSPACE" Foreground="{StaticResource AstraTextLight}" CharacterSpacing="90" FontSize="11" FontWeight="SemiBold" x:Name="L10n0168"/>
+                                    <TextBlock Text="Benvenuto in ASTRA OS 3" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" x:Name="L10n0169"/>
+                                    <TextBlock Text="Quattro ambienti integrati, intelligenza artificiale locale e strumenti opzionali. Progettato per restare fluido, controllabile e rispettoso di Windows." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" FontSize="14" MaxWidth="600" x:Name="L10n0170"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,12,0,0">
+                                        <Button Content="Configura workspace" Click="ProfilesNav_Click" Style="{StaticResource PrimaryButton}" x:Name="L10n0171"/>
+                                        <Button Content="Apri Second Brain" Click="BrainNav_Click" x:Name="L10n0172"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Grid Grid.Column="1" Width="150" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Ellipse Width="128" Height="128" Stroke="#5897DA" StrokeThickness="1" Opacity="0.65"/>
+                                    <Ellipse Width="106" Height="106" Stroke="#7ACFE1" StrokeThickness="1.5" Opacity="0.55"/>
+                                    <Ellipse Width="64" Height="64" Fill="{StaticResource AstraBlue}" Stroke="#7EC4FF" StrokeThickness="1"/>
+                                    <TextBlock Text="A" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource AstraTextLight}" FontWeight="Light" FontSize="45" FontFamily="Segoe UI Variable" x:Name="L10n0173"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="ACCESSO RAPIDO A WINDOWS" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0174"/>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <Button Content="Esplora file" Click="OpenExplorer_Click" x:Name="L10n0175"/>
+                                    <Button Content="Impostazioni" Click="OpenWindowsSettings_Click" x:Name="L10n0176"/>
+                                    <Button Content="App installate" Click="OpenInstalledApps_Click" x:Name="L10n0177"/>
+                                    <Button Content="Second Brain" Click="BrainNav_Click" x:Name="L10n0178"/>
+                                    <Button Content="Orbital 3D" Click="OrbitNav_Click" x:Name="L10n0179"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel Spacing="12">
+                                <TextBlock Text="CONTROLLO PRESTAZIONI / ENERGY AWARE" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource AstraTextLight}" x:Name="L10n0180"/>
+                                <TextBlock Text="Le funzioni AI e 3D restano spente finché non le avvii. Eco e movimento ridotto limitano il rendering, non modificano le policy energetiche di Windows." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0181"/>
+                                <StackPanel Orientation="Horizontal" Spacing="24">
+                                    <ToggleSwitch x:Name="EcoModeToggle" Header="ASTRA Eco" OnContent="Attivo" OffContent="Disattivo" Toggled="PerformanceToggled"/>
+                                    <ToggleSwitch x:Name="ReduceMotionToggle" Header="Movimento ridotto" OnContent="Attivo" OffContent="Disattivo" Toggled="PerformanceToggled"/>
+                                </StackPanel>
+                                <ToggleSwitch x:Name="DockVisibilityToggle" Header="Mostra il dock Horizon" OnContent="Visibile" OffContent="Nascosto" Toggled="DockVisibilityToggle_Toggled"/>
+                                <ComboBox x:Name="OrbitFpsCombo" Header="Limite massimo 3D (rispettato da Eco)" Width="235" HorizontalAlignment="Left" SelectionChanged="OrbitFpsSelectionChanged">
+                                    <ComboBoxItem Content="15 FPS · Minimo consumo" x:Name="L10n0182"/>
+                                    <ComboBoxItem Content="30 FPS · Bilanciato" x:Name="L10n0183"/>
+                                    <ComboBoxItem Content="60 FPS · Fluido" x:Name="L10n0184"/>
+                                </ComboBox>
+                                <TextBlock x:Name="PerformanceModeStatus" Text="Le preferenze vengono conservate localmente." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Text="I MODULI ASTRA" FontSize="12" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" CharacterSpacing="75" x:Name="L10n0185"/>
+                        <Grid ColumnSpacing="14" RowSpacing="14">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource Card}">
+                                <StackPanel Spacing="9"><TextBlock Text="01   CORE" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" FontSize="12" x:Name="L10n0186"/>
+                                <TextBlock Text="L'essenziale, velocemente." FontSize="18" FontWeight="SemiBold" x:Name="L10n0187"/>
+                                <TextBlock Text="Personalizzazione, workspace e preferenze locali." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0188"/></StackPanel>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource Card}">
+                                <StackPanel Spacing="9"><TextBlock Text="02   STEM" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" FontSize="12" x:Name="L10n0189"/>
+                                <TextBlock Text="Ricerca e sviluppo." FontSize="18" FontWeight="SemiBold" x:Name="L10n0190"/>
+                                <TextBlock Text="Python, programmazione, scienza e matematica." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0191"/></StackPanel>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource Card}">
+                                <StackPanel Spacing="9"><TextBlock Text="03   GAMING" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" FontSize="12" x:Name="L10n0192"/>
+                                <TextBlock Text="La tua libreria di gioco." FontSize="18" FontWeight="SemiBold" x:Name="L10n0193"/>
+                                <TextBlock Text="Launcher e applicazioni, senza tweak rischiosi." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0194"/></StackPanel>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Card}">
+                                <StackPanel Spacing="9"><TextBlock Text="04   CREATOR" Foreground="{StaticResource AstraTextLight}" FontWeight="SemiBold" FontSize="12" x:Name="L10n0195"/>
+                                <TextBlock Text="Creatività senza limiti." FontSize="18" FontWeight="SemiBold" x:Name="L10n0196"/>
+                                <TextBlock Text="Grafica, video, modellazione e streaming." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0197"/></StackPanel>
+                            </Border>
+                        </Grid>
+                        <Border Style="{StaticResource Card}"><StackPanel Spacing="5">
+                            <TextBlock Text="ARCHITETTURA NON INVASIVA" FontWeight="SemiBold" x:Name="L10n0198"/>
+                            <TextBlock Text="Windows Update, Defender, driver e kernel rimangono gestiti da Windows. ASTRA funziona come applicazione desktop senza privilegi elevati." Foreground="{StaticResource AstraTextLight}" TextWrapping="Wrap" x:Name="L10n0199"/>
+                        </StackPanel></Border>
+                    </StackPanel>
+
+                    </StackPanel>
+   </StackPanel>
+  </ScrollViewer>
+  <StackPanel Grid.Row="2" Spacing="7">
+   <Border x:Name="HorizonDock" Background="{StaticResource AstraDeep}" BorderBrush="{StaticResource AstraBlue}" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Center" Padding="8,5"><ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Disabled"><StackPanel Orientation="Horizontal" Spacing="7">
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="ASTRA OS · accesso rapido" AutomationProperties.Name="ASTRA OS accesso rapido" x:Name="L10n0200"><ImageIcon Source="Assets/astra-logo.png"/><Button.Flyout><MenuFlyout><MenuFlyoutItem Text="Home" Tag="home" Click="QuickRoute_Click" x:Name="L10n0201"/><MenuFlyoutItem Text="Assistente ASTRA" Tag="assistant" Click="QuickRoute_Click" x:Name="L10n0202"/><MenuFlyoutItem Text="Widget e automazioni" Tag="widgets" Click="QuickRoute_Click" x:Name="L10n0203"/><MenuFlyoutItem Text="Multitasking e sessioni" Tag="multitasking" Click="QuickRoute_Click" x:Name="L10n0204"/><MenuFlyoutSeparator/><MenuFlyoutItem Text="Strumenti Windows" Tag="windows-tools" Click="QuickRoute_Click" x:Name="L10n0205"/><MenuFlyoutItem Text="File Explorer" Tag="files" Click="QuickRoute_Click" x:Name="L10n0206"/><MenuFlyoutItem Text="Profili" Tag="profiles" Click="QuickRoute_Click" x:Name="L10n0207"/><MenuFlyoutItem Text="Personalizza" Tag="theme" Click="QuickRoute_Click" x:Name="L10n0208"/></MenuFlyout></Button.Flyout></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="ASTRA STEM" AutomationProperties.Name="ASTRA STEM" Tag="stem" Click="WorkspaceNav_Click" x:Name="L10n0209"><SymbolIcon Symbol="Library"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="Gaming" AutomationProperties.Name="Gaming" Tag="gaming" Click="WorkspaceNav_Click" x:Name="L10n0210"><FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7FC;"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="Creator" AutomationProperties.Name="Creator" Tag="creator" Click="WorkspaceNav_Click" x:Name="L10n0211"><SymbolIcon Symbol="Edit"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="App Hub" AutomationProperties.Name="App Hub" Click="CatalogNav_Click" x:Name="L10n0212"><SymbolIcon Symbol="Shop"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="File Explorer" AutomationProperties.Name="File Explorer" Click="FilesNav_Click" x:Name="L10n0213"><SymbolIcon Symbol="Folder"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="Google Chrome" AutomationProperties.Name="Google Chrome" Click="OpenChrome_Click" x:Name="L10n0214"><SymbolIcon Symbol="Globe"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="ASTRA Assistant" AutomationProperties.Name="Second Brain" Click="BrainNav_Click" x:Name="L10n0215"><SymbolIcon Symbol="Message"/></Button>
+    <Button Style="{StaticResource DockButton}" ToolTipService.ToolTip="Personalizza" AutomationProperties.Name="Personalizza" Click="ThemeNav_Click" x:Name="L10n0216"><SymbolIcon Symbol="Setting"/></Button>
+    <Border x:Name="RunningAppsDivider" Width="1" Height="28" Background="{StaticResource AstraBlue}" Margin="5,0" Visibility="Collapsed"/>
+    <StackPanel x:Name="RunningAppsPanel" Orientation="Horizontal" Spacing="7"/>
+   </StackPanel></ScrollViewer></Border>
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock x:Name="StatusText" Text="ASTRA Assistant · OpenRouter ready" FontSize="11" Foreground="{StaticResource AstraTextLight}"/><TextBlock Grid.Column="1" Text="v4.2.0 cloud candidate · Windows 11" FontSize="11" Foreground="{StaticResource AstraIce}" x:Name="L10n0217"/></Grid>
+  </StackPanel>
+ </Grid>
+ </Grid>
+</Window>

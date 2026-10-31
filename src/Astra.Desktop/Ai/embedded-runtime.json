@@ -1,0 +1,32 @@
+{
+  "provider": "LLamaSharp CPU in-process",
+  "version": "0.30.0",
+  "source": "https://github.com/SciSharp/LLamaSharp",
+  "nugetContentHashes": {
+    "llamasharp": "kH7o9VqvQoFvqm167iWITcKEX8QKo6XFyDRlvLxU+xdyBwKYHkAed9btIEkeSN/okF+bJS1yzQmzSz28Xi468w==",
+    "llamasharp.backend.cpu": "6j8qUfsVmNwTWBoLUVij//EptyoGZpwwjTSPHBOzehIyinnk6QKtwg5/+2aOWNh5rXkbpPUuuQYchW36UTM5ig=="
+  },
+  "files": {
+    "LLamaSharp.dll": "9b992873e0ec1b38d658451732111a38f6229a4b99d212f04f1b14be22637bb3",
+    "runtimes/win-x64/native/avx/ggml-base.dll": "0e3dd8c95fcbd5564eef3dbadf29360ffe425af5fb4eaa97d7effc9ee1adc1bb",
+    "runtimes/win-x64/native/avx/ggml-cpu.dll": "61d241d60e7afe202f0daaa6ae3dbc44b5696c302ee4eb67b09fbf9df9b03190",
+    "runtimes/win-x64/native/avx/ggml.dll": "84ab6cff1a9df39363beaf48f829ee75d2cab7c9ec790a90e578252676b3e855",
+    "runtimes/win-x64/native/avx/llama.dll": "70744b60c5332c1a5bd003f2445a47cab4d319d82304551ee6afeb8d6817f159",
+    "runtimes/win-x64/native/avx/mtmd.dll": "b15e9f0b96a343172f0239afa39936e6f1a08ab9b5f74574f3f5a7353a8a2230",
+    "runtimes/win-x64/native/avx2/ggml-base.dll": "0e3dd8c95fcbd5564eef3dbadf29360ffe425af5fb4eaa97d7effc9ee1adc1bb",
+    "runtimes/win-x64/native/avx2/ggml-cpu.dll": "acde020b10bd70a124561adffa06299c688cddb9251b189c97b645ea947bdbe2",
+    "runtimes/win-x64/native/avx2/ggml.dll": "8ba9f0cca489cb4d8a8ea22eec2097a2011de311b71e8d817cc63815b7913b7e",
+    "runtimes/win-x64/native/avx2/llama.dll": "f7db9ca6de2b85679ac665f5a01dad605f23263e6aca70202a5b101a3bba85d4",
+    "runtimes/win-x64/native/avx2/mtmd.dll": "dbfafc7a633fcd0b84833be9d8a93fdfc8bb8ba6ab5353e972cb99a4b7c58a33",
+    "runtimes/win-x64/native/avx512/ggml-base.dll": "ebba3454baff56bc9ca59045ba2b84a919042ea1833ec1c5d2696beadca6ea1f",
+    "runtimes/win-x64/native/avx512/ggml-cpu.dll": "b2d011ff7910e7bc73c06ee32ab27fc0ddceb9ddc2a93aa1aa924c5abc91aec1",
+    "runtimes/win-x64/native/avx512/ggml.dll": "b9b0eeb0e14f6098ae20509c251e7ee206d390ea5811be864dadbe564e8927e4",
+    "runtimes/win-x64/native/avx512/llama.dll": "d6150c74672d3ba613737fa5edca77b4ee16f65f0917c0aea7c70e24875280dd",
+    "runtimes/win-x64/native/avx512/mtmd.dll": "22b04d30573f697829c1d59452921a5c340c1a2586a9c595943825ad834f4a7a",
+    "runtimes/win-x64/native/noavx/ggml-base.dll": "0e3dd8c95fcbd5564eef3dbadf29360ffe425af5fb4eaa97d7effc9ee1adc1bb",
+    "runtimes/win-x64/native/noavx/ggml-cpu.dll": "bae7321b8a695e50858414a5c24c3ec8e1d1101f92ec88a5f2ac4cbb32ba3232",
+    "runtimes/win-x64/native/noavx/ggml.dll": "1937eb1822cb063367638381f6c48e8032e6ac518d41fce9075e6060bef89daf",
+    "runtimes/win-x64/native/noavx/llama.dll": "22b2533a8e5dce24adfb0b60c949cf414a428cc0ea960ed4471054d5887def0a",
+    "runtimes/win-x64/native/noavx/mtmd.dll": "555891d39695fe8b9d0a5343c0bd6e5fe7a7dd2ad7df28c9960174ed911dabfe"
+  }
+}

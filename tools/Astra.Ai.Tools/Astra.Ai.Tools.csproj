@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0-windows10.0.22621.0</TargetFramework><UseAppHost>false</UseAppHost><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/Astra.Core/Astra.Core.csproj"/><Compile Include="../../src/Astra.Desktop/Ai/LocalLlmSession.cs" Link="LocalLlmSession.cs"/><Compile Include="../../src/Astra.Desktop/SystemSnapshot.cs" Link="SystemSnapshot.cs"/></ItemGroup>
+</Project>

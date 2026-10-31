@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.urldecode",
+  "name": "URL Decoder",
+  "description": "Decodifica una componente URL come testo.",
+  "operation": "dev.urldecode",
+  "category": "Codice",
+  "example": "fisica%20e%20matematica",
+  "prefix": null
+}

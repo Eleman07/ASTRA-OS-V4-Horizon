@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.csvjson",
+  "name": "CSV Bridge",
+  "description": "Converte CSV numerico/testuale in un array JSON di oggetti.",
+  "operation": "data.csvjson",
+  "category": "Dati",
+  "example": "tempo,misura\n0,3.5\n1,4.2",
+  "prefix": null
+}

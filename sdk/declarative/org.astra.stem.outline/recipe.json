@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.stem.outline",
+  "name": "STEM Outline",
+  "description": "Estrae intestazioni Markdown da appunti tecnici.",
+  "operation": "text.outline",
+  "prefix": null
+}
