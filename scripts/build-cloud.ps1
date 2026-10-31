@@ -19,6 +19,19 @@ try {
     New-Item -ItemType Directory -Path (Join-Path $output 'scripts\obsidian') -Force | Out-Null
     Copy-Item -LiteralPath (Join-Path $root 'docs\CLOUD-4.2.0-VERIFICATION.md') -Destination (Join-Path $output 'docs\CLOUD-4.2.0-VERIFICATION.md') -Force
     Copy-Item -LiteralPath (Join-Path $root 'scripts\obsidian\install_cloud_workspace.ps1') -Destination (Join-Path $output 'scripts\obsidian\install_cloud_workspace.ps1') -Force
+    $prerequisites=Join-Path $root 'dist\release-prerequisites'
+    $prerequisiteManifest=Join-Path $prerequisites 'sources.json'
+    if(-not(Test-Path -LiteralPath $prerequisiteManifest)){throw 'Run scripts/fetch-release-prerequisites.ps1 first; the release README requires the optional signed Microsoft installers.'}
+    $prerequisiteTarget=Join-Path $output 'prerequisites';New-Item -ItemType Directory -Path $prerequisiteTarget -Force | Out-Null
+    foreach($entry in (Get-Content -LiteralPath $prerequisiteManifest -Raw | ConvertFrom-Json).installers){
+        $file=Join-Path $prerequisites $entry.file
+        if((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $entry.sha256){throw "Prerequisite hash mismatch: $($entry.file)"}
+        $signature=Get-AuthenticodeSignature -LiteralPath $file
+        if($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation'){throw "Invalid Microsoft prerequisite signature: $($entry.file)"}
+        Copy-Item -LiteralPath $file -Destination (Join-Path $prerequisiteTarget $entry.file) -Force
+    }
+    Copy-Item -LiteralPath $prerequisiteManifest -Destination (Join-Path $prerequisiteTarget 'sources.json') -Force
+    Copy-Item -LiteralPath (Join-Path $root 'docs\PREREQUISITES-README.md') -Destination (Join-Path $prerequisiteTarget 'README.md') -Force
     if(Get-ChildItem -LiteralPath $output -Recurse -File | Where-Object { $_.Extension -eq '.gguf' -or $_.Name -match '^ggml-.*\.bin$' }){throw 'Local model weights must not be included in the cloud distribution.'}
     $files=@(Get-ChildItem -LiteralPath $output -Recurse -File | Where-Object Name -ne 'cloud-build-manifest.json' | ForEach-Object {[pscustomobject]@{Path=$_.FullName.Substring($output.Length+1);Bytes=$_.Length;Sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash}})
     [pscustomobject]@{Version='4.2.0';Provider='OpenRouter';LocalModelWeights=$false;Files=$files} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $output 'cloud-build-manifest.json') -Encoding UTF8
