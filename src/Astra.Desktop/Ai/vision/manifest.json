@@ -1,0 +1,17 @@
+{
+  "repository": "ggml-org/SmolVLM-256M-Instruct-GGUF",
+  "revision": "b9e4379657e1450d04d02eec8e345667265b0a00",
+  "license": "Apache-2.0",
+  "files": {
+    "vision-model.gguf": {
+      "sha256": "2a31195d3769c0b0fd0a4906201666108834848db768af11de1d2cef7cd35e65",
+      "bytes": 175054528,
+      "source": "https://huggingface.co/ggml-org/SmolVLM-256M-Instruct-GGUF/blob/b9e4379657e1450d04d02eec8e345667265b0a00/SmolVLM-256M-Instruct-Q8_0.gguf"
+    },
+    "vision-projector.gguf": {
+      "sha256": "0802360aca1748f112ea510b8ff277c65b1361c8ef30ed89b83c9c7a60d08e96",
+      "bytes": 190031616,
+      "source": "https://huggingface.co/ggml-org/SmolVLM-256M-Instruct-GGUF/blob/b9e4379657e1450d04d02eec8e345667265b0a00/mmproj-SmolVLM-256M-Instruct-f16.gguf"
+    }
+  }
+}

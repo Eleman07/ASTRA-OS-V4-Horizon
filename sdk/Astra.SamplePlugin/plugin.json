@@ -1,0 +1,11 @@
+{
+  "apiVersion": 2,
+  "id": "org.astra.sample",
+  "name": "ASTRA Sample Plugin",
+  "description": "Plugin dimostrativo: restituisce il testo senza eseguire altre azioni.",
+  "entryPoint": "Astra.SamplePlugin.exe",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "capabilities": [
+    "text.transform"
+  ]
+}

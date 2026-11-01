@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.wrap",
+  "name": "Readable Lines",
+  "description": "Ridistribuisce il testo su righe da circa 72 caratteri.",
+  "operation": "text.wrap",
+  "category": "Testi",
+  "example": "Una descrizione lunga del progetto può diventare più leggibile con righe di larghezza uniforme.",
+  "prefix": null
+}

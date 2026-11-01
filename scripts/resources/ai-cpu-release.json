@@ -1,0 +1,10 @@
+{
+  "tag_name": "b11404",
+  "html_url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11404",
+  "asset": {
+    "name": "llama-b11404-bin-win-cpu-x64.zip",
+    "browser_download_url": "https://github.com/ggml-org/llama.cpp/releases/download/b11404/llama-b11404-bin-win-cpu-x64.zip",
+    "digest": "sha256:c583d6a9a34d21c9b9d5c4e30a36ebc390c72befb537ec6acc89caa2fd9d86bf",
+    "size": 19390831
+  }
+}

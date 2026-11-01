@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.game-setup",
+  "Name": "Gaming Setup",
+  "Description": "Preparazione di sessioni e confronti di configurazione.",
+  "Category": "Gaming",
+  "Instructions": "Suggest reversible setup experiments using supplied device data. Never suggest disabling security, cheats or memory injection. Do not invent FPS, temperatures or latency.",
+  "Capabilities": [
+    "chat",
+    "gaming"
+  ],
+  "PreferredTask": 0
+}

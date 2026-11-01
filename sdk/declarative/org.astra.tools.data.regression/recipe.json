@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.regression",
+  "name": "Trend Fit",
+  "description": "Regressione lineare ai minimi quadrati su coppie JSON [x,y].",
+  "operation": "data.regression",
+  "category": "STEM",
+  "example": "[[1,2],[2,4.1],[3,5.9],[4,8]]",
+  "prefix": null
+}

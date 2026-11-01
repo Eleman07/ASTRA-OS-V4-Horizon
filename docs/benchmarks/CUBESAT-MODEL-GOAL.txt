@@ -1,0 +1,17 @@
+Realizza un progetto software di simulazione orbitale per una missione CubeSat in orbita terrestre bassa.
+
+Obiettivo: sviluppare un simulatore Python riproducibile che propaghi un'orbita inizialmente circolare a 400 km di quota, visualizzi la traiettoria e permetta di verificare la correttezza numerica del modello.
+
+Consegna:
+1. Matrice dei requisiti con criteri di accettazione verificabili.
+2. Ipotesi, costanti utilizzate, unità e sistema di riferimento.
+3. Equazioni del modello gravitazionale a due corpi e architettura del software.
+4. File Python completi per propagazione, grafici ed esportazione CSV, con dipendenze e istruzioni di esecuzione.
+5. Test del periodo e della velocità orbitale di riferimento, conservazione dell'energia e convergenza al diminuire del passo temporale.
+6. Analisi dei risultati, errori numerici, limiti e possibili estensioni, compresa la perturbazione J2.
+7. README e relazione tecnica in italiano.
+8. Note finali collegate nel vault Obsidian.
+
+Usa le fonti pertinenti del vault e i risultati degli strumenti deterministici disponibili. Non inventare misure, citazioni o test eseguiti. Distingui chiaramente codice proposto, calcoli realmente eseguiti e risultati ancora UNVERIFIED.
+
+Produci gli artefatti concreti richiesti, non soltanto un piano di lavoro. Produci ogni file completo in un blocco con intestazione file:percorso/relativo; non omettere parti con segnaposto. Il codice deve essere generato da te, senza ricevere un progetto già scritto come soluzione di riferimento. I dati numerici degli strumenti sono evidenze e non dimostrano l'esecuzione del codice che generi.

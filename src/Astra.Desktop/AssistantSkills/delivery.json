@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.delivery",
+  "Name": "Delivery Audit",
+  "Description": "Checklist di consegna, formati, crediti e accessibilità.",
+  "Category": "Creator",
+  "Instructions": "Audit delivery metadata and checklist formats, dimensions, naming, captions, alt text and rights verification. Do not claim legal clearance or media inspection from metadata alone.",
+  "Capabilities": [
+    "chat",
+    "creator",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

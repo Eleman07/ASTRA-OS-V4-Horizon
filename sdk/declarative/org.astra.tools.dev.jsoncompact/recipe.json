@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.jsoncompact",
+  "name": "JSON Compact",
+  "description": "Valida JSON e rimuove gli spazi superflui.",
+  "operation": "dev.jsoncompact",
+  "category": "Codice",
+  "example": "{ \"x\": 1, \"y\": [2, 3] }",
+  "prefix": null
+}

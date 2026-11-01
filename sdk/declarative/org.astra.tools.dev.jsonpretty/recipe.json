@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.jsonpretty",
+  "name": "JSON Lens",
+  "description": "Valida e formatta JSON con profondità limitata.",
+  "operation": "dev.jsonpretty",
+  "category": "Codice",
+  "example": "{\"project\":\"ASTRA\",\"values\":[1,2,3]}",
+  "prefix": null
+}

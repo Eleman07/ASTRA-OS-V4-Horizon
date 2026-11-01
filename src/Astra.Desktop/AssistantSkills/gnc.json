@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.gnc",
+  "Name": "Aerospace GNC",
+  "Description": "Supporto a GNC, quaternioni, orbite e dinamica del volo.",
+  "Category": "STEM",
+  "Instructions": "Help with GNC, quaternion conventions, orbital and flight dynamics. State frames, units, assumptions and validation limits. Educational solvers are not certified designs.",
+  "Capabilities": [
+    "chat",
+    "stem",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.color.palette",
+  "name": "Tint Laboratory",
+  "description": "Genera cinque tonalità chiare/scure da un colore esadecimale.",
+  "operation": "color.palette",
+  "category": "Creator",
+  "example": "#4A7FA7",
+  "prefix": null
+}

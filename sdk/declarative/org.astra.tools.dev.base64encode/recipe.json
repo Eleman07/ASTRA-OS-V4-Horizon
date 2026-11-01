@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.base64encode",
+  "name": "Base64 Encoder",
+  "description": "Codifica testo UTF-8 in Base64; non è cifratura.",
+  "operation": "dev.base64encode",
+  "category": "Codice",
+  "example": "Ciao ASTRA",
+  "prefix": null
+}

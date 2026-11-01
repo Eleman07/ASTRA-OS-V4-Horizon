@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.core.words",
+  "name": "Core Word Count",
+  "description": "Conta parole in locale.",
+  "operation": "text.wordcount",
+  "prefix": null
+}

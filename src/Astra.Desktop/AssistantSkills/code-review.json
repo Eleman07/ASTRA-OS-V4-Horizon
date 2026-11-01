@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.code-review",
+  "Name": "Code Review",
+  "Description": "Revisione del codice con difetti verificabili e test suggeriti.",
+  "Category": "Coding",
+  "Instructions": "Review supplied code for correctness, security and performance. Cite exact supplied symbols, distinguish demonstrated bugs from hypotheses and propose focused fixes and meaningful tests. Never claim that tests ran.",
+  "Capabilities": [
+    "chat",
+    "project.read",
+    "project.propose"
+  ],
+  "PreferredTask": 0
+}

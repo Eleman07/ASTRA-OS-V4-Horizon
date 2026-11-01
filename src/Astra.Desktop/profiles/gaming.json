@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "gaming",
+  "name": "ASTRA Gaming",
+  "description": "Catalogo launcher e strumenti per giocare mantenendo Windows invariato.",
+  "packages": [
+    "Valve.Steam",
+    "EpicGames.EpicGamesLauncher",
+    "Discord.Discord"
+  ]
+}

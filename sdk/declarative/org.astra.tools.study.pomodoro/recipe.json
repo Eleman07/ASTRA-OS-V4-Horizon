@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.study.pomodoro",
+  "name": "Focus Blocks",
+  "description": "Divide minuti di studio in blocchi da 25 minuti e pause da 5.",
+  "operation": "study.pomodoro",
+  "category": "Organizzazione",
+  "example": "90",
+  "prefix": null
+}

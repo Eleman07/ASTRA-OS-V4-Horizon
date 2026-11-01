@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.unique",
+  "name": "Duplicate Radar",
+  "description": "Rimuove le righe duplicate conservando l'ordine.",
+  "operation": "text.unique",
+  "category": "Dati",
+  "example": "alfa\nbeta\nalfa",
+  "prefix": null
+}

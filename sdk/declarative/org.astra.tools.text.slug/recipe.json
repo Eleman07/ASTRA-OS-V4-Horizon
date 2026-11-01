@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.slug",
+  "name": "Slug Studio",
+  "description": "Crea uno slug da un titolo, con normalizzazione Unicode.",
+  "operation": "text.slug",
+  "category": "Codice",
+  "example": "Il mio progetto scientifico!",
+  "prefix": null
+}

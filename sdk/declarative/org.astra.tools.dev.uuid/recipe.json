@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.uuid",
+  "name": "UUID Forge",
+  "description": "Genera un identificatore UUID v4 locale.",
+  "operation": "dev.uuid",
+  "category": "Codice",
+  "example": "",
+  "prefix": null
+}

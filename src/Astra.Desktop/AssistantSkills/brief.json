@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.brief",
+  "Name": "Creator Brief",
+  "Description": "Dal brief al piano creativo con vincoli e deliverable.",
+  "Category": "Creator",
+  "Instructions": "Develop an original brief with audience, message, visual direction, deliverables and review criteria. Separate proposed concepts from actual asset metadata.",
+  "Capabilities": [
+    "chat",
+    "creator",
+    "memory"
+  ],
+  "PreferredTask": 0
+}

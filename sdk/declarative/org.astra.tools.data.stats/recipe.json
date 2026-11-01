@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.stats",
+  "name": "Measurement Notebook",
+  "description": "N, media, mediana, deviazione standard e incertezza standard della media.",
+  "operation": "data.stats",
+  "category": "STEM",
+  "example": "9.8 10.1 9.9 10.2 10.0",
+  "prefix": null
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.urlencode",
+  "name": "URL Encoder",
+  "description": "Codifica una componente URL, senza aprire collegamenti.",
+  "operation": "dev.urlencode",
+  "category": "Codice",
+  "example": "fisica e matematica",
+  "prefix": null
+}

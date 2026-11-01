@@ -1,0 +1,151 @@
+[
+  {
+    "id": "cubesat",
+    "name": "CubeSat 1 RU",
+    "file": "cubesat.glb",
+    "tools": [
+      "orbit",
+      "gnc",
+      "lorenz"
+    ],
+    "author": "NASA / NASA 3D Resources",
+    "license": "NASA media usage guidelines",
+    "source": "https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/CubeSat%20-%201%20RU%20Generic",
+    "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "download": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/CubeSat%20-%201%20RU%20Generic/CubeSat%20-%201%20RU%20Generic.glb",
+    "sha256": "bae308ea2e33778c93675909f7dc2e0d5d6916cd685668a463566c61224b1e85"
+  },
+  {
+    "id": "global-hawk",
+    "name": "Global Hawk",
+    "file": "global-hawk.glb",
+    "tools": [
+      "flight",
+      "aero"
+    ],
+    "author": "NASA / NASA 3D Resources",
+    "license": "NASA media usage guidelines",
+    "source": "https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Global%20Hawk",
+    "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "download": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Global%20Hawk/Global%20Hawk.glb",
+    "sha256": "75b62cc2fa101fc517b8be4ebe79a7cc5206bcce38efbf104dde7414c810b667"
+  },
+  {
+    "id": "dish",
+    "name": "Antenna 70 metri",
+    "file": "dish.glb",
+    "tools": [
+      "signal"
+    ],
+    "author": "NASA / NASA 3D Resources",
+    "license": "NASA media usage guidelines",
+    "source": "https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/70-meter%20Dish",
+    "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "download": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/70-meter%20Dish/70%20meter%20dish.glb",
+    "sha256": "36ff56a7a2bfd1c278f6f4774d32128d5931f2c22fe58241d00ee7d1815634bb"
+  },
+  {
+    "id": "habitat",
+    "name": "Habitat Demonstration Unit",
+    "file": "habitat.glb",
+    "tools": [
+      "beam",
+      "oscillator"
+    ],
+    "author": "NASA / NASA 3D Resources",
+    "license": "NASA media usage guidelines",
+    "source": "https://github.com/nasa/NASA-3D-Resources/tree/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Habitat%20Demonstration%20Unit",
+    "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "download": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Habitat%20Demonstration%20Unit/Habitat%20Demonstration%20Unit%20%28part%201%29.glb",
+    "sha256": "3106557bea24c9ba012556ddbecf3740c39276dc369cf359b77225de97458cfe"
+  },
+  {
+    "id": "radio",
+    "name": "Radio portatile",
+    "file": "radio.glb",
+    "tools": [
+      "rlc",
+      "signal"
+    ],
+    "author": "Microsoft",
+    "license": "CC0-1.0",
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BoomBox",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BoomBox/glTF-Binary/BoomBox.glb",
+    "sha256": "f8b918445ebdd006768232205a62f5182d2208ca57f84c6ccc084943c0bc8f15"
+  },
+  {
+    "id": "bottle",
+    "name": "Contenitore PBR",
+    "file": "bottle.glb",
+    "tools": [
+      "reactor",
+      "heat"
+    ],
+    "author": "Microsoft",
+    "license": "CC0-1.0",
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/WaterBottle",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/WaterBottle/glTF-Binary/WaterBottle.glb",
+    "sha256": "b337e526fd6a162013c2984aeec163f5fbb4f717252724dfc3f3458bd51df94b"
+  },
+  {
+    "id": "fish",
+    "name": "Barramundi",
+    "file": "fish.glb",
+    "tools": [
+      "ecology"
+    ],
+    "author": "Microsoft",
+    "license": "CC0-1.0",
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BarramundiFish",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/BarramundiFish/glTF-Binary/BarramundiFish.glb",
+    "sha256": "ecc3bafb6b00f2c8b810863c388e3768a7b7ea0d0335e8cb8c574c266e571f4a"
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "file": "avocado.glb",
+    "tools": [
+      "heat",
+      "reactor"
+    ],
+    "author": "Microsoft",
+    "license": "CC0-1.0",
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/Avocado",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/Avocado/glTF-Binary/Avocado.glb",
+    "sha256": "ccc9c3ce56423720b09399c2351537207cd5a65f859f9e6e2f30922762f3abd4"
+  },
+  {
+    "id": "car",
+    "name": "Automobile",
+    "file": "car.glb",
+    "tools": [
+      "queue",
+      "oscillator"
+    ],
+    "author": "Guido Odendahl; Eric Chadwick",
+    "license": "CC0-1.0",
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/ToyCar",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "download": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/8f492390ddc7a2ae221a1369ef560589cf8c70fb/Models/ToyCar/glTF-Binary/ToyCar.glb",
+    "sha256": "01a60862de55cd4b9f3acfab0b0def86451800f9c42467fcd61052c16cb9838c"
+  },
+  {
+    "id": "ariane64",
+    "name": "Ariane 6 / Ariane 64 · ESA",
+    "file": "ariane64.glb",
+    "tools": [
+      "gnc",
+      "orbit"
+    ],
+    "author": "Mesh: ASTRA OS · Dati: ESA / ArianeGroup",
+    "license": "Original educational reconstruction; ASTRA project license",
+    "source": "https://www.esa.int/Enabling_Support/Space_Transportation/Ariane/Ariane_6_what_s_it_made_of",
+    "licenseUrl": "https://www.esa.int/Terms_and_conditions",
+    "download": "generated by scripts/build-ariane6-model.py",
+    "sha256": "71b0b129c14f31222e49682654a194888000cd2f79564304d9a2f7caf2365b30"
+  }
+]

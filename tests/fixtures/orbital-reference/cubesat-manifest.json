@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "producer": "astra-trusted-orbital-tool",
+  "description": "Deterministic educational two-body tool; not evidence of remote-model code generation or flight validation.",
+  "entrypoint": "run_project.py",
+  "artifacts": {
+    "requirements": "requirements.md",
+    "assumptions": "assumptions.md",
+    "architecture": "architecture.md",
+    "readme": "README.md",
+    "report": "relazione_tecnica.md",
+    "propagator": "orbital.py",
+    "plotter": "plots.py",
+    "tests": "tests/test_orbit.py",
+    "dependencies": "requirements.txt",
+    "trajectory": "results/trajectory.csv",
+    "trajectoryHalfStep": "results/trajectory-half-step.csv",
+    "metrics": "results/metrics.json",
+    "testResults": "results/test-results.json",
+    "plots": ["results/orbit.svg", "results/energy.svg"],
+    "notes": ["obsidian/Progetto CubeSat 400 km.md", "obsidian/Metodo e ipotesi.md", "obsidian/Risultati e verifiche.md"]
+  },
+  "constants": {"muKm3S2": 398600.4418, "earthRadiusKm": 6378.137, "altitudeKm": 400.0, "frame": "ECI"},
+  "numericalAcceptance": {"coarseStepSeconds": 30, "fineStepSeconds": 15, "coarseEnergyDriftMax": 1e-7, "fineEnergyDriftMax": 1e-8, "finePositionErrorKmMax": 0.01, "positionErrorRatioMin": 8, "positionErrorRatioMax": 32},
+  "j2Status": "UNVERIFIED_NOT_IMPLEMENTED"
+}

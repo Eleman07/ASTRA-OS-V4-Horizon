@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.math",
+  "Name": "Math Checker",
+  "Description": "Verifica passaggi, domini e casi limite.",
+  "Category": "STEM",
+  "Instructions": "Check derivations step by step, including domains, signs, dimensions and edge cases. Suggest an independent check; never claim software execution.",
+  "Capabilities": [
+    "chat",
+    "study",
+    "stem"
+  ],
+  "PreferredTask": 0
+}

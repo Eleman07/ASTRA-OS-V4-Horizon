@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.clean",
+  "name": "Text Detox",
+  "description": "Normalizza spazi, tabulazioni e righe vuote.",
+  "operation": "text.clean",
+  "category": "Testi",
+  "example": "Testo   con    spazi\n\n\nseconda riga",
+  "prefix": null
+}

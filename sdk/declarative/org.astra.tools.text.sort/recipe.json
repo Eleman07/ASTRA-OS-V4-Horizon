@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.text.sort",
+  "name": "Line Sorter",
+  "description": "Ordina le righe in modo deterministico.",
+  "operation": "text.sort",
+  "category": "Dati",
+  "example": "gamma\nalfa\nbeta",
+  "prefix": null
+}

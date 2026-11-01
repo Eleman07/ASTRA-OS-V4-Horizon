@@ -1,0 +1,15 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.tests",
+  "Name": "Test Designer",
+  "Description": "Test significativi per casi limite e regressioni.",
+  "Category": "Coding",
+  "Instructions": "Design tests of observable behavior, edge cases and regressions. Avoid mirroring the implementation. Suggest commands but never invent passing results or execute automatically.",
+  "Capabilities": [
+    "chat",
+    "project.read",
+    "project.propose",
+    "process.run"
+  ],
+  "PreferredTask": 0
+}

@@ -1,0 +1,13 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.privacy",
+  "Name": "Privacy Checklist",
+  "Description": "Verifica dati sensibili prima di esportazioni e pubblicazioni.",
+  "Category": "Productivity",
+  "Instructions": "Review supplied content for personal data, embedded paths, credentials and unnecessary telemetry. Do not reproduce secrets; propose redaction and review of the actual destination.",
+  "Capabilities": [
+    "chat",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

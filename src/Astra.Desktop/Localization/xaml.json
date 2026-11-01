@@ -1,0 +1,927 @@
+{
+  "L10n0001": {
+    "Text": "ASTRA OS"
+  },
+  "L10n0002": {
+    "Text": "V4   /   H O R I Z O N"
+  },
+  "L10n0003": {
+    "Text": "Home"
+  },
+  "L10n0004": {
+    "Text": "Profili"
+  },
+  "L10n0005": {
+    "Text": "WORKSPACES"
+  },
+  "CoreWorkspaceNav": {
+    "Content": "◈   Core"
+  },
+  "StemWorkspaceNav": {
+    "Content": "⌬   STEM"
+  },
+  "GamingWorkspaceNav": {
+    "Content": "♧   Gaming"
+  },
+  "CreatorWorkspaceNav": {
+    "Content": "◉   Creator"
+  },
+  "L10n0006": {
+    "Text": "APPLICATIONS"
+  },
+  "L10n0007": {
+    "Text": "App Hub"
+  },
+  "SystemHubNavLabel": {
+    "Text": "Centro di controllo"
+  },
+  "L10n0008": {
+    "Text": "Strumenti Windows"
+  },
+  "L10n0009": {
+    "Text": "File Explorer"
+  },
+  "L10n0010": {
+    "Text": "Performance"
+  },
+  "L10n0011": {
+    "Text": "Security Center"
+  },
+  "L10n0012": {
+    "Text": "Second Brain"
+  },
+  "L10n0013": {
+    "Text": "Plugin SDK"
+  },
+  "L10n0218": {
+    "Text": "Multitasking"
+  },
+  "L10n0219": {
+    "Text": "Assistente ASTRA"
+  },
+  "L10n0014": {
+    "Text": "Widget"
+  },
+  "L10n0015": {
+    "Text": "Orbital 3D"
+  },
+  "L10n0016": {
+    "Text": "Ubuntu Lab"
+  },
+  "L10n0017": {
+    "Text": "ISO Builder"
+  },
+  "L10n0018": {
+    "Text": "Personalizza"
+  },
+  "UserAccountName": {
+    "Text": "Account Windows"
+  },
+  "L10n0019": {
+    "Content": "Il mio profilo"
+  },
+  "L10n0020": {
+    "Text": "Windows · OpenRouter AI"
+  },
+  "HorizonSearchBox": {
+    "PlaceholderText": "Cerca app, workspace, note…",
+    "AutomationProperties.Name": "Ricerca rapida ASTRA"
+  },
+  "L10n0021": {
+    "Content": "Ctrl + K"
+  },
+  "V4Clock": {
+    "Text": "Ora locale"
+  },
+  "FullScreenButton": {
+    "Content": "Schermo intero",
+    "ToolTipService.ToolTip": "Schermo intero (F11)"
+  },
+  "FocusModeButton": {
+    "Content": "Focus"
+  },
+  "PageTitle": {
+    "Text": "Home"
+  },
+  "PageSubtitle": {
+    "Text": "Il tuo workspace personale"
+  },
+  "SearchSuggestions": {
+    "Text": "Ricerca locale · nessuna richiesta inviata online"
+  },
+  "BannerEyebrow": {
+    "Text": "W E L C O M E  T O"
+  },
+  "BannerTitle": {
+    "Text": "ASTRA OS V4"
+  },
+  "BannerTagline": {
+    "Text": "Focus  •  Create  •  Explore  •  Go Beyond"
+  },
+  "BannerDescription": {
+    "Text": "A more intelligent, open and personal computing experience."
+  },
+  "BannerSignature": {
+    "Text": "A UNIVERSE OF POSSIBILITIES"
+  },
+  "L10n0027": {
+    "Text": "Modules"
+  },
+  "L10n0028": {
+    "Content": "View all  →"
+  },
+  "L10n0029": {
+    "AutomationProperties.Name": "Apri Core"
+  },
+  "L10n0030": {
+    "Text": "Core"
+  },
+  "L10n0031": {
+    "Text": "Il tuo sistema, potenziato."
+  },
+  "L10n0032": {
+    "Text": "Sistema, aggiornamenti e strumenti."
+  },
+  "L10n0033": {
+    "AutomationProperties.Name": "Apri STEM"
+  },
+  "L10n0034": {
+    "Text": "STEM"
+  },
+  "L10n0035": {
+    "Text": "Impara. Costruisci. Esplora."
+  },
+  "L10n0036": {
+    "Text": "Coding, simulazioni, scienza."
+  },
+  "L10n0037": {
+    "AutomationProperties.Name": "Apri Creator"
+  },
+  "L10n0038": {
+    "Text": "Creator"
+  },
+  "L10n0039": {
+    "Text": "Progetta. Crea. Produci."
+  },
+  "L10n0040": {
+    "Text": "Software professionali e creatività."
+  },
+  "L10n0041": {
+    "AutomationProperties.Name": "Apri Gaming"
+  },
+  "L10n0042": {
+    "Text": "Gaming"
+  },
+  "L10n0043": {
+    "Text": "Gioca e organizza."
+  },
+  "L10n0044": {
+    "Text": "Launcher e prestazioni, senza rischi."
+  },
+  "L10n0045": {
+    "AutomationProperties.Name": "Apri Second Brain"
+  },
+  "L10n0046": {
+    "Text": "Second Brain"
+  },
+  "L10n0047": {
+    "Text": "Organizza. Ricorda. Cresci."
+  },
+  "L10n0048": {
+    "Text": "Note cifrate e AI locale."
+  },
+  "L10n0049": {
+    "AutomationProperties.Name": "Apri Ubuntu Lab"
+  },
+  "L10n0050": {
+    "Text": "Ubuntu Lab"
+  },
+  "L10n0051": {
+    "Text": "Linux. Sviluppa. Esplora."
+  },
+  "L10n0052": {
+    "Text": "WSL opzionale, terminale Ubuntu."
+  },
+  "L10n0053": {
+    "AutomationProperties.Name": "Apri Security Center"
+  },
+  "L10n0054": {
+    "Text": "Security Center"
+  },
+  "L10n0055": {
+    "Text": "Proteggi il tuo sistema."
+  },
+  "L10n0056": {
+    "Text": "Controlli Windows reali, non simulati."
+  },
+  "L10n0057": {
+    "AutomationProperties.Name": "Apri Orbital 3D"
+  },
+  "L10n0058": {
+    "Text": "Orbital 3D"
+  },
+  "L10n0059": {
+    "Text": "Visualizza. Esplora."
+  },
+  "L10n0060": {
+    "Text": "Scena GPU su richiesta."
+  },
+  "L10n0061": {
+    "Text": "System Performance"
+  },
+  "L10n0062": {
+    "Content": "Aggiorna"
+  },
+  "L10n0063": {
+    "Text": "CPU SISTEMA"
+  },
+  "V4CpuText": {
+    "Text": "Campionamento…"
+  },
+  "L10n0064": {
+    "Text": "RAM SISTEMA"
+  },
+  "L10n0065": {
+    "Text": "GPU · MOTORE MAX"
+  },
+  "V4GpuText": {
+    "Text": "Non disponibile"
+  },
+  "L10n0066": {
+    "Text": "DISCO"
+  },
+  "LiveSystemDetails": {
+    "Text": "Caricamento metriche di sistema…"
+  },
+  "LiveSampleStatus": {
+    "Text": "Aggiornamento ogni 5 s · locale"
+  },
+  "L10n0067": {
+    "Text": "Quick Actions"
+  },
+  "L10n0068": {
+    "Content": "☾  Focus"
+  },
+  "L10n0069": {
+    "Content": "◈  Palette"
+  },
+  "L10n0070": {
+    "Content": "File Explorer"
+  },
+  "L10n0071": {
+    "Text": "Productivity"
+  },
+  "L10n0072": {
+    "Text": "Attività completate negli ultimi 7 giorni"
+  },
+  "V4WeekLabels": {
+    "Text": "-6      -5      -4      -3      -2       -1       oggi"
+  },
+  "L10n0073": {
+    "Text": "Tasks"
+  },
+  "V4NewTask": {
+    "PlaceholderText": "Nuova attività..."
+  },
+  "L10n0074": {
+    "AutomationProperties.Name": "Aggiungi attività"
+  },
+  "V4TaskEmpty": {
+    "Text": "Nessuna attività. Aggiungine una."
+  },
+  "L10n0075": {
+    "Text": "ASTRA OS V4 / PERSONALIZZA"
+  },
+  "L10n0076": {
+    "Text": "Palette predefinita: 0A1931 · B3CFE5 · 4A7FA7 · 1A3D63 · F6FAFD. Modifica i cinque colori e applica senza riavviare."
+  },
+  "V4NavyInput": {
+    "Header": "Navy"
+  },
+  "V4IceInput": {
+    "Header": "Ice"
+  },
+  "V4BlueInput": {
+    "Header": "Blue"
+  },
+  "V4DeepInput": {
+    "Header": "Deep"
+  },
+  "V4SnowInput": {
+    "Header": "Snow"
+  },
+  "L10n0077": {
+    "Content": "Applica e salva"
+  },
+  "L10n0078": {
+    "Content": "Ripristina originale"
+  },
+  "L10n0079": {
+    "Content": "Torna alla Home"
+  },
+  "V4EcoToggle": {
+    "Header": "Modalità Eco"
+  },
+  "V4MotionToggle": {
+    "Header": "Riduci movimento"
+  },
+  "V4DockToggle": {
+    "Header": "Mostra dock"
+  },
+  "V4ThemeStatus": {
+    "Text": "Le modifiche sono locali e persistenti."
+  },
+  "L10n0080": {
+    "Text": "ANIMAZIONI E RISPARMIO RISORSE"
+  },
+  "L10n0081": {
+    "Text": "Il banner usa il compositor Windows, senza video in loop o processi esterni. La modalità Eco e il movimento ridotto lo fermano."
+  },
+  "L10n0082": {
+    "Text": "Scegli gli ambienti di lavoro. Core è sempre attivo; gli altri possono coesistere."
+  },
+  "L10n0083": {
+    "Text": "ASTRA / SYSTEM"
+  },
+  "L10n0084": {
+    "Text": "Interfaccia, sistema di configurazione e catalogo. Componente indispensabile."
+  },
+  "CoreToggle": {
+    "Header": "Sempre attivo",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "L10n0085": {
+    "Text": "ASTRA STEM"
+  },
+  "L10n0086": {
+    "Text": "Scienza, tecnologia, ingegneria, matematica e sviluppo software."
+  },
+  "StemToggle": {
+    "Header": "Profilo scientifico",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "L10n0087": {
+    "Text": "ASTRA GAMING"
+  },
+  "L10n0088": {
+    "Text": "Launcher e strumenti gaming. Nessuna disattivazione della sicurezza per guadagnare FPS."
+  },
+  "GamingToggle": {
+    "Header": "Profilo gaming",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "L10n0089": {
+    "Text": "ASTRA CREATOR"
+  },
+  "L10n0090": {
+    "Text": "Workspace grafica, produzione video e modellazione 3D."
+  },
+  "CreatorToggle": {
+    "Header": "Profilo creativo",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "L10n0091": {
+    "Content": "Apri catalogo applicazioni"
+  },
+  "L10n0092": {
+    "Text": "APP HUB / INSTALLAZIONI CONSAPEVOLI"
+  },
+  "L10n0093": {
+    "Text": "Ogni installazione deve essere confermata. ASTRA utilizza WinGet con ID espliciti e non accetta automaticamente licenze o condizioni."
+  },
+  "L10n0094": {
+    "Text": "DIAGNOSTICA ON-DEMAND"
+  },
+  "L10n0095": {
+    "Text": "Le informazioni sono raccolte soltanto quando premi Aggiorna. Nessun polling permanente e nessuna telemetria inviata."
+  },
+  "RefreshButton": {
+    "Content": "Aggiorna diagnostica"
+  },
+  "L10n0096": {
+    "Text": "RAM ASTRA"
+  },
+  "L10n0097": {
+    "Text": "RAM FISICA"
+  },
+  "L10n0098": {
+    "Text": "ARCHITETTURA"
+  },
+  "L10n0099": {
+    "Text": "THREAD LOGICI"
+  },
+  "L10n0100": {
+    "Text": "CONSUMO CPU ASTRA · CAMPIONE SU RICHIESTA"
+  },
+  "AppCpuValue": {
+    "Text": "— · Premi Aggiorna diagnostica"
+  },
+  "L10n0101": {
+    "Text": "Misurato su 0,35 s; non usa processi di monitoraggio residenti."
+  },
+  "OsValue": {
+    "Text": "Windows 11"
+  },
+  "L10n0102": {
+    "Text": "Per misurare CPU idle, frame time e avvio, usa il benchmark ripetibile descritto in docs/PERFORMANCE-SECURITY.md."
+  },
+  "L10n0103": {
+    "Text": "SECURITY BY DESIGN"
+  },
+  "L10n0104": {
+    "Text": "ASTRA non modifica Defender, firewall, Secure Boot, BitLocker o Windows Update. Nessun sistema è immune alle vulnerabilità, ma il progetto riduce la superficie d'attacco."
+  },
+  "L10n0105": {
+    "Text": "✓ Processo normale: asInvoker"
+  },
+  "L10n0106": {
+    "Text": "✓ Pacchetti WinGet con allowlist locale"
+  },
+  "L10n0107": {
+    "Text": "✓ Configurazioni JSON in LocalAppData"
+  },
+  "L10n0108": {
+    "Text": "✓ Plugin dichiarativi v3 predefiniti: nessun codice terzo eseguito"
+  },
+  "L10n0109": {
+    "Text": "✓ Diagnostica su richiesta, senza trasmissione dati"
+  },
+  "L10n0110": {
+    "Text": "Nota: questi indicatori descrivono il comportamento previsto di ASTRA. Non costituiscono un audit indipendente né certificano lo stato effettivo di Windows."
+  },
+  "L10n0111": {
+    "Text": "ASTRA / SECURITY AUDIT"
+  },
+  "L10n0112": {
+    "Text": "Controllo locale facoltativo di Defender e profili firewall mediante comandi Windows di sola lettura. Non altera le impostazioni."
+  },
+  "SecurityAuditButton": {
+    "Content": "Controlla protezioni Windows"
+  },
+  "SecurityAuditText": {
+    "Text": "Nessuna scansione eseguita."
+  },
+  "L10n0113": {
+    "Content": "Apri Sicurezza di Windows"
+  },
+  "L10n0114": {
+    "Content": "Apri Windows Update"
+  },
+  "L10n0115": {
+    "Content": "Crittografia dispositivo"
+  },
+  "L10n0116": {
+    "Content": "Isolamento core"
+  },
+  "L10n0117": {
+    "Text": "ASTRA ASSISTANT · OPENROUTER"
+  },
+  "L10n0118": {
+    "Text": "OpenRouter collega ASTRA a modelli gratuiti. Le richieste cloud escono da questo PC; ASTRA non richiede Zero Data Retention (ZDR), quindi i provider potrebbero conservare o usare prompt e file secondo le proprie policy. ASTRA limita i prezzi a zero e chiede consenso prima della prima richiesta remota di ogni sessione."
+  },
+  "L10n0119": {
+    "Text": "Il servizio gratuito richiede un account OpenRouter e una chiave API. I modelli gratuiti hanno limiti di richieste e possono non essere disponibili. ASTRA usa solo modelli con prezzo zero e non impone filtri Zero Data Retention (ZDR)."
+  },
+  "AiOpenRouterKey": {
+    "Header": "Chiave API OpenRouter (cifrata per questo account Windows)",
+    "PlaceholderText": "sk-or-v1-…"
+  },
+  "L10n0220": {
+    "Content": "Salva la chiave e usa OpenRouter"
+  },
+  "L10n0225": {
+    "Content": "Usa la chiave OpenRouter salvata"
+  },
+  "L10n0221": {
+    "Content": "Elimina la chiave"
+  },
+  "AiUseBundledButton": {
+    "Content": "Usa AI locale inclusa"
+  },
+  "AiModelChoice": {
+    "Header": "Modello gratuito · solo costo zero"
+  },
+  "L10n0222": {
+    "Content": "Aggiorna modelli gratuiti"
+  },
+  "L10n0223": {
+    "Text": "ASTRA non richiede Zero Data Retention (ZDR) né filtra i provider in base a questo criterio. Prompt e allegati inviati a OpenRouter possono essere conservati o usati dal provider secondo le sue policy. Non inviare dati sensibili. Non vengono collegati automaticamente strumenti cloud o plugin web."
+  },
+  "L10n0226": {
+    "Header": "Impostazioni AI offline facoltative"
+  },
+  "L10n0120": {
+    "Text": "Il motore integrato LLamaSharp resta disponibile offline. Non richiede Ollama né un server locale."
+  },
+  "AiUseBundledLegacyButton": {
+    "Content": "Ripristina i percorsi dell'AI inclusa"
+  },
+  "L10n0121": {
+    "Text": "Percorso del motore AI locale (integrato o esterno)"
+  },
+  "AiRuntimePath": {
+    "PlaceholderText": "Motore incluso o runtime esterno facoltativo"
+  },
+  "L10n0122": {
+    "Content": "Scegli runtime esterno…"
+  },
+  "UseAiGpuToggle": {
+    "Header": "Accelerazione GPU (solo runtime esterni compatibili)"
+  },
+  "L10n0123": {
+    "Text": "Percorso modello locale .gguf"
+  },
+  "AiModelPath": {
+    "PlaceholderText": "C:\\models\\model.gguf"
+  },
+  "L10n0124": {
+    "Content": "Scegli modello GGUF…"
+  },
+  "AiStartButton": {
+    "Content": "Avvia OpenRouter"
+  },
+  "L10n0125": {
+    "Content": "Ferma il provider AI"
+  },
+  "L10n0126": {
+    "Content": "Cancella la conversazione"
+  },
+  "AiStatusValue": {
+    "Text": "OpenRouter è selezionato. Aggiungi la chiave API e invia una richiesta per iniziare."
+  },
+  "L10n0127": {
+    "Text": "DOMANDA AL TUO SECONDO CERVELLO"
+  },
+  "BrainMode": {
+    "Header": "Modalità di studio"
+  },
+  "AiQuestion": {
+    "PlaceholderText": "Chiedi un riassunto o una spiegazione basata sulle tue note…"
+  },
+  "AiAskButton": {
+    "Content": "Chiedi ad ASTRA Assistant"
+  },
+  "AiCancelButton": {
+    "Content": "Annulla risposta"
+  },
+  "AiAnswer": {
+    "Text": "Le risposte appariranno qui."
+  },
+  "L10n0133": {
+    "Text": "MEMORIA PERSONALE CIFRATA (WINDOWS DPAPI)"
+  },
+  "AiImportPath": {
+    "Header": "Importa .txt/.md (16 KB) o archivio ASTRA .json (16 MB)",
+    "PlaceholderText": "C:\\Documenti\\appunti.md"
+  },
+  "L10n0134": {
+    "Content": "Importa file locale"
+  },
+  "AiNoteTitle": {
+    "Header": "Titolo nota",
+    "PlaceholderText": "Titolo"
+  },
+  "AiNoteTags": {
+    "Header": "Tag separati da virgola",
+    "PlaceholderText": "ricerca, missione, progetto"
+  },
+  "AiNoteContent": {
+    "Header": "Contenuto",
+    "PlaceholderText": "Testo della nota…"
+  },
+  "SaveNoteButton": {
+    "Content": "Salva nota cifrata"
+  },
+  "L10n0135": {
+    "Content": "Aggiorna note"
+  },
+  "L10n0136": {
+    "Content": "Esporta note…"
+  },
+  "L10n0137": {
+    "Content": "Elimina tutte le note…"
+  },
+  "L10n0138": {
+    "Text": "RICERCA LOCALE · PASSAGGI VERIFICABILI"
+  },
+  "NoteSearchQuery": {
+    "PlaceholderText": "Cerca concetti nelle note private…"
+  },
+  "L10n0139": {
+    "Content": "Cerca nelle note (offline)"
+  },
+  "NoteSearchResults": {
+    "Text": "La ricerca si esegue solo su richiesta."
+  },
+  "NoteCount": {
+    "Text": "Note: non caricate"
+  },
+  "L10n0140": {
+    "Text": "PLUGIN SDK / PROTOCOLLO v3 (DICHIARATIVO)"
+  },
+  "L10n0141": {
+    "Text": "I plugin v3 sono manifesti di soli dati: operazioni testuali consentite senza eseguire codice esterno. Il plugin demo è incluso nell'app."
+  },
+  "NativePluginToggle": {
+    "Header": "Modalità sviluppatore: mostra plugin .exe NON isolati (rischiosa)"
+  },
+  "L10n0142": {
+    "Text": "Plugin nativi legacy: un eseguibile Windows con hash corretto NON è sandboxed. Abilitali soltanto per test fidati; possono accedere ai file dell'utente e alla rete."
+  },
+  "PluginInput": {
+    "Header": "Input esplicito per il plugin"
+  },
+  "PluginSearchBox": {
+    "Header": "Cerca plugin",
+    "PlaceholderText": "Statistica, JSON, studio, unità…"
+  },
+  "PluginCategory": {
+    "Header": "Categoria"
+  },
+  "PluginResult": {
+    "Header": "Risultato"
+  },
+  "L10n0143": {
+    "Content": "Ricarica plugin installati"
+  },
+  "PluginStatus": {
+    "Text": "Cartella: %LOCALAPPDATA%\\ASTRA\\OS\\plugins"
+  },
+  "L10n0144": {
+    "Text": "ASTRA ORBITAL / IL TUO DESKTOP IN 3D"
+  },
+  "L10n0145": {
+    "Text": "File e cartelle reali del Desktop personale e condiviso, disposti in orbita. Seleziona una voce per aprirla o esplorarla. Fino a 500 voci, con caricamento su richiesta."
+  },
+  "OrbitStartButton": {
+    "Content": "Attiva scena 3D"
+  },
+  "L10n0146": {
+    "Content": "Disattiva e libera risorse"
+  },
+  "OrbitQualityCombo": {
+    "Header": "Qualità alla prossima attivazione"
+  },
+  "OrbitStatus": {
+    "Text": "3D disattivato · renderer non istanziato."
+  },
+  "L10n0150": {
+    "Text": "UBUNTU LAB / WSL 2"
+  },
+  "L10n0151": {
+    "Text": "Ambiente Linux reale e opzionale dentro Windows. Puoi usare Bash, APT e la toolchain Ubuntu; nessun kernel Windows viene sostituito."
+  },
+  "L10n0152": {
+    "Text": "Non trasferisce le protezioni Ubuntu a Windows. Defender, Firewall, Windows Update e sicurezza del kernel rimangono gestiti da Microsoft."
+  },
+  "WslScanButton": {
+    "Content": "Verifica WSL/Ubuntu"
+  },
+  "L10n0153": {
+    "Content": "Installa Ubuntu (UAC)…"
+  },
+  "L10n0154": {
+    "Content": "Apri terminale Ubuntu"
+  },
+  "WslStatusText": {
+    "Text": "Non verificato: esegui il controllo su richiesta."
+  },
+  "L10n0155": {
+    "Text": "PACCHETTI E TOOLCHAIN UBUNTU"
+  },
+  "L10n0156": {
+    "Text": "Comandi da eseguire manualmente nel terminale Ubuntu, dopo aver valutato i pacchetti. Non usiamo sudo nascosto o repository non ufficiali."
+  },
+  "L10n0157": {
+    "Content": "Copia comando aggiornamenti APT"
+  },
+  "L10n0158": {
+    "Content": "Copia toolchain STEM (Python, Git, compilatori)"
+  },
+  "L10n0159": {
+    "Content": "Apri le istruzioni ufficiali WSL"
+  },
+  "L10n0160": {
+    "Text": "SICUREZZA / SEPARAZIONE AMBIENTI"
+  },
+  "L10n0161": {
+    "Text": "• Non eseguire script scaricati con pipe in Bash. • Proteggi le chiavi SSH e usa sorgenti APT attendibili. • Non montare automaticamente cartelle riservate in ambienti non attendibili. • WSL richiede virtualizzazione ed eventualmente un riavvio. • I processi Linux consumano risorse solo quando avviati, salvo servizi avviati dalla distribuzione."
+  },
+  "L10n0162": {
+    "Text": "ASTRA IMAGE BUILDER / LOCALE"
+  },
+  "L10n0163": {
+    "Text": "Usa esclusivamente i file di installazione ufficiali già ottenuti dall'utente. Non scarica o include Windows, non aggira le licenze, non modifica il sistema corrente. L'ISO contiene ASTRA come cartella da avviare manualmente dopo Windows Setup."
+  },
+  "L10n0164": {
+    "Text": "Richiede oscdimg.exe (Windows ADK), sorgente Windows 11 montata in Esplora file, spazio libero e build ASTRA pubblicata."
+  },
+  "IsoSourcePath": {
+    "Header": "Cartella dell'ISO Microsoft montata (es. D:\\)",
+    "PlaceholderText": "D:\\"
+  },
+  "IsoAppPath": {
+    "Header": "Cartella di ASTRA pubblicata (con Astra.Desktop.exe)",
+    "PlaceholderText": "C:\\ASTRA\\dist\\AstraOS"
+  },
+  "IsoOutputPath": {
+    "Header": "Output ISO (non deve esistere)",
+    "PlaceholderText": "C:\\ASTRA\\output\\ASTRA-local.iso"
+  },
+  "IsoPlanButton": {
+    "Content": "Verifica e pianifica"
+  },
+  "IsoBuildButton": {
+    "Content": "Crea ISO locale…"
+  },
+  "IsoResult": {
+    "Text": "Nessuna operazione eseguita."
+  },
+  "L10n0165": {
+    "Text": "PRIVACY FIRST · NESSUN SERVIZIO ASTRA RESIDENTE"
+  },
+  "L10n0166": {
+    "Text": "AI, WSL, rendering 3D e controlli sistema: attivi solo su tua richiesta."
+  },
+  "L10n0167": {
+    "Content": "Verifica sicurezza"
+  },
+  "L10n0168": {
+    "Text": "ASTRA V4 / HORIZON WORKSPACE"
+  },
+  "L10n0169": {
+    "Text": "Benvenuto in ASTRA OS 3"
+  },
+  "L10n0170": {
+    "Text": "Quattro ambienti integrati, intelligenza artificiale locale e strumenti opzionali. Progettato per restare fluido, controllabile e rispettoso di Windows."
+  },
+  "L10n0171": {
+    "Content": "Configura workspace"
+  },
+  "L10n0172": {
+    "Content": "Apri Second Brain"
+  },
+  "L10n0173": {
+    "Text": "A"
+  },
+  "L10n0174": {
+    "Text": "ACCESSO RAPIDO A WINDOWS"
+  },
+  "L10n0175": {
+    "Content": "Esplora file"
+  },
+  "L10n0176": {
+    "Content": "Impostazioni"
+  },
+  "L10n0177": {
+    "Content": "App installate"
+  },
+  "L10n0178": {
+    "Content": "Second Brain"
+  },
+  "L10n0179": {
+    "Content": "Orbital 3D"
+  },
+  "L10n0180": {
+    "Text": "CONTROLLO PRESTAZIONI / ENERGY AWARE"
+  },
+  "L10n0181": {
+    "Text": "Le funzioni AI e 3D restano spente finché non le avvii. Eco e movimento ridotto limitano il rendering, non modificano le policy energetiche di Windows."
+  },
+  "EcoModeToggle": {
+    "Header": "ASTRA Eco",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "ReduceMotionToggle": {
+    "Header": "Movimento ridotto",
+    "OnContent": "Attivo",
+    "OffContent": "Disattivo"
+  },
+  "DockVisibilityToggle": {
+    "Header": "Mostra il dock Horizon",
+    "OnContent": "Visibile",
+    "OffContent": "Nascosto"
+  },
+  "OrbitFpsCombo": {
+    "Header": "Limite massimo 3D (rispettato da Eco)"
+  },
+  "PerformanceModeStatus": {
+    "Text": "Le preferenze vengono conservate localmente."
+  },
+  "L10n0185": {
+    "Text": "I MODULI ASTRA"
+  },
+  "L10n0186": {
+    "Text": "01   CORE"
+  },
+  "L10n0187": {
+    "Text": "L'essenziale, velocemente."
+  },
+  "L10n0188": {
+    "Text": "Personalizzazione, workspace e preferenze locali."
+  },
+  "L10n0189": {
+    "Text": "02   STEM"
+  },
+  "L10n0190": {
+    "Text": "Ricerca e sviluppo."
+  },
+  "L10n0191": {
+    "Text": "Python, programmazione, scienza e matematica."
+  },
+  "L10n0192": {
+    "Text": "03   GAMING"
+  },
+  "L10n0193": {
+    "Text": "La tua libreria di gioco."
+  },
+  "L10n0194": {
+    "Text": "Launcher e applicazioni, senza tweak rischiosi."
+  },
+  "L10n0195": {
+    "Text": "04   CREATOR"
+  },
+  "L10n0196": {
+    "Text": "Creatività senza limiti."
+  },
+  "L10n0197": {
+    "Text": "Grafica, video, modellazione e streaming."
+  },
+  "L10n0198": {
+    "Text": "ARCHITETTURA NON INVASIVA"
+  },
+  "L10n0199": {
+    "Text": "Windows Update, Defender, driver e kernel rimangono gestiti da Windows. ASTRA funziona come applicazione desktop senza privilegi elevati."
+  },
+  "L10n0200": {
+    "ToolTipService.ToolTip": "ASTRA OS · accesso rapido",
+    "AutomationProperties.Name": "ASTRA OS accesso rapido"
+  },
+  "L10n0201": {
+    "Text": "Home"
+  },
+  "L10n0202": {
+    "Text": "Assistente ASTRA"
+  },
+  "L10n0203": {
+    "Text": "Widget e automazioni"
+  },
+  "L10n0204": {
+    "Text": "Multitasking e sessioni"
+  },
+  "L10n0205": {
+    "Text": "Strumenti Windows"
+  },
+  "L10n0206": {
+    "Text": "File Explorer"
+  },
+  "L10n0207": {
+    "Text": "Profili"
+  },
+  "L10n0208": {
+    "Text": "Personalizza"
+  },
+  "L10n0209": {
+    "ToolTipService.ToolTip": "ASTRA STEM",
+    "AutomationProperties.Name": "ASTRA STEM"
+  },
+  "L10n0210": {
+    "ToolTipService.ToolTip": "Gaming",
+    "AutomationProperties.Name": "Gaming"
+  },
+  "L10n0211": {
+    "ToolTipService.ToolTip": "Creator",
+    "AutomationProperties.Name": "Creator"
+  },
+  "L10n0212": {
+    "ToolTipService.ToolTip": "App Hub",
+    "AutomationProperties.Name": "App Hub"
+  },
+  "L10n0213": {
+    "ToolTipService.ToolTip": "File Explorer",
+    "AutomationProperties.Name": "File Explorer"
+  },
+  "L10n0214": {
+    "ToolTipService.ToolTip": "Google Chrome",
+    "AutomationProperties.Name": "Google Chrome"
+  },
+  "L10n0215": {
+    "ToolTipService.ToolTip": "Second Brain",
+    "AutomationProperties.Name": "Second Brain"
+  },
+  "L10n0216": {
+    "ToolTipService.ToolTip": "Personalizza",
+    "AutomationProperties.Name": "Personalizza"
+  },
+  "StatusText": {
+    "Text": "ASTRA V4 pronto · locale"
+  },
+  "L10n0217": {
+    "Text": "v4.2.0 cloud candidate · Windows 11"
+  }
+}

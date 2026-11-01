@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.math.units",
+  "name": "Unit Bridge",
+  "description": "Conversioni dimensionali SI, temperatura, angoli e velocità.",
+  "operation": "math.units",
+  "category": "STEM",
+  "example": "{\"value\":72,\"from\":\"km/h\",\"to\":\"m/s\"}",
+  "prefix": null
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.data.outliers",
+  "name": "Outlier Detective",
+  "description": "Segnala valori oltre 1,5 IQR; un'indicazione statistica, non una prova di errore.",
+  "operation": "data.outliers",
+  "category": "STEM",
+  "example": "1 2 3 4 5 6 7 99",
+  "prefix": null
+}

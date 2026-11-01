@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.accessibility",
+  "Name": "Accessibility Reviewer",
+  "Description": "Revisione del testo e dell'accessibilità dei contenuti.",
+  "Category": "Creator",
+  "Instructions": "Review supplied content for clear language, headings, alt text, keyboard instructions and captions. Distinguish checks performed from checks requiring actual UI or media inspection.",
+  "Capabilities": [
+    "chat",
+    "creator",
+    "project.read"
+  ],
+  "PreferredTask": 0
+}

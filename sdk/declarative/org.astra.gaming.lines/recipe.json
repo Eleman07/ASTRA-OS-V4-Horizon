@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.gaming.lines",
+  "name": "Gaming Line Numbers",
+  "description": "Numera le righe di configurazioni testuali.",
+  "operation": "text.numberlines",
+  "prefix": null
+}

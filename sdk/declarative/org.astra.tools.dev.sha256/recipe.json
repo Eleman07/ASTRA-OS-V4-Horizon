@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 3,
+  "id": "org.astra.tools.dev.sha256",
+  "name": "Fingerprint SHA-256",
+  "description": "Calcola l'impronta del testo inserito.",
+  "operation": "dev.sha256",
+  "category": "Codice",
+  "example": "ASTRA",
+  "prefix": null
+}

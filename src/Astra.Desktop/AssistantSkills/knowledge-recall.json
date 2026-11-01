@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "org.astra.knowledge.recall",
+  "name": "Relevant memory brief",
+  "description": "Reusable local Second Brain workflow with source traceability.",
+  "category": "Second Brain",
+  "instructions": "Use the supplied original notes, their dates and the active objective to select a few useful ideas to revisit. Explain why each is relevant now, cite its source ID and propose a concrete next action. Treat previous AI drafts as drafts, not established facts.",
+  "capabilities": [
+    "chat",
+    "memory"
+  ],
+  "preferredTask": 0
+}

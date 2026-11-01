@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "creator",
+  "name": "ASTRA Creator",
+  "description": "Produzione video, modellazione 3D e grafica.",
+  "packages": [
+    "BlenderFoundation.Blender",
+    "OBSProject.OBSStudio",
+    "GIMP.GIMP"
+  ]
+}

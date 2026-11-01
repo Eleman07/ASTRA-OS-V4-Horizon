@@ -1,0 +1,14 @@
+{
+  "SchemaVersion": 1,
+  "Id": "org.astra.skill.recall",
+  "Name": "Active Recall",
+  "Description": "Quiz e flashcard con risposte e riferimenti.",
+  "Category": "Study",
+  "Instructions": "Create active recall questions, an answer key and source/page references. Distinguish document evidence from general study suggestions.",
+  "Capabilities": [
+    "chat",
+    "study",
+    "memory"
+  ],
+  "PreferredTask": 0
+}
