@@ -39,7 +39,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path)
     parser.add_argument("--version", default=None)
     args = parser.parse_args()
-    version = args.version or ("4.3.0" if args.flavour == "codex" else "4.2.0")
+    version = args.version or ("4.4.0" if args.flavour == "codex" else "4.2.0")
     assert len(version.split(".")) == 3 and all(p.isdigit() for p in version.split("."))
     local = args.flavour == "local-gpu"
     args.payload = args.payload or DIST / ("AstraOS-LocalGPU-4.2.0-Final" if local else "AstraOS-Cloud-4.2.0-Final")

@@ -1,3 +1,3 @@
-# ASTRA 4.3.0
+# ASTRA 4.4.0
 
-See [the 4.3 release notes](docs/RELEASE-NOTES-CODEX-4.3.0.md), [README](README.md) and [verification record](docs/CODEX-4.3.0-VERIFICATION.md).
+See [4.4 release notes](docs/RELEASE-NOTES-UNIFIED-4.4.0.md), [README](README.md) and [verification](docs/UNIFIED-4.4.0-VERIFICATION.md).

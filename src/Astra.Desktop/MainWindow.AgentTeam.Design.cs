@@ -248,7 +248,7 @@ public sealed partial class MainWindow
         result.Children.Add(Action("Read final deliverable aloud", (_, _) => { if (_selectedTeamJob is not null && _teamStore.Records.Get(_selectedTeamJob) is { } job) { _teamSpeaker?.Dispose(); _teamSpeaker = new(); _teamSpeaker.SetOutputToDefaultAudioDevice(); _teamSpeaker.SpeakAsync(job.Steps.Last().Output); } }));
         result.Children.Add(Action("Stop voice output", (_, _) => _teamSpeaker?.SpeakAsyncCancelAll()));
         result.Children.Add(Action("Export final deliverable as WAV…", async (_, _) => { if (_selectedTeamJob is null || _teamStore.Records.Get(_selectedTeamJob) is not { } job) return; var picker = new FileSavePicker { SuggestedFileName = "astra-voice-report" }; picker.FileTypeChoices.Add("WAV audio", new List<string> { ".wav" }); WinRT.Interop.InitializeWithWindow.Initialize(picker, WinRT.Interop.WindowNative.GetWindowHandle(this)); var file = await picker.PickSaveFileAsync(); if (file is not null) await File.WriteAllBytesAsync(file.Path, await AstraOS.Desktop.Ai.AssistantMedia.SynthesizeAsync(job.Steps.Last().Output, _windowLifetime.Token)); })); panel.Children.Add(TeamSurface(result));
-        _teamTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) }; _teamTimer.Tick += (_, _) => { try { if (_v4LastPage == "brain") RefreshTeamJobs(); } catch (Exception ex) { _teamStatus.Text = ex.Message; } };
+        _teamTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) }; _teamTimer.Tick += (_, _) => { try { if (_v4LastPage == "brain") { RefreshTeamJobs(); RefreshUnifiedActivity(); } } catch (Exception ex) { _teamStatus.Text = ex.Message; } };
         AppRoot.Loaded += (_, _) => { _teamTimer.Start(); if (Environment.GetEnvironmentVariable("ASTRA_QA_MODE") != "1" && _teamStore.Configuration.Enabled) StartTeamWorker(); if (Environment.GetEnvironmentVariable("ASTRA_CLOUD_UI_QA") == "1" || Environment.GetEnvironmentVariable("ASTRA_LOCAL_GPU_UI_QA") == "1") _ = RunCloudUiSmokeAsync(); else if (Environment.GetEnvironmentVariable("ASTRA_AGENT_QA") == "1") _ = RunAgentBrainSmokeAsync(); };
         Closed += (_, _) => { _teamTimer.Stop(); _teamRecorder.Dispose(); _teamSpeaker?.Dispose(); }; _teamWorkspaceView = panel; RefreshTeamJobs(); return panel;
     }
@@ -263,6 +263,7 @@ public sealed partial class MainWindow
         string ordinary = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ASTRA", "OS");
         if (Environment.GetEnvironmentVariable("ASTRA_QA_MODE") != "1" || string.IsNullOrWhiteSpace(profile) || !Path.IsPathFullyQualified(profile) || Path.GetFullPath(profile).TrimEnd(Path.DirectorySeparatorChar).Equals(Path.GetFullPath(ordinary).TrimEnd(Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)) return;
 
+        if(_unifiedRoot is not null){await RunUnifiedUiSmokeAsync();return;}
         var checks = new List<object>(); bool passed = true,mediaModelTested=false;
         void Check(string name, bool okay) { checks.Add(new { name, passed = okay }); passed &= okay; }
         string objective = _teamObjectiveInput?.Text ?? "", source = _teamSourceInput?.Text ?? "";

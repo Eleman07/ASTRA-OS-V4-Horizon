@@ -80,6 +80,8 @@ public sealed class AgentJob
     public bool VaultSaved { get; set; }
     public string VaultExportPath { get; set; } = "";
     public string ArtifactDirectory { get; set; } = "";
+    public string ConversationId { get; set; } = "";
+    public bool ConversationDelivered { get; set; }
     public int RepairAttempts { get; set; }
     public DateTimeOffset? NextAttemptUtc { get; set; }
     public int ProviderWaitCount { get; set; }
@@ -126,6 +128,8 @@ public sealed class AgentRuntimeSettings
 }
 public sealed class AgentJobStore
 {
+    public sealed record ConversationLink(string JobId);
+    public EncryptedRecords<ConversationLink> Conversations { get; }
     public EncryptedRecords<AgentJob> Records { get; }
     public EncryptedRecords<AgentRuntimeSettings> Settings { get; }
     public EncryptedRecords<AgentImage> Images { get; }
@@ -133,6 +137,7 @@ public sealed class AgentJobStore
     public AgentJobStore(string? root = null)
     {
         Root = root ?? Path.Combine(AstraPaths.UserDataRoot, "agents");
+        Conversations = new(Path.Combine(Root,"conversations"));
         Records = new(Path.Combine(Root, "jobs")); Settings = new(Path.Combine(Root, "settings"));
         Images = new(Path.Combine(Root,"images"));
     }

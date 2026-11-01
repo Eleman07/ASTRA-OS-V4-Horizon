@@ -22,6 +22,7 @@ public sealed partial class MainWindow
     private int _teamPage;
     private bool _refreshingTeam;
     private Func<Task>? _loadBrainGraph;
+    private string _teamReportStamp="";
     private readonly List<string> _teamImages=new();
     private readonly AstraOS.Desktop.Ai.AssistantRecorder _teamRecorder=new();
     private System.Speech.Synthesis.SpeechSynthesizer? _teamSpeaker;
@@ -34,6 +35,8 @@ public sealed partial class MainWindow
     {
         if (_selectedTeamJob is not null && _teamStore.Records.Get(_selectedTeamJob) is { } job && _teamReport is not null)
         {
+            string stamp=job.Id+":"+job.Status+":"+job.Error+":"+job.ArtifactDirectory+":"+job.QualityAudit+":"+job.Evidence.Count+":"+string.Join("|",job.Steps.Select(s=>s.Status+":"+s.Output.Length));
+            if(_teamReportStamp==stamp)return;_teamReportStamp=stamp;
             string report = TeamReport(job); if (_teamReport.Text != report) _teamReport.Text = report;
             int completed = job.Steps.Count(s => s.Status == "Completed");
             if (_teamProgress is not null) { _teamProgress.IsIndeterminate = job.Status == "Running" && completed == 0; _teamProgress.Value = job.Steps.Count == 0 ? 0 : 100.0 * completed / job.Steps.Count; }
@@ -115,8 +118,14 @@ public sealed partial class MainWindow
     }
     private async Task SendBrainGraphAsync()
     {
-        var graph = await Task.Run(() => { var config=_teamStore.Configuration;IReadOnlyList<BrainNote> vault=string.IsNullOrWhiteSpace(config.VaultPath)?Array.Empty<BrainNote>():ObsidianKnowledge.GraphNotes(config.VaultPath,_windowLifetime.Token);return BrainGraphBuilder.Build(_notes.Enumerate().Concat(vault), _documents.List(), _teamStore.Records.Enumerate()); });
-        _brainGraphView?.CoreWebView2?.PostWebMessageAsJson(JsonSerializer.Serialize(new { nodes = graph.Nodes.Select(n => new { id = n.Id, label = n.Label, kind = n.Kind, detail = n.Detail }), edges = graph.Edges.Select(e => new { source = e.Source, target = e.Target, relation = e.Relation }) }));
+        var view=_brainGraphView;int lease=_graphLease;var token=_graphLoading?.Token??_windowLifetime.Token;
+        if(view is null||token.IsCancellationRequested)return;
+        var graph = await Task.Run(() => { var config=_teamStore.Configuration;IReadOnlyList<BrainNote> vault=string.IsNullOrWhiteSpace(config.VaultPath)?Array.Empty<BrainNote>():ObsidianKnowledge.GraphNotes(config.VaultPath,token);token.ThrowIfCancellationRequested();return BrainGraphBuilder.Build(_notes.Enumerate().Concat(vault), _documents.List(), _teamStore.Records.Enumerate()); },token);
+        if(token.IsCancellationRequested||lease!=_graphLease||view!=_brainGraphView)return;
+        _graphSources=graph.Nodes.ToDictionary(n=>n.Id);
+        view.CoreWebView2?.PostWebMessageAsJson(JsonSerializer.Serialize(new { type="graph-data", budget=CurrentRenderBudget, palette=_preferences.Palette, nodes = graph.Nodes.Select(n => new { id = n.Id, label = n.Label, kind = n.Kind, detail = n.Detail.Length<=400?n.Detail:n.Detail[..400]+"\n[Anteprima del grafo. Usa nella conversazione carica il contenuto originale completo.]" }), edges = graph.Edges.Select(e => new { source = e.Source, target = e.Target, relation = e.Relation }) }));
+        if(_graphPlaceholder is not null)_graphPlaceholder.Visibility=Visibility.Collapsed;
+        SendGraphActivity();
     }
 
     private async Task RunAgentBrainSmokeAsync()

@@ -524,6 +524,7 @@ public sealed partial class MainWindow
     private async void Start3D_Click(object sender, RoutedEventArgs e) => await Start3DAsync();
     private async Task Start3DAsync()
     {
+        if (!_windowActive || _v4LastPage != "orbit" || _windowClosed) return;
         if (_orbitActive || _orbitInitializing) { OrbitStatus.Text = AstraOS.Core.UiText.T("La visualizzazione è già attiva o in caricamento."); return; }
         var generation = ++_orbitGeneration;
         _orbitInitializing = true;
@@ -561,8 +562,8 @@ public sealed partial class MainWindow
             core.WebMessageReceived += OrbitWebMessageReceived;
             core.NavigationCompleted += OrbitNavigationCompleted;
             view.Visibility = Visibility.Visible;
-            var cap = AstraOS.Core.PerformancePolicy.EffectiveOrbitFps(_preferences);
-            var quality = _preferences.EcoMode ? "low" : OrbitQualityCombo.SelectedIndex switch { 0 => "low", 2 => "high", _ => "balanced" };
+            var cap = Math.Min(AstraOS.Core.PerformancePolicy.EffectiveOrbitFps(_preferences),_lightDevice||_preferences.EcoMode?15:30);
+            var quality = _lightDevice || _preferences.EcoMode ? "low" : OrbitQualityCombo.SelectedIndex switch { 0 => "low", 2 => "high", _ => "balanced" };
             core.Navigate($"https://astra.local/index.html?fps={cap}&motion={(_preferences.ReducedMotion ? 0 : 1)}&quality={quality}");
             _orbitActive = true;
             OrbitStatus.Text = AstraOS.Core.UiText.F("Caricamento scena offline · limite {0} FPS · qualità {1}", cap, quality);

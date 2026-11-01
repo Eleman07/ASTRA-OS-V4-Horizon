@@ -1,14 +1,14 @@
-# ASTRA Assistant 4.3 — Agent Team and Second Brain
+# ASTRA Assistant 4.4 — Agent Team and Second Brain
 
 ASTRA combines an online specialist team, persistent encrypted jobs, shared memory and an interactive knowledge graph. It supports study, scientific research, engineering and aerospace work, gaming and content creation.
 
 ## Start a job
 
-Open **ASTRA Assistant / Second Brain → Agent team**. Describe an objective and its acceptance criteria. Select specialists, or leave the selection empty for keyword-based routing. Atlas always coordinates the work, Vera reviews the drafts, and Atlas produces the final deliverable.
+Open **ASTRA Assistant** and write in the conversation. Automatic orchestration chooses relevant agents and assigned skills; use side controls for overrides. Describe an objective and its acceptance criteria. Select specialists, or leave the selection empty for keyword-based routing. Atlas always coordinates the work, Vera reviews the drafts, and Atlas produces the final deliverable.
 
 Optionally choose a project folder, allow public web research, select a numerical simulation and supply its parameter JSON. The simulation selector uses ASTRA's existing documented educational models. Unknown parameters are rejected. The full parameter set, assumptions and actual numeric results are recorded as evidence.
 
-Press **Start coordinated work**. The job progresses through planning, specialists, review and synthesis. Read all handoffs and the evidence ledger in the report. Export the report as Markdown. Failed jobs can resume without regenerating completed steps. Cancellation stops the selected recurring series. ASTRA adds no commercial job-count quota; the selected Codex plan or OpenRouter service still imposes usage limits.
+Send the message in the conversation. The job progresses through planning, specialists, review and synthesis. Read all handoffs and the evidence ledger in the report. Export the report as Markdown. Failed jobs can resume without regenerating completed steps. Cancellation stops the selected recurring series. ASTRA adds no commercial job-count quota; the selected Codex plan or OpenRouter service still imposes usage limits.
 
 In the conversation window, **Delegate to agent team** submits the current objective and attachment text. Commands `team <objective>`, `agents <objective>`, `agenti <objective>` and `delega <objective>` also enqueue work. Public web research is off for chat delegation; use the team panel to enable it per job. In-app task lists and ordinary chat retain their existing interfaces.
 
@@ -28,7 +28,7 @@ In the conversation window, **Delegate to agent team** submits the current objec
 
 The catalog is implemented in `src/Astra.Core/Agents/AgentCatalog.cs`. Tool access is enforced by the worker. A skill is a method, not an additional operating-system permission. Project reading, memory retrieval, public web research and selected simulations are implemented tools. Generated code remains a proposal; use the existing **Projects and code** review/execution workflow when you want to apply or run it. The team does not silently execute generated shell commands.
 
-In **Skills**, create/edit a custom method, draft it with the selected model, import JSON or Markdown, and export reusable packages. In **Agent team → Create/import skills and assign them to agents**, bind any installed skill to a specific agent or remove that binding. Each agent retains its baseline contract. Assigned methods are loaded from the shared installed-skill catalog for new inference calls; declared skill capabilities never expand the worker's actual tool permissions.
+In **Skills**, create/edit a custom method, draft it with the selected model, import JSON or Markdown, and export reusable packages. In the skills/agent side controls, bind any installed skill to a specific agent or remove that binding. Each agent retains its baseline contract. Assigned methods are loaded from the shared installed-skill catalog for new inference calls; declared skill capabilities never expand the worker's actual tool permissions.
 
 ## Shared memory and graph
 
@@ -36,7 +36,7 @@ Internal notes, jobs, images and checkpoints use Windows DPAPI for the current a
 
 This online edition retrieves relevant vault passages lexically, with source locations; no local embedding model is required. Completed exports are marked as reviewed AI drafts and preserve existing notes. Retrieval and graph links support traceability, not truth by themselves.
 
-Open **Knowledge graph**, refresh, search/filter node types, zoom/pan and inspect notes, documents, concepts, projects, tasks, sources, agents and skills. The initial display batch can be expanded and is not a storage quota. Relationships reflect recorded tags, assignments and source use.
+The central knowledge graph loads automatically. Refresh if needed, search/filter node types, zoom/pan and inspect notes, documents, concepts, projects, tasks, sources, agents and skills. The initial display batch can be expanded and is not a storage quota. Relationships reflect recorded tags, assignments and source use.
 
 ## Choose the provider
 
@@ -52,8 +52,8 @@ Supplied inputs and returned outputs are preserved without an application charac
 
 ## Background work, recovery and improvement
 
-The worker can continue after the window closes while the PC is awake, connected and the Windows session remains available. A file lease avoids duplicate processing. Encrypted checkpoints survive interruptions; recurring jobs follow their interval. Cancel stops the selected series. Windows sign-in startup is an explicit option.
+The worker can continue after the window closes while the PC is awake, connected and the Windows session remains available. A file lease avoids duplicate processing. Replies from completed linked jobs are saved once to their encrypted conversation even when its window is closed. Encrypted checkpoints survive interruptions; recurring jobs follow their interval. Cancel stops the selected series. Windows sign-in startup is an explicit option.
 
 A supervisor restarts crashed workers. Recognized temporary failures have recovery logic; procedural learning stores inspectable validation/recovery lessons. This does not train model weights or autonomously deploy a rewritten executable. Do not report a proposed repair or model review as an executed test.
 
-The team performs coordinated, normally sequential handoffs, not unrestricted parallel desktop control. See [4.3 verification](CODEX-4.3.0-VERIFICATION.md) for actual checks, including unchanged Codex-generated CubeSat code passing 56 tests. Those checks do not certify every task, a flight system or alternative models' performance.
+The team performs coordinated, normally sequential handoffs, not unrestricted parallel desktop control. See [4.4 verification](UNIFIED-4.4.0-VERIFICATION.md) for actual checks, including unchanged Codex-generated CubeSat code passing 56 tests. Those checks do not certify every task, a flight system or alternative models' performance.

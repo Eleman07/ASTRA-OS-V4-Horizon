@@ -10,12 +10,12 @@ class AstraRenderer {
     this.gl=canvas.getContext('webgl',{alpha:false,antialias:options.quality==='high',powerPreference:'low-power'});
     if(!this.gl)throw Error('WebGL non disponibile');
     const gl=this.gl;
-    const compile=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Shader non disponibile');return s;};
-    this.program=gl.createProgram();const vs=compile(gl.VERTEX_SHADER,'attribute vec3 p;attribute vec3 color;uniform mat4 m;uniform float size;varying vec3 c;void main(){c=color;gl_Position=m*vec4(p,1.);gl_PointSize=size;}');
-    const fs=compile(gl.FRAGMENT_SHADER,'precision mediump float;varying vec3 c;uniform bool points;void main(){if(points&&distance(gl_PointCoord,vec2(.5))>.5)discard;gl_FragColor=vec4(c,1.);}');
+    const compile=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Shader non disponibile: '+gl.getShaderInfoLog(s));return s;};
+    this.program=gl.createProgram();const vs=compile(gl.VERTEX_SHADER,`attribute vec3 p;attribute vec3 color;uniform mat4 m;uniform float size;varying vec3 c;varying vec3 surface;void main(){c=color;surface=p;gl_Position=m*vec4(p,1.);gl_PointSize=size;}`);
+    const fs=compile(gl.FRAGMENT_SHADER,`precision mediump float;varying vec3 c;varying vec3 surface;uniform bool points;uniform int material;uniform float clock;uniform vec3 starA;uniform vec3 starB;uniform vec3 starC;void main(){if(points&&distance(gl_PointCoord,vec2(.5))>.5)discard;vec3 color=c;float alpha=1.0;if(material>0){vec3 n=normalize(surface);float longitude=atan(n.y,n.x);float phase=longitude*5.0+n.z*12.0-clock*.8+sin(n.z*10.0+clock*.6)*2.2;float flow=.5+.5*sin(phase);float filament=pow(.5+.5*sin(phase*3.0+sin(longitude*9.0-clock*.4)),9.0);color=mix(starA,starB,smoothstep(.05,.92,flow));color=mix(color,starC,.28*(.5+.5*sin(n.z*8.0+longitude*3.0+clock*.4)));float rim=pow(1.0-abs(n.z),2.0);color*=.85+.25*max(0.0,dot(n,normalize(vec3(.4,.6,1.0))))+.38*filament+.14*rim;if(material==2){alpha=.18*pow(1.0-abs(n.z),1.4);color=mix(starA,starB,flow);}}gl_FragColor=vec4(clamp(color,0.0,1.0),alpha);}`);
     gl.attachShader(this.program,vs);gl.attachShader(this.program,fs);gl.linkProgram(this.program);gl.deleteShader(vs);gl.deleteShader(fs);
-    if(!gl.getProgramParameter(this.program,gl.LINK_STATUS))throw Error('Programma WebGL non disponibile');
-    this.ap=gl.getAttribLocation(this.program,'p');this.ac=gl.getAttribLocation(this.program,'color');this.um=gl.getUniformLocation(this.program,'m');this.us=gl.getUniformLocation(this.program,'size');this.uPoints=gl.getUniformLocation(this.program,'points');
+    if(!gl.getProgramParameter(this.program,gl.LINK_STATUS))throw Error('Programma WebGL non disponibile: '+gl.getProgramInfoLog(this.program));
+    this.ap=gl.getAttribLocation(this.program,'p');this.ac=gl.getAttribLocation(this.program,'color');this.um=gl.getUniformLocation(this.program,'m');this.us=gl.getUniformLocation(this.program,'size');this.uPoints=gl.getUniformLocation(this.program,'points');this.uClock=gl.getUniformLocation(this.program,'clock');this.uMaterial=gl.getUniformLocation(this.program,'material');this.uStarA=gl.getUniformLocation(this.program,'starA');this.uStarB=gl.getUniformLocation(this.program,'starB');this.uStarC=gl.getUniformLocation(this.program,'starC');
     gl.enable(gl.DEPTH_TEST);this.resetCamera();
     this.down=e=>{if(e.button!==0)return;this.drag={x:e.clientX,y:e.clientY,moved:0,pan:e.shiftKey};canvas.setPointerCapture(e.pointerId);};
     this.move=e=>{if(!this.drag)return;const dx=e.clientX-this.drag.x,dy=e.clientY-this.drag.y;this.drag.moved+=Math.abs(dx)+Math.abs(dy);if(this.drag.pan){this.pan[0]+=dx/160;this.pan[1]-=dy/160;}else{this.yaw+=dx*.008;this.pitch=Math.max(-1.55,Math.min(1.55,this.pitch+dy*.008));}this.drag.x=e.clientX;this.drag.y=e.clientY;this.requestDraw();};
@@ -61,7 +61,13 @@ class AstraRenderer {
       const vertices=[],colors=['navy','deep','blue','ice','snow'].map(k=>AstraRenderer.rgb(this.palette[k]));
       const vertex=(lat,lon)=>{const n=[Math.sin(lat)*Math.cos(lon),Math.cos(lat),Math.sin(lat)*Math.sin(lon)];let f=Math.max(0,Math.min(.99999,(n[0]*.35+n[1]*.65+n[2]*.55+1)/2));f=Math.min(3.99999,f*4);const a=Math.floor(f),blend=f-a,c=colors[a].map((v,i)=>v*(1-blend)+colors[a+1][i]*blend);vertices.push(...n.map(v=>v*.31),...c);};
       for(let r=0;r<32;r++)for(let c=0;c<64;c++){const a=r*Math.PI/32,b=(r+1)*Math.PI/32,x=c*Math.PI/32,y=(c+1)*Math.PI/32;vertex(a,x);vertex(b,x);vertex(a,y);vertex(a,y);vertex(b,x);vertex(b,y);}
-      add(vertices,gl.TRIANGLES);this.parts[this.parts.length-1].core=true;
+      add(vertices,gl.TRIANGLES);this.parts[this.parts.length-1].core=true;this.parts[this.parts.length-1].star=true;
+      const corona=[];for(let i=0;i<vertices.length;i+=6)corona.push(vertices[i]*1.32,vertices[i+1]*1.32,vertices[i+2]*1.32,vertices[i+3],vertices[i+4],vertices[i+5]);
+      add(corona,gl.TRIANGLES);this.parts[this.parts.length-1].core=true;this.parts[this.parts.length-1].halo=true;
+      const ring=[];const seg=this.options.quality==="low"?40:72;
+      for(let r=0;r<2;r++)for(let i=0;i<=seg;i++){const a=i*Math.PI*2/seg,tilt=r?1.1:.35;ring.push(.41*Math.cos(a),.41*Math.sin(a)*Math.cos(tilt),.41*Math.sin(a)*Math.sin(tilt),...ice);}
+      add(ring,gl.LINE_STRIP);this.parts[this.parts.length-1].core=true;this.parts[this.parts.length-1].gimbal=true;
+
     }
     if(reset)this.resetCamera();this.options.onData?.(this.bounds,total);this.requestDraw();
   }
@@ -74,7 +80,9 @@ class AstraRenderer {
     const view=new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,this.pan[0],this.pan[1],-this.distance,1]);
     const spin=this.motion?time*.00004:0;this.matrix=AstraRenderer.multiply(projection,AstraRenderer.multiply(view,AstraRenderer.multiply(AstraRenderer.rx(this.pitch),AstraRenderer.ry(this.yaw+spin))));
     gl.uniformMatrix4fv(this.um,false,this.matrix);gl.enableVertexAttribArray(this.ap);gl.enableVertexAttribArray(this.ac);gl.uniform1f(this.us,this.pointSize*dpr);
-    this.parts.forEach((p,i)=>{if(!this.axes&&i===this._axesPart)return;let matrix=this.matrix;if(p.core&&this.motion){const pulse=1+.025*Math.sin(time*.0012),scale=new Float32Array([pulse,0,0,0,0,pulse,0,0,0,0,pulse,0,0,0,0,1]);matrix=AstraRenderer.multiply(this.matrix,AstraRenderer.multiply(AstraRenderer.ry(time*.00022),AstraRenderer.multiply(AstraRenderer.rx(.3),scale)));}gl.uniformMatrix4fv(this.um,false,matrix);gl.bindBuffer(gl.ARRAY_BUFFER,p.buffer);gl.vertexAttribPointer(this.ap,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(this.ac,3,gl.FLOAT,false,24,12);gl.uniform1i(this.uPoints,p.mode===gl.POINTS?1:0);gl.drawArrays(p.mode,0,p.count);});
+    const colors=[...new Set([this.palette.blue,this.palette.ice,this.palette.deep])];while(colors.length<3)colors.push(colors[0]);
+    gl.uniform1f(this.uClock,this.motion?(time*.001)%(Math.PI*200):0);gl.uniform3fv(this.uStarA,AstraRenderer.rgb(colors[0]));gl.uniform3fv(this.uStarB,AstraRenderer.rgb(colors[1]));gl.uniform3fv(this.uStarC,AstraRenderer.rgb(colors[2]));
+    this.parts.forEach((p,i)=>{gl.uniform1i(this.uMaterial,p.star?1:p.halo?2:0);if(p.halo){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);gl.depthMask(false);}if(!this.axes&&i===this._axesPart)return;let matrix=this.matrix;if(p.core&&this.motion){const pulse=1+.025*Math.sin(time*.0012),scale=new Float32Array([pulse,0,0,0,0,pulse,0,0,0,0,pulse,0,0,0,0,1]);matrix=AstraRenderer.multiply(this.matrix,AstraRenderer.multiply(AstraRenderer.ry(time*(p.gimbal?-.00035:.00022)),AstraRenderer.multiply(AstraRenderer.rx(.3),scale)));}gl.uniformMatrix4fv(this.um,false,matrix);gl.bindBuffer(gl.ARRAY_BUFFER,p.buffer);gl.vertexAttribPointer(this.ap,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(this.ac,3,gl.FLOAT,false,24,12);gl.uniform1i(this.uPoints,p.mode===gl.POINTS?1:0);gl.drawArrays(p.mode,0,p.count);if(p.halo){gl.disable(gl.BLEND);gl.depthMask(true);}});
     this.options.onDraw?.(this);if(this.motion){clearTimeout(this.timer);this.timer=setTimeout(()=>this.requestDraw(),1000/this.fps);}
   }
   project(position){if(!this.matrix)return null;const m=this.matrix,p=[...position,1],v=[0,0,0,0];for(let row=0;row<4;row++)for(let col=0;col<4;col++)v[row]+=m[col*4+row]*p[col];if(v[3]<=0||Math.abs(v[2]/v[3])>1)return null;return {x:(v[0]/v[3]+1)*this.canvas.clientWidth/2,y:(1-v[1]/v[3])*this.canvas.clientHeight/2,depth:v[3]};}

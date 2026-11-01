@@ -123,6 +123,7 @@ using (var lifetime = new CancellationTokenSource())
                     catch(Exception ex) when(ex is IOException or UnauthorizedAccessException or ArgumentException){store.Update(done.Id,j=>j.Error="Vault export pending: "+ex.Message);}
                 }
             }
+            AgentConversationDelivery.DeliverCompleted(store);
             var next = store.NextReadyJob(DateTimeOffset.UtcNow);
             if (next is null)
             {

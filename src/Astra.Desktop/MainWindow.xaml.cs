@@ -124,6 +124,7 @@ public sealed partial class MainWindow : Window
         OnProductivityNavigate(page);
         if(page=="system"){PageTitle.Text=UiText.T("Centro di controllo");PageSubtitle.Text=UiText.T("Funzioni quotidiane · strumenti di sistema · produttività");}
         RefreshAssistantIdentity();
+        UpdateUnifiedVisuals();
         ContentScroller.ChangeView(null,0,null,true);
         AnimateNavigation(page);
         DispatcherQueue.TryEnqueue(()=>LocalizeCombos(AppRoot));

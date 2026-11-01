@@ -619,7 +619,7 @@
     <Border x:Name="RunningAppsDivider" Width="1" Height="28" Background="{StaticResource AstraBlue}" Margin="5,0" Visibility="Collapsed"/>
     <StackPanel x:Name="RunningAppsPanel" Orientation="Horizontal" Spacing="7"/>
    </StackPanel></ScrollViewer></Border>
-   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock x:Name="StatusText" Text="ASTRA Assistant · Codex ready" FontSize="11" Foreground="{StaticResource AstraTextLight}"/><TextBlock Grid.Column="1" Text="v4.3.0 online · Windows 11" FontSize="11" Foreground="{StaticResource AstraIce}" x:Name="L10n0217"/></Grid>
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock x:Name="StatusText" Text="ASTRA Assistant · Codex ready" FontSize="11" Foreground="{StaticResource AstraTextLight}"/><TextBlock Grid.Column="1" Text="v4.4.0 Conversation OS · Windows 11" FontSize="11" Foreground="{StaticResource AstraIce}" x:Name="L10n0217"/></Grid>
   </StackPanel>
  </Grid>
  </Grid>

@@ -2,3 +2,4 @@
 #center{display:grid;place-items:center;width:82px;height:82px;padding:0;z-index:2;background:radial-gradient(circle at 30% 25%,var(--blue),var(--deep) 70%);box-shadow:0 0 35px #4A7FA744,inset 0 0 20px #B3CFE533;border-color:var(--ice)}
 
 #center{width:auto;height:auto;background:transparent;box-shadow:none;border:0;padding:0;margin-top:58px;font-size:10px;letter-spacing:3px;color:var(--ice)}
+#center{margin-top:110px}

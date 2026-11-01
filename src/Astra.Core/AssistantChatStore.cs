@@ -36,6 +36,16 @@ public sealed class AssistantChatStore
         if(!Directory.Exists(_root))return Array.Empty<AssistantConversation>();
         return Directory.EnumerateDirectories(_root).Where(p=>Guid.TryParseExact(Path.GetFileName(p),"N",out _)).OrderByDescending(Directory.GetLastWriteTimeUtc).Skip(Math.Max(0,skip)).Take(Math.Clamp(take,1,100)).Select(p=>Read<AssistantConversation>(Path.Combine(p,"header.dpapi"))).ToArray();
     }
+    public bool AppendDeliveryOnce(string id,string deliveryId,AssistantMessage message)
+    {
+        if(!Guid.TryParseExact(deliveryId,"N",out _)||message.Role!="assistant")throw new InvalidDataException("Invalid conversation delivery.");
+        string folder=Folder(id);var guard=new Agents.EncryptedRecords<AssistantMessage>(folder);
+        using var locked=guard.Lock();
+        if(Directory.EnumerateFiles(folder,"*-job-"+deliveryId+".dpapi").Any())return false;
+        var header=Read<AssistantConversation>(Path.Combine(folder,"header.dpapi"));
+        Write(Path.Combine(folder,message.Time.UtcTicks.ToString("D19")+"-job-"+deliveryId+".dpapi"),message);
+        Write(Path.Combine(folder,"header.dpapi"),header with{Updated=DateTimeOffset.UtcNow});return true;
+    }
     public IReadOnlyList<AssistantMessage> ReadPage(string id,int skip=0,int take=30)=>Directory.EnumerateFiles(Folder(id),"*.dpapi").Where(p=>Path.GetFileName(p)!="header.dpapi").OrderByDescending(Path.GetFileName).Skip(Math.Max(0,skip)).Take(Math.Clamp(take,1,100)).Reverse().Select(Read<AssistantMessage>).ToArray();
     public IReadOnlyList<AssistantMessage> ReadAll(string id)=>Directory.EnumerateFiles(Folder(id),"*.dpapi").Where(p=>Path.GetFileName(p)!="header.dpapi").OrderBy(Path.GetFileName).Select(Read<AssistantMessage>).ToArray();
 }

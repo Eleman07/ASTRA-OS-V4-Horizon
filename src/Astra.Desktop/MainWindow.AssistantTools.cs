@@ -28,25 +28,7 @@ public sealed partial class MainWindow
         // Preserve the actual PDF library, encrypted notes and settings controls.
         foreach(var element in BrainPanel.Children.ToArray()){BrainPanel.Children.Remove(element);memory.Children.Add(element);}
         _assistantMemoryPanel=memory;
-        var hero=new StackPanel{Spacing=12,Orientation=Orientation.Horizontal};_assistantHeroName=Label(AssistantName,18);_assistantHeroName.VerticalAlignment=VerticalAlignment.Center;hero.Children.Add(_assistantHeroName);
-        var row=new StackPanel{Orientation=Orientation.Horizontal,Spacing=8};row.Children.Add(Action(UiText.T("Apri la conversazione"),(_,_)=>OpenAssistant()));row.Children.Add(Action(UiText.T("Ferma AI e libera memoria"),(_,_)=>{_brain.Stop();StatusText.Text=UiText.T("Provider AI arrestato; cronologia temporanea cancellata.");}));hero.Children.Add(row);
-        var quick=new StackPanel{Spacing=7};
-        foreach(var (label,message) in new[]{("Organizza il mio lavoro","Aiutami a scegliere il prossimo passo dalle mie attività e dal contesto disponibile."),("Tutor e quiz","Crea un quiz dai documenti che ho importato. Indica le fonti e non inventare il contenuto mancante."),("Gaming coach","gaming coach"),("Revisione Creator","creator audit")})
-            quick.Children.Add(Action(UiText.T(label),(_,_)=>{OpenAssistant();_assistantWindow?.SetMessage(UiText.T(message));}));
-        hero.Children.Add(new Expander{Header=UiText.T("Spunti per iniziare"),Content=quick});BrainPanel.Children.Add(Card(hero));
-        var tabs=new TabView{IsAddTabButtonVisible=false,TabWidthMode=TabViewWidthMode.SizeToContent,MinHeight=360};
-        TabViewItem Tab(string name,UIElement content)=>new(){Header=UiText.T(name),IsClosable=false,Content=content,Padding=new Thickness(8)};
-        tabs.TabItems.Add(Tab("Memoria e documenti",memory));
-        tabs.TabItems.Add(Tab("Agent team",BuildAgentTeam()));
-        tabs.SelectedIndex=1;
-        tabs.TabItems.Add(Tab("Knowledge graph",BuildBrainGraph()));
-        tabs.TabItems.Add(Tab("Ricerca web",BuildAssistantWeb()));
-        tabs.TabItems.Add(Tab("Routine e automazioni",BuildAssistantRoutines()));
-        tabs.TabItems.Add(Tab("Skills",BuildAgentSkills()));
-        tabs.TabItems.Add(Tab("Progetti e codice",BuildAgentProject()));
-        var context=new StackPanel{Spacing=10};context.Children.Add(Label(UiText.T("Il contesto viene costruito dai dati disponibili in ASTRA. Le altre app non vengono lette in modo continuo."),13));
-        _assistantContextView=Label("",13);context.Children.Add(_assistantContextView);context.Children.Add(Action(UiText.T("Aggiorna contesto"),(_,_)=>_assistantContextView.Text=BuildAssistantContext()));
-        context.Children.Add(Action(UiText.T("Usa questo contesto nella chat"),(_,_)=>{OpenAssistant();_assistantWindow?.SetInput(BuildAssistantContext());}));tabs.TabItems.Add(Tab("Contesto",context));BrainPanel.Children.Add(tabs);
+        BuildUnifiedAssistant(memory);
         Closed+=(_,_)=>{_webOperation?.Cancel();_routineOperation?.Cancel();};
     }
 
@@ -188,9 +170,8 @@ public sealed partial class MainWindow
         foreach(string prefix in new[]{"team ","agents ","agenti ","delega "})
             if(input.StartsWith(prefix,StringComparison.OrdinalIgnoreCase))
             {
-                var job=_teamStore.Enqueue(input[prefix.Length..],context:BuildAssistantContext(),project:_agentProjectRoot??"");
-                _selectedTeamJob=job.Id;StartTeamWorker();RefreshTeamJobs();
-                return "Agent team job queued: "+job.Id+"\nPlan: "+string.Join(" → ",job.Steps.Select(s=>AstraOS.Core.Agents.AgentCatalog.Get(s.AgentId).Name))+"\nFollow progress and export results in ASTRA Assistant → Agent team. Public web research is off for chat delegation; enable it when creating a job in the team panel.";
+                string body=input[prefix.Length..];string[] parts=body.Split("\n\nAttached context:\n",2,StringSplitOptions.None);
+                return await RunConversationTeamAsync(parts[0],parts.Length>1?parts[1]:"",PlanConversation(parts[0]).Roles,ct);
             }
         var action=AssistantWorkspace.Parse(input);if(action is null)return null;
         switch(action.Kind)

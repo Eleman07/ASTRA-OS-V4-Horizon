@@ -41,7 +41,7 @@ def audit(build):
                 assert not any(prefix in data for prefix in personal_prefixes), 'Personal path: ' + relative
             files[relative] = path
     manifest = json.loads(files['cloud-build-manifest.json'].read_text(encoding='utf-8-sig'))
-    assert manifest['Version'] == '4.3.0' and manifest['Provider'] == 'Codex ChatGPT plan'
+    assert manifest['Version'] == '4.4.0' and manifest['Provider'] == 'Codex ChatGPT plan'
     expected = {record['Path'].replace('\\', '/'): record for record in manifest['Files']}
     assert len(expected) == len(manifest['Files']) and set(files) == set(expected) | {'cloud-build-manifest.json'}
     assert {'README.md', 'LICENSE', 'THIRD-PARTY-NOTICES.md', 'licenses/dependencies.json', 'prerequisites/sources.json', 'Astra.Desktop.exe', 'Astra.AgentWorker.exe', 'Astra.AgentSupervisor.exe', 'BrainGraph/graph.js'} <= set(files)
@@ -57,11 +57,11 @@ def audit(build):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--build', type=Path, default=DIST / 'AstraOS-Online-4.3.0')
+    parser.add_argument('--build', type=Path, default=DIST / 'AstraOS-Online-4.4.0-Ship')
     parser.add_argument('--audit-only', action='store_true')
     args = parser.parse_args()
     files = audit(args.build.resolve(strict=True))
-    output = DIST / 'ASTRA-OS-V4-HORIZON-4.3.0-online-win-x64.zip'
+    output = DIST / 'ASTRA-OS-V4-HORIZON-4.4.0-online-win-x64.zip'
     if not args.audit_only:
         assert not output.exists(), 'Preserve existing release ZIP'
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as package:
@@ -75,7 +75,7 @@ def main():
         assert output.stat().st_size < 2 * 1024**3
         output.with_suffix('.zip.sha256').write_text(sha(output) + '  ' + output.name + '\n')
     report = {'utc': datetime.now(timezone.utc).isoformat(), 'payloadFiles': len(files), 'payloadAudited': True, 'personalVaultIncluded': False, 'credentialsIncluded': False, 'localTextVisionModelIncluded': False, 'cpuWhisperIncluded': True, 'zip': None if args.audit_only else output.name, 'zipSha256': None if args.audit_only else sha(output)}
-    (DIST / 'online-4.3-package-audit.json').write_text(json.dumps(report, indent=2) + '\n')
+    (DIST / 'online-4.4-package-audit.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
 
 if __name__ == '__main__':

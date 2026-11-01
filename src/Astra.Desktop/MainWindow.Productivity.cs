@@ -57,6 +57,7 @@ public sealed partial class MainWindow
             _windowActive = e.WindowActivationState != WindowActivationState.Deactivated;
             if (_windowActive||_gamingRecording) _monitorTimer.Start(); else _monitorTimer.Stop();
             SendRenderActivity();
+            UpdateUnifiedVisuals();
         };
         Closed += (_, _) =>
         {

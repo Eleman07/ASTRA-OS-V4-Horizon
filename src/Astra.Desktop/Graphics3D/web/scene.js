@@ -24,8 +24,9 @@ function renderDesktop(){
 try{
   renderer=new AstraRenderer(canvas,{fps,motion,quality:query.get('quality'),onPick:p=>{if(p?.id)select(p.id);},pickFilter:p=>!!p.id,onError:message=>{status.textContent=message;post({type:'astra-orbit-ready',ready:false});},onDraw:r=>{
     const positions=new Map(r.points.filter(p=>p.id).map(p=>[p.id,r.project(p.position)]));
-    for(const {node,id} of labelNodes){const p=positions.get(id);node.hidden=!p||!document.getElementById('showLabels').checked;if(p)node.style.transform=`translate(${p.x}px,${p.y}px) translate(-50%,-50%)`;}
-    const center=r.project([0,0,0]);if(center)document.getElementById('center').style.transform=`translate(${center.x}px,${center.y}px) translate(-50%,-50%)`;
+    const center=r.project([0,0,0]);
+    for(const {node,id} of labelNodes){const p=positions.get(id);node.hidden=!p||!document.getElementById('showLabels').checked||(!!center&&!!p&&Math.hypot(p.x-center.x,p.y-center.y)<90&&selected?.id!==id);if(p)node.style.transform=`translate(${p.x}px,${p.y}px) translate(-50%,-50%)`;}
+    if(center)document.getElementById('center').style.transform=`translate(${center.x}px,${center.y}px) translate(-50%,-50%)`;
     if(pending){pending=false;post({type:'astra-orbit-ready',ready:true,count:items.length});}
   }});
   renderer.setCoreSphere(true);renderer.pitch=1.1;renderer.yaw=.1;renderer.distance=2.9;
@@ -42,3 +43,5 @@ document.getElementById('showLabels').addEventListener('change',()=>renderer?.re
 document.getElementById('refresh').onclick=()=>post({type:'astra-desktop-refresh'});
 document.getElementById('open').onclick=()=>{if(selected)post({type:'astra-desktop-open',id:selected.id});};
 document.getElementById('explorer').onclick=()=>{if(selected)post({type:'astra-desktop-explorer',id:selected.id});};
+
+window.astraOrbitDiagnostics=()=>({active:!!renderer?.active,coreParts:renderer?.parts.filter(p=>p.core).length||0,gimbals:renderer?.parts.filter(p=>p.gimbal).length||0,motion:!!renderer?.motion,frameCap:renderer?.fps||0});

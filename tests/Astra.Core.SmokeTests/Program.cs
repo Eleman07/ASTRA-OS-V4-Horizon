@@ -250,3 +250,4 @@ Check(AstraOS.Core.Agents.AgentCatalog.All.All(agent=>defaultAgentSkills.SkillAs
 defaultAgentSkills.SkillAssignments["core"]=["user.custom.skill"];AstraOS.Core.Agents.AgentSkillDefaults.InstallMissing(defaultAgentSkills);
 Check(defaultAgentSkills.SkillAssignments["core"].SequenceEqual(new[]{"user.custom.skill"}),"Installing missing role skills preserves user-defined assignments");
 await AgentTeamTests.RunAsync();
+ConversationDispatchTests.Run();

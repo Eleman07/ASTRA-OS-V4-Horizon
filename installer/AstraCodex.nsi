@@ -7,7 +7,7 @@ Unicode true
 !include "WinVer.nsh"
 !include "${GENERATED_PAYLOAD}"
 !ifndef PRODUCT_VERSION
-!define PRODUCT_VERSION "4.3.0.0"
+!define PRODUCT_VERSION "4.4.0.0"
 !endif
 
 Name "ASTRA OS V4 Horizon Codex"

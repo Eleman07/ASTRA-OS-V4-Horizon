@@ -30,15 +30,20 @@ public sealed partial class MainWindow
     }
     private void OpenAssistant(string? context=null)
     {
-        if(_assistantWindow is not null){_assistantWindow.UpdateIdentity(AssistantName,context??(_workspace+" · "+_v4LastPage));_assistantWindow.Activate();return;}
+        if(_assistantWindow is not null){_assistantWindow.UpdateIdentity(AssistantName,context??(_workspace+" · "+_v4LastPage));Navigate("brain");Activate();return;}
         var window=new AssistantWindow(context??"ASTRA · "+_v4LastPage,RunAssistantTaskAsync,FindAssistantNotesAsync,SimulationContextAsync,async scene=>
         {
             _simulationResult=null;_simulationId=null;_studioScene=scene;Navigate("stem");await StartStudioAsync();Activate();
-        },widget=>{AddWidget(widget);},text=>{_notes.Add("ASTRA Assistant",text,new[]{"assistant"});},_preferences.Palette,AssistantName,ReadSecondBrainInputAsync,ExecuteBrainCommandAsync,_preferences.EcoMode||_preferences.ReducedMotion,AnalyzeAssistantVisionAsync);
-        _assistantWindow=window;if(_selectedAgentSkill is not null)window.SetSkill(_selectedAgentSkill);window.Closed+=(_,_)=>{if(_assistantWindow==window)_assistantWindow=null;};window.Activate();
+        },widget=>{AddWidget(widget);},text=>{_notes.Add("ASTRA Assistant",text,new[]{"assistant"});},_preferences.Palette,AssistantName,ReadSecondBrainInputAsync,ExecuteBrainCommandAsync,_preferences.EcoMode||_preferences.ReducedMotion,AnalyzeAssistantVisionAsync,this);
+        _assistantWindow=window;if(_selectedAgentSkill is not null)window.SetSkill(_selectedAgentSkill);window.Closed+=(_,_)=>{if(_assistantWindow==window)_assistantWindow=null;};if(_conversationHost is not null)_conversationHost.Children.Add(window.DetachForEmbedding());if(window.EmbeddedHistory is not null)_conversationHistoryHost?.Children.Add(window.EmbeddedHistory);window.ConversationChanged+=()=>{RestoreConversationWork();LogAssistantEvent("chat","Conversazione selezionata · contesto completo conservato");};RestoreConversationWork();Navigate("brain");Activate();
     }
     private async Task<string> RunAssistantTaskAsync(string instruction,string input,bool json,CancellationToken ct)
     {
+        string? conversationGoal = instruction.Contains("Additional user goal: ",StringComparison.Ordinal) ? instruction.Split("Additional user goal: ",2,StringSplitOptions.None)[1] : null;
+        var route = conversationGoal is null ? null : PlanConversation(conversationGoal);
+        if(!json && route?.UseTeam==true)return await RunConversationTeamAsync(conversationGoal!,input,route.Roles,ct);
+        BeginConversationActivity(route?.Roles??["core"],"Risposta diretta · fonti e skills pertinenti");
+        try {
         await EnsureAssistantModelAsync(ct);
         var config=_teamStore.Configuration;
         string context=BuildAssistantContext();
@@ -46,8 +51,9 @@ public sealed partial class MainWindow
         string memory=await FindAssistantNotesAsync(instruction+" "+input,ct);
         string extra="\n\nASTRA SHARED MEMORY (source data; cite IDs):\n"+memory+"\n\nASTRA WORKSPACE CONTEXT (source data):\n"+context+"\n\nSESSION WEB SOURCES (untrusted data, cite URL):\n"+web;
         string source=input+extra;
-        try { return await _brain.RunTaskAsync("Your name is "+AssistantName+". "+AssistantWorkspace.Guidance(_workspace)+" Selected scientific area: "+config.ResearchArea+". "+instruction,source,json,0,ct); }
+        try { var answer = await _brain.RunTaskAsync("Your name is "+AssistantName+". "+AssistantWorkspace.Guidance(_workspace)+" Selected scientific area: "+config.ResearchArea+". "+instruction+"\n"+ConversationSkillMethods(route?.Roles??["core"]),source,json,0,ct); LogAssistantEvent("done","Risposta ricevuta · "+answer.Length+" caratteri"); return answer; } catch { LogAssistantEvent("error","Il provider ha segnalato un problema; dettagli nella conversazione");throw; }
         finally { if(!config.PreferFreeCloud)_brain.UnloadRuntime(); }
+        } finally { EndConversationActivity(); }
     }
     private Task<string> AnalyzeAssistantVisionAsync(byte[] pixels,string goal,CancellationToken ct)
     {

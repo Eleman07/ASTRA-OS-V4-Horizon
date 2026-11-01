@@ -54,7 +54,7 @@ public sealed partial class MainWindow
     private void V4OnNavigate(string page)
     {
         _v4LastPage = page;
-        PageHeading.Visibility = page == "home" ? Visibility.Collapsed : Visibility.Visible;
+        PageHeading.Visibility = page is "home" or "brain" ? Visibility.Collapsed : Visibility.Visible;
         SearchSuggestions.Visibility = string.IsNullOrWhiteSpace(HorizonSearchBox.Text) ? Visibility.Collapsed : Visibility.Visible;
         ThemePanel.Visibility = page == "theme" ? Visibility.Visible : Visibility.Collapsed;
         if (page == "theme") { PageTitle.Text = AstraOS.Core.UiText.T("Personalizza ASTRA"); PageSubtitle.Text = AstraOS.Core.UiText.T("Cinque colori · temi persistenti · accessibilità"); }

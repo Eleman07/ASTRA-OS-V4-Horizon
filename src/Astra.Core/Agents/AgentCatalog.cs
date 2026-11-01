@@ -42,10 +42,10 @@ public static class AgentCatalog
         string text = goal.ToLowerInvariant();
         var ids = new List<string>();
         void Match(string id, params string[] terms) { if (terms.Any(text.Contains)) ids.Add(id); }
-        Match("study", "study", "stud", "quiz", "exam", "esame", "learn", "impara", "ripass");
+        Match("study", "study", "stud", "quiz", "exam", "esame", "learn", "impara", "ripass", "flashcard", "mappa mentale", "esercizi");
         Match("research", "research", "ricerca", "paper", "scientific", "literatur", "bibliograf");
         Match("aerospace", "aerosp", "orbit", "satellit", "rocket", "razzo", "gnc", "quaternion", "propulsion");
-        Match("engineering", "project", "progett", "code", "codice", "python", "design", "engineer", "tecnic");
+        Match("engineering", "project", "progett", "code", "codice", "python", "design", "engineer", "tecnic", "software", "algoritm", "simulatore");
         Match("gaming", "gaming", "game", "gioco", "giochi", "fps", "steam");
         Match("creator", "content", "contenut", "video", "storyboard", "script", "social", "creator");
         Match("core", "everyday", "routine", "organizz", "cartell", "windows", "impostaz", "funzioni base", "promemoria");
